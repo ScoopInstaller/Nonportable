@@ -14,7 +14,7 @@
         ]
     ],
     "checkver": {
-        "url": "http://www.moonsoftware.com/downloads",
+        "url": "https://moonsoftware.com/freeware/shell-tools/",
         "regex": "Shell Tools ([\\d.]+)"
     },
     "autoupdate": {

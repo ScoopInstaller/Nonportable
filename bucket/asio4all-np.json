@@ -26,7 +26,6 @@
         ]
     ],
     "checkver": {
-        "url": "https://www.asio4all.org/",
         "regex": "ASIO4ALL_(\\d+)_(\\d+)_English\\.exe",
         "replace": "${1}.${2}"
     },

@@ -1,6 +1,4 @@
-<!-- markdownlint-disable MD014 -->
-
-# Scoop Nonportable Bucket [![Build status](https://ci.appveyor.com/api/projects/status/ov4mve6rfbxtalcr/branch/master?svg=true)](https://ci.appveyor.com/project/TheRandomLabs/scoop-nonportable/branch/master)
+# Scoop Nonportable Bucket [![Tests](https://github.com/ScoopInstaller/Nonportable/actions/workflows/ci.yml/badge.svg)](https://github.com/ScoopInstaller/Nonportable/actions/workflows/ci.yml) [![Excavator](https://github.com/ScoopInstaller/Nonportable/actions/workflows/excavator.yml/badge.svg)](https://github.com/ScoopInstaller/Nonportable/actions/workflows/excavator.yml)
 
 [Scoop](https://scoop.sh/) bucket for nonportable applications.
 

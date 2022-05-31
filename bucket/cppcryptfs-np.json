@@ -1,5 +1,5 @@
 {
-    "version": "1.4.3.12",
+    "version": "1.4.4.0",
     "description": "Implementation of the gocryptfs encrypted overlay filesystem in C++ for Windows.",
     "homepage": "https://github.com/bailey27/cppcryptfs",
     "license": "MIT",
@@ -7,22 +7,22 @@
     "architecture": {
         "64bit": {
             "url": [
-                "https://github.com/bailey27/cppcryptfs/releases/download/1.4.3.12/cppcryptfs.exe",
-                "https://github.com/bailey27/cppcryptfs/releases/download/1.4.3.12/cppcryptfsctl.exe"
+                "https://github.com/bailey27/cppcryptfs/releases/download/1.4.4.0/cppcryptfs.exe",
+                "https://github.com/bailey27/cppcryptfs/releases/download/1.4.4.0/cppcryptfsctl.exe"
             ],
             "hash": [
-                "f9240c590613cf4af1fada6ef0df7c7a364bd70e74ab82f25900dd6e188916e6",
-                "df9df5c583eee2374e05f5bb8347c291589191d3eed635fed8a62e41babf378a"
+                "ec200456cee8a3572205ddc9d1c304e6bbe232b1bbad099175dae4034f332098",
+                "f6f0fc14a2d8dcb4a7492438317b4f7327ae258127d6a7b2750546dcc06a9808"
             ]
         },
         "32bit": {
             "url": [
-                "https://github.com/bailey27/cppcryptfs/releases/download/1.4.3.12/cppcryptfs32.exe#/cppcryptfs.exe",
-                "https://github.com/bailey27/cppcryptfs/releases/download/1.4.3.12/cppcryptfsctl32.exe#/cppcryptfsctl.exe"
+                "https://github.com/bailey27/cppcryptfs/releases/download/1.4.4.0/cppcryptfs32.exe#/cppcryptfs.exe",
+                "https://github.com/bailey27/cppcryptfs/releases/download/1.4.4.0/cppcryptfsctl32.exe#/cppcryptfsctl.exe"
             ],
             "hash": [
-                "b7bceb94ec0ae36dfaa17c003b8fa69a78bb111321f57122de5c8623a4af4992",
-                "16d6639e03a584deb129582d6379bb1e584bc35ab438e3a0cdbdb2a61e53475e"
+                "4498af7fbd260eeaf4fd795a458a622c27a2e5971aebcbac43084a25a99edb67",
+                "4e3ea9dc8f39145f221bb386683cb7037a37dd3eb1f1075957edb7dc05caeec9"
             ]
         }
     },

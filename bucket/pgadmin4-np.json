@@ -1,12 +1,12 @@
 {
-    "version": "6.9",
+    "version": "6.10",
     "homepage": "https://www.pgadmin.org/",
     "description": "PostgreSQL administration and development platform.",
     "license": "PostgreSQL",
     "architecture": {
         "64bit": {
-            "url": "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v6.9/windows/pgadmin4-6.9-x64.exe",
-            "hash": "9db5c28ec44063d3d613b6c90460be214d00f6c2905a199fdf37ac23d9b6931d"
+            "url": "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v6.10/windows/pgadmin4-6.10-x64.exe",
+            "hash": "cf7b36e03758440cccc62efcc438568d16d78138fc76023ef6d3bd29874e0d2c"
         }
     },
     "installer": {

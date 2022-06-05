@@ -1,10 +1,13 @@
 {
-    "version": "office",
+    "version": "16.0.15128.20224",
     "description": "Family of client software, server software and services developed by Microsoft.",
     "homepage": "https://www.office.com/",
-    "license": "Proprietary",
-    "url": "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_13426-20370.exe#/dl.7z",
-    "hash": "029f5429ad105b3f7af144f535b6e6e6679c09c4b5ec5056b08bff41b92e6c07",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://www.microsoft.com/licensing/terms/productoffering/OfficeDesktopApplicationsWindows/MCA"
+    },
+    "url": "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E//officedeploymenttool_15128-20224.exe#/dl.7z",
+    "hash": "be55e2dcf00e82bc113522513c584fb3914a046f37a2cb1fc97e8628fec85984",
     "architecture": {
         "64bit": {
             "pre_install": [
@@ -42,10 +45,24 @@
         ]
     },
     "checkver": {
-        "url": "https://www.microsoft.com/en-au/download/confirmation.aspx?id=49117",
-        "regex": "https://download\\.microsoft\\.com/download/(?<path>[\\w-/]+)/(?<version>office)deploymenttool_(?<build>[\\d-]+)\\.exe"
+        "script": [
+            "$url1 = 'https://docs.microsoft.com/en-us/officeupdates/odt-release-history'",
+            "$regex1 = '<p>Version ([\\d.]+)'",
+            "$url2 = 'https://www.microsoft.com/en-au/download/confirmation.aspx?id=49117'",
+            "$regex2 = 'download/([\\w/-]+)(officedeploymenttool_[\\d-]+\\.exe)'",
+            "",
+            "$cont = $(Invoke-WebRequest $url1).Content",
+            "if (!($cont -match $regex1)) { Write-Host \"Could not match '$regex1' in '$url1'\"; return }",
+            "$app_ver = $matches[1]",
+            "$cont = $(Invoke-WebRequest $url2).Content",
+            "if (!($cont -match $regex2)) { Write-Host \"Could not match '$regex2' in '$url2'\"; return }",
+            "$path = $matches[1]; $filename = $matches[2]",
+            "Write-Host $app_ver $path $filename",
+            "Write-Output $app_ver $path $filename"
+        ],
+        "regex": "([\\d.]+) (?<path>[\\w-/]+) (?<filename>[\\w.-]+)"
     },
     "autoupdate": {
-        "url": "https://download.microsoft.com/download/$matchPath/officedeploymenttool_$matchBuild.exe#/dl.7z"
+        "url": "https://download.microsoft.com/download/$matchPath/$matchFilename#/dl.7z"
     }
 }

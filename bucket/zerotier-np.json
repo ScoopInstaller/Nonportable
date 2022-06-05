@@ -1,0 +1,31 @@
+{
+    "##": "This package is non-portable because the MSI installer installs the drivers required for the app to work.",
+    "version": "1.8.10",
+    "description": "Network connection/management software that combines the capabilities of VPN and SD-WAN.",
+    "homepage": "https://www.zerotier.com/",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://github.com/zerotier/ZeroTierOne/blob/master/LICENSE.txt"
+    },
+    "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_",
+    "hash": "9329845eb151c3c55898348abdf160d84ba1e9a61df574d4224a881e94efc3e1",
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"`\"$dir\\setup.msi_`\"\", '/qn', '/norestart') | Out-Null"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"`\"$dir\\setup.msi_`\"\", '/qn', '/norestart') | Out-Null"
+        ]
+    },
+    "checkver": {
+        "url": "https://www.zerotier.com/download/",
+        "regex": "(?s)Latest version\\: <a.*?>([\\d.]+)</a>"
+    },
+    "autoupdate": {
+        "url": "https://download.zerotier.com/dist/ZeroTier%20One.msi#/setup.msi_"
+    }
+}

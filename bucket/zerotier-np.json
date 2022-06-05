@@ -12,6 +12,7 @@
     "installer": {
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "if ([System.Environment]::OSVersion.Version -lt [version]::new(10,0,0,0)) { error \"$app requires Windows 10 (or above)\"; break }",
             "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"`\"$dir\\setup.msi_`\"\", '/qn', '/norestart') -RunAs | Out-Null"
         ]
     },

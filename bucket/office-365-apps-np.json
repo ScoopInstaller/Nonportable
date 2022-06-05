@@ -57,7 +57,6 @@
             "$cont = $(Invoke-WebRequest $url2).Content",
             "if (!($cont -match $regex2)) { Write-Host \"Could not match '$regex2' in '$url2'\"; return }",
             "$path = $matches[1]; $filename = $matches[2]",
-            "Write-Host $app_ver $path $filename",
             "Write-Output $app_ver $path $filename"
         ],
         "regex": "([\\d.]+) (?<path>[\\w-/]+) (?<filename>[\\w.-]+)"

@@ -1,7 +1,7 @@
 {
     "##": [
         "This app is non-portable due to:",
-        "(1) the app requires installing drivers to work.",
+        "(1) It requires installing drivers to work.",
         "(2) The installer cannot be properly extracted."
     ],
     "version": "2.7.3.1381",

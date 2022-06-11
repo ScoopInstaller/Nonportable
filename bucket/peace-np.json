@@ -1,38 +1,58 @@
 {
-  "version": "1.6.1.2",
-  "description": "Peace Equalizer, an user interface for Equalizer APO",
-  "homepage": "https://sourceforge.net/projects/peace-equalizer-apo-extension/",
-  "license": "GPL-2.0-only",
-  "url": "https://sourceforge.net/projects/peace-equalizer-apo-extension/files/Peace.exe/download",
-  "hash": "sha1:167f714a314a13ab14701a0001b0b2d7b37a9570",
-  "installer": {
-    "script": [
-      "if (!(is_admin)) {",
-      "    error \"Administrator rights are required to install $app.\"",
-      "    exit 1",
-      "}",
-      "Set-Variable -Name ConfigPath -Value (Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\EqualizerAPO' -Name 'ConfigPath')",
-      "Move-Item \"$dir\\download\" \"$ConfigPath\\Peace.exe\"",
-      "New-Item -ItemType SymbolicLink -Path \"$dir\\Peace.exe\" -Target \"$ConfigPath\\Peace.exe\""
-    ]
-  },
-  "uninstaller": {
-    "script": [
-        "if (!(is_admin)) {",
-        "    error \"Administrator rights are required to uninstall $app.\"",
-        "    exit 1",
-        "}",
-        "Set-Variable -Name ConfigPath -Value (Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\EqualizerAPO' -Name 'ConfigPath')",
-        "Remove-Item \"$ConfigPath\\Peace.exe\""
-      ]
+    "version": "1.6.1.2",
+    "description": "Peace Equalizer, an user interface for Equalizer APO",
+    "homepage": "https://sourceforge.net/projects/peace-equalizer-apo-extension/",
+    "license": "GPL-2.0-only",
+    "depends": ["equalizer-apo-np"],
+    "architecture": {
+        "64bit": {
+            "url": "https://sourceforge.net/projects/peace-equalizer-apo-extension/files/64%20bits%20version/Peace64.exe/download",
+            "hash": "sha1:18ea1f3a26b76361e6c84471977664e4e09ecb43",
+            "shortcuts": [["Peace64.exe", "Peace"]]
+        },
+        "32bit": {
+            "url": "https://sourceforge.net/projects/peace-equalizer-apo-extension/files/Peace.exe/download",
+            "hash": "sha1:167f714a314a13ab14701a0001b0b2d7b37a9570",
+            "shortcuts": [["Peace.exe", "Peace"]]
+        }
     },
-  "shortcuts": [["Peace.exe", "Peace"]],
-  "checkver": {
-    "url": "https://sourceforge.net/projects/peace-equalizer-apo-extension/files/",
-    "regex": "Version\\s+([\\d.]+)"
-  },
-  "autoupdate": {
-    "url": "https://sourceforge.net/projects/peace-equalizer-apo-extension/files/Peace.exe/download"
-  },
-  "depends": ["equalizer-apo-np"]
+    "installer": {
+        "script": [
+            "if (!(is_admin)) {",
+            "    error \"Administrator rights are required to install $app.\"",
+            "    exit 1",
+            "}",
+            "$config_path = (Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\EqualizerAPO' -Name 'ConfigPath')",
+            "$peace_exe = 'Peace' + $(If ($architecture -eq '64bit') {'64'} Else {''}) + '.exe'",
+            "Move-Item -Force \"$dir\\download\" \"$config_path\\$peace_exe\" | Out-Null",
+            "New-Item -ItemType SymbolicLink -Path \"$dir\\$peace_exe\" -Target \"$config_path\\$peace_exe\" | Out-Null"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) {",
+            "    error \"Administrator rights are required to uninstall $app.\"",
+            "    exit 1",
+            "}",
+            "$config_path = (Get-ItemPropertyValue -Path 'HKLM:\\SOFTWARE\\EqualizerAPO' -Name 'ConfigPath')",
+            "$peace_name = 'Peace' + $(If ($architecture -eq '64bit') {'64'} Else {''})",
+            "$peace_process = Get-Process | Where-Object { $_.name -eq $peace_name }",
+            "$peace_process | ForEach-Object { Stop-Process -Id $_.Id; Start-Sleep -Milliseconds 250 }",
+            "Remove-Item \"$config_path\\${peace_name}.exe\""
+        ]
+    },
+    "checkver": {
+        "url": "https://sourceforge.net/projects/peace-equalizer-apo-extension/files/",
+        "regex": "Version\\s+([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://sourceforge.net/projects/peace-equalizer-apo-extension/files/64%20bits%20version/Peace64.exe/download"
+            },
+            "32bit": {
+                "url": "https://sourceforge.net/projects/peace-equalizer-apo-extension/files/Peace.exe/download"
+            }
+        }
+    }
 }

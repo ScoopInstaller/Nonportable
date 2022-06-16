@@ -31,6 +31,7 @@
             "Everything"
         ]
     ],
+    "pre_uninstall": "Stop-Process -Name 'everything' -ErrorAction SilentlyContinue",
     "checkver": {
         "url": "https://www.voidtools.com/forum/viewtopic.php?f=2&t=5718",
         "regex": "Everything-([\\d.]+)\\.x86"

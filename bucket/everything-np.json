@@ -31,6 +31,7 @@
             "Everything"
         ]
     ],
+    "pre_uninstall": "Stop-Process -Name 'everything' -ErrorAction SilentlyContinue",
     "checkver": "Download Everything ([\\d.]+)",
     "autoupdate": {
         "architecture": {

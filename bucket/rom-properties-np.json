@@ -58,8 +58,5 @@
         ]
     },
     "post_uninstall": "explorer",
-    "checkver": {
-        "github": "https://github.com/GerbilSoft/rom-properties/"
-    },
-    "autoupdate": "https://github.com/GerbilSoft/rom-properties/releases/download/v$version/rom-properties_$version-windows.zip"
+    "checkver": "github"
 }

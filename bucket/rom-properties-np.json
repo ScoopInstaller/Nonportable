@@ -13,7 +13,7 @@
             "}",
             "regsvr32 /s \"$dir\\i386\\rom-properties.dll\"",
             "taskkill /f /im explorer.exe | Out-Null",
-            "Start-Sleep -Seconds 3",
+            "Start-Sleep -Seconds 1.5",
             "explorer"
         ]
     },

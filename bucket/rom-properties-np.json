@@ -49,5 +49,8 @@
             "explorer"
         ]
     },
-    "checkver": "github"
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://github.com/GerbilSoft/rom-properties/releases/download/v$version/rom-properties_$version-windows.zip"
+    }
 }

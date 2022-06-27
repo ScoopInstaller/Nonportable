@@ -22,7 +22,6 @@ For a package to be acceptable in the Nonportable bucket, it should be:
 - [ ] a reasonably well-known and widely used application
 - [ ] the latest stable version of the program
 - [ ] the full version i.e. not a trial version
-- [ ] a fairly standard install (e.g. uses a version-specific download URL, no elaborate pre/post install scripts)
 
 ### Information
 

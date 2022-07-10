@@ -26,7 +26,8 @@
             "}",
             "",
             "Write-Host \"Installing driver...\"",
-            "Invoke-ExternalCommand pnputil -ArgumentList @('/add-driver', \"$driver_dir\\dshidmini.inf\", '/install') -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the installation.' } | Out-Null"
+            "pnputil /add-driver \"$driver_dir\\dshidmini.inf\" /install | Out-Null",
+            "pnputil /add-driver \"$driver_dir\\igfilter.inf\" /install | Out-Null"
         ]
     },
     "shortcuts": [
@@ -39,7 +40,9 @@
         "script": [
             "if ($cmd -ne 'uninstall') { return }",
             "$driver_dir = (\"$dir\\x64\\dshidmini\",\"$dir\\x86\\dshidmini\")[$architecture -eq '32bit']",
-            "Invoke-ExternalCommand pnputil -ArgumentList @('/delete-driver', \"$driver_dir\\dshidmini.inf\", '/uninstall', '/force') -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the uninstallation.' } | Out-Null"
+            "",
+            "pnputil /delete-driver \"$driver_dir\\dshidmini.inf\" /uninstall /force | Out-Null",
+            "pnputil /delete-driver \"$driver_dir\\igfilter.inf\" /uninstall /force | Out-Null"
         ]
     },
     "checkver": {

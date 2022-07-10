@@ -9,7 +9,7 @@
         "script": [
             "if (!(is_admin)) {",
             "    error \"Administrator rights are required to install $app.\"",
-            "    exit 1",
+            "    break",
             "}",
             "",
             "reg add 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AppModelUnlock' /t REG_DWORD /f /v AllowAllTrustedApps /d 1 | Out-Null",
@@ -41,7 +41,7 @@
         "script": [
             "if (!(is_admin)) {",
             "    error \"Administrator rights are required to uninstall $app.\"",
-            "    exit 1",
+            "    break",
             "}",
             "",
             "Stop-Process -ErrorAction Ignore -Name FluentTerminal.App",

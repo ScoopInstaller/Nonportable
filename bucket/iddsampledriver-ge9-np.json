@@ -3,7 +3,7 @@
     "description": "Windows Indirect Display Driver using the IddCx class extension driver. Virtual monitors for Windows 10/11.",
     "homepage": "https://github.com/ge9/IddSampleDriver",
     "license": "MIT,CC0 | Public Domain",
-    "notes": "Use \"C:\\IddSampleDriver\\option.txt\" to set the number of monitors and resolutions, then restart the driver.",
+    "notes": "Use \"C:\\IddSampleDriver\\option.txt\" to set the number of monitors and resolutions, then restart the driver from the Device Manager.",
     "depends": "extras/nefcon",
     "architecture": {
         "64bit": {

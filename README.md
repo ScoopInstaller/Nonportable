@@ -2,14 +2,25 @@
 
 [Scoop](https://scoop.sh/) bucket for nonportable applications.
 
-    $ scoop bucket add nonportable
+```
+scoop bucket add nonportable
+```
 
-How do I install these manifests?
+How do I install these packages?
 ---------------------------------
 
-To add this bucket, run `scoop bucket add nonportable`. To install, do `scoop install <manifest>`.
+To add this bucket, run `scoop bucket add nonportable`.
 
-How do I contribute new manifests?
+To install, run `scoop install <package>`.
+
+Most of the packages in this bucket requires **admin rights** to install. To install them, you should either:
+
+**(1)** Run *windows command line* (cmd) or *Powershell* as admin.
+
+or, **(2)** install *sudo*(`scoop install sudo`) or *gsudo* (`scoop install gsudo`), and run `sudo scoop install <package>`
+
+
+How do I contribute new packages?
 ----------------------------------
 
-To make a new manifest contribution, please read the [Contributing Guide](https://github.com/ScoopInstaller/.github/blob/main/.github/CONTRIBUTING.md).
+To make a new package contribution, please read the [Contributing Guide](https://github.com/ScoopInstaller/.github/blob/main/.github/CONTRIBUTING.md).

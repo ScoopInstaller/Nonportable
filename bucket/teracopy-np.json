@@ -13,7 +13,7 @@
         ]
     },
     "uninstaller": {
-        "script": "& \"$env:PROGRAMFILES\\TeraCopy\\unins000.exe\" /qn /passive"
+        "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/x', '{C38F85E6-6E93-4963-A29E-B871C8A28D13}', '/qn', '/norestart') -RunAs | Out-Null"
     },
     "checkver": {
         "url": "https://www.codesector.com/downloads",

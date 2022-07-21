@@ -4,7 +4,7 @@
     "homepage": "https://github.com/amd64fox/SpotX/",
     "license": "MIT",
     "url": "https://raw.githubusercontent.com/amd64fox/SpotX/main/Install.ps1",
-    "hash": "be7b8e16d1d5a8004f09569b09e353bc16175bdcf06f5bedcf2d4fba0d90fa5e",
+    "hash": "683708b8abb7a6fdeb0bf75bc4c6459a12d855d13c38e87a27b0b27e52441edb",
     "installer": {
         "script": [
             "# older versions of Powershell 5 requires BOM to recognize UTF8 scripts",

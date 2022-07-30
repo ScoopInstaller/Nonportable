@@ -1,6 +1,6 @@
 # Scoop Nonportable Bucket [![Tests](https://github.com/ScoopInstaller/Nonportable/actions/workflows/ci.yml/badge.svg)](https://github.com/ScoopInstaller/Nonportable/actions/workflows/ci.yml) [![Excavator](https://github.com/ScoopInstaller/Nonportable/actions/workflows/excavator.yml/badge.svg)](https://github.com/ScoopInstaller/Nonportable/actions/workflows/excavator.yml)
 
-[Scoop](https://scoop.sh/) bucket for nonportable applications.
+[Scoop](https://scoop.sh/) bucket for non-portable applications.
 
 ```
 scoop bucket add nonportable

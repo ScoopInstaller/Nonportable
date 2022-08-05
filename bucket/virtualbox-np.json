@@ -5,22 +5,29 @@
     "license": "GPL-2.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://download.virtualbox.org/virtualbox/6.1.36/VirtualBox-6.1.36-152435-Win.exe#/VBoxSetup.exe",
+            "url": "https://download.virtualbox.org/virtualbox/6.1.36/VirtualBox-6.1.36-152435-Win.exe#/setup.exe",
             "hash": "689e43fc3ef4909d2088a0c930a8803dcdede03fec0f0f9d9f3b19336a12bfbc"
         }
     },
     "installer": {
         "script": [
-            "Start-Process -Wait -WindowStyle Hidden cmd \"/c call `\"$dir\\VBoxSetup.exe`\" --msiparams INSTALLDIR=`\"$dir`\" VBOX_START=0 REBOOT=ReallySuppress --silent && icacls `\"$dir`\" /grant Everyone:F /T\" -Verb RunAs",
-            "Remove-Item \"$dir\\VBoxSetup.exe\"",
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('--extract', '-path', \"`\"$dir`\"\", '--silent') | Out-Null",
+            "Rename-Item \"$dir\\VirtualBox*.msi\" 'setup.msi'",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"`\"$dir\\setup.msi`\"\", '/qn', '/norestart', \"INSTALLDIR=`\"$dir`\"\") -RunAs | Out-Null",
+            "Invoke-ExternalCommand icacls -ArgumentList @(\"`\"$dir`\"\", '/grant', 'Everyone:F', '/T') -RunAs | Out-Null",
+            "Remove-Item \"$dir\\setup.exe\", \"$dir\\setup.msi\"",
             "Remove-Item \"$env:PUBLIC\\Desktop\\Oracle VM VirtualBox.lnk\"",
             "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Oracle VM VirtualBox\""
         ]
     },
     "uninstaller": {
         "script": [
-            "$id = wmic product where \"\"\"name like 'Oracle VM VirtualBox%'\"\"\" get IdentifyingNumber | find /i \"\"\"-\"\"\"",
-            "Start-Process -Wait -WindowStyle Hidden cmd \"/c msiexec /x $id /qn && icacls `\"$dir`\" /grant Everyone:F /T\" -Verb RunAs"
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "$id_array = wmic product where \"name like 'Oracle VM VirtualBox%'\" get IdentifyingNumber",
+            "if (!($id_array[2] -match '({[0-9A-F-]+})')) { error 'Could not find product ID'; break }",
+            "$id = $matches[1]",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$id\", '/qn', '/norestart') -RunAs | Out-Null"
         ]
     },
     "bin": [
@@ -54,7 +61,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download.virtualbox.org/virtualbox/$version/VirtualBox-$version-$matchRevision-Win.exe#/VBoxSetup.exe"
+                "url": "https://download.virtualbox.org/virtualbox/$version/VirtualBox-$version-$matchRevision-Win.exe#/setup.exe"
             }
         },
         "hash": {

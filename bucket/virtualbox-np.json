@@ -13,7 +13,7 @@
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
             "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('--extract', '-path', \"`\"$dir`\"\", '--silent') | Out-Null",
-            "Rename-Item \"$dir\\VirtualBox*.msi\" 'setup.msi'",
+            "Get-ChildItem \"$dir\\VirtualBox*.msi\" | Rename-Item -NewName 'setup.msi'",
             "Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"`\"$dir\\setup.msi`\"\", '/qn', '/norestart', \"INSTALLDIR=`\"$dir`\"\") -RunAs | Out-Null",
             "Invoke-ExternalCommand icacls -ArgumentList @(\"`\"$dir`\"\", '/grant', 'Everyone:F', '/T') -RunAs | Out-Null",
             "Remove-Item \"$dir\\setup.exe\", \"$dir\\setup.msi\"",

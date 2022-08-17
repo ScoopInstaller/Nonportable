@@ -1,10 +1,10 @@
 {
-    "version": "1.4-20220816-61738f",
+    "version": "1.4-20220817-7cce0a",
     "description": "Modified spotify client. Blocks ads and updates, and more.",
     "homepage": "https://github.com/amd64fox/SpotX/",
     "license": "MIT",
     "url": "https://raw.githubusercontent.com/amd64fox/SpotX/main/Install.ps1",
-    "hash": "80cd6bc403fee8a793a0aecb91f6f446a23ebfa4155cfda7dd8c3f9fb89f89e7",
+    "hash": "001918481b2a38f34f13463b931aef4bcca2d36f73b1af3d16c93084c5a026de",
     "installer": {
         "script": [
             "# older versions of Powershell 5 requires BOM to recognize UTF8 scripts",

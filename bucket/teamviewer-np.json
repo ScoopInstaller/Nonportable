@@ -25,10 +25,10 @@
             "    warn 'Checking file integrity...'",
             "    7z t \"$dir\\setup.exe\" | Out-Null",
             "    if ($LASTEXITCODE -eq 0) { break }",
-            "    else { warn 'File check failed. Retrying'; return }",
+            "    else { warn 'File check failed. Retrying' }",
             "}",
             "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList @('/S', '/norestart') -Verb RunAs | Out-Null",
-            "Remove-Item \"$dir\\setup.exe\""
+            "Remove-Item \"$dir\\setup.exe\", \"$dir\\dummy.txt\""
         ]
     },
     "pre_uninstall": "Stop-Process -Name 'teamviewer' -ErrorAction SilentlyContinue",

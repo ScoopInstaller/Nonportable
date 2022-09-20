@@ -4,10 +4,6 @@
     "description": "Open Source VPN with AdBlocking Proxy.",
     "homepage": "https://windscribe.com/",
     "license": "GPL-2.0",
-    "notes": [
-        "If windscribevpn-np is not installed properly, please run:",
-        "scoop uninstall windscribevpn-np"
-    ],
     "url": "https://github.com/Windscribe/Desktop-App/releases/download/v2.4.11/Windscribe_2.4.11.exe#/vpnsetup.exe",
     "hash": "5328DBC9EDDDB1AF7231354C16AC95FA2DE0FC66CFC4F2B3CD57057D42DA0333",
     "installer": {

@@ -1,0 +1,41 @@
+{
+    "##": "This package is non-portable because the app requires installing drivers/services to work properly.",
+    "version": "2.4.11",
+    "description": "Open Source VPN with AdBlocking Proxy.",
+    "homepage": "https://windscribe.com/",
+    "license": "GPL-2.0",
+    "notes": [
+        "If windscribevpn-np is not installed properly, please run:",
+        "scoop uninstall windscribevpn-np"
+    ],
+    "url": "https://github.com/Windscribe/Desktop-App/releases/download/v2.4.11/Windscribe_2.4.11.exe#/vpnsetup.exe",
+    "hash": "5328DBC9EDDDB1AF7231354C16AC95FA2DE0FC66CFC4F2B3CD57057D42DA0333",
+    "installer": {
+        "script": [
+            "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+            "Start-Process \"$dir\\vpnsetup.exe\" -Wait -ArgumentList \"-silent\", \"-dir $dir\\app\"| Out-Null",
+            "Stop-Process -Name \"Windscribe\" -Force -ErrorAction SilentlyContinue",
+            "Stop-Service -Name \"WindscribeService\" -Force",
+            "Remove-Item \"$Env:Public\\Desktop\\Windscribe.lnk\" | Out-Null",
+            "Remove-Item \"$dir\\vpnsetup.exe\" | Out-Null"
+        ]
+    },
+    "pre_uninstall": [
+        "Stop-Service -Name \"WindscribeService\" -Force",
+        "Remove-Service -Name \"WindscribeService\"",
+        "Stop-Process -Name \"Windscribe\" -Force -ErrorAction SilentlyContinue"
+    ],
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+            "Write-Host \"Please click the 'Yes' button to uninstall $app properly\"",
+            "Start-Process \"$dir\\app\\uninstall.exe\" -Wait | Out-Null"
+        ]
+    },
+    "checkver": {
+        "github": "https://github.com/Windscribe/Desktop-App/"
+    },
+    "autoupdate": {
+        "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version.exe#/vpnsetup.exe"
+    }
+}

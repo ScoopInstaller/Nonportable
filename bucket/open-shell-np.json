@@ -7,7 +7,7 @@
     "hash": "0417041CFFED3478F13A840E45EE304CCF8D1F9CA38E4126BC315161AC9F1669",
     "pre_install": [
         "Set-Location $dir; Start-Process \"$dir\\package.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract64' | Out-Null; Set-Location",
-        "Remove-Item \"$dir\\package.exe\" | Out-Null; Rename-Item \"$dir\\*\" 'package.msi' | Out-Null",
+        "Remove-Item \"$dir\\package.exe\" | Out-Null; Rename-Item \"$dir\\*.msi\" 'package.msi' | Out-Null",
         "Write-Host \"Replacing Start Menu with Open Shell, please wait and don't cancel the script...\" -F Yellow",
         "msiexec /i \"$dir\\package.msi\" /qn",
         "Stop-Process -Name 'explorer'; Start-Sleep -Seconds 2; Write-Host \"Done!\" -F Yellow"

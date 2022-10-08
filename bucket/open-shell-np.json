@@ -15,6 +15,7 @@
     },
     "installer": {
         "script": [
+            "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
             "Remove-Item \"$dir\\package.exe\" | Out-Null; Rename-Item \"$dir\\*.msi\" 'package.msi' | Out-Null",
             "Write-Host \"Replacing Start Menu with Open Shell, please wait and don't cancel the script...\" -F Yellow",
             "msiexec /i \"$dir\\package.msi\" /qn",

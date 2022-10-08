@@ -1,0 +1,28 @@
+{
+    "version": "4.4.170",
+    "homepage": "https://github.com/Open-Shell/Open-Shell-Menu",
+    "description": "A fork of Classic Shell with additonal fixes and more features.",
+    "license": "MIT",
+    "url": "https://github.com/Open-Shell/Open-Shell-Menu/releases/download/v4.4.170/OpenShellSetup_4_4_170.exe#/package.exe",
+    "hash": "0417041CFFED3478F13A840E45EE304CCF8D1F9CA38E4126BC315161AC9F1669",
+    "pre_install": [
+        "Set-Location $dir; Start-Process \"$dir\\package.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract64' | Out-Null; Set-Location",
+        "Remove-Item \"$dir\\package.exe\" | Out-Null; Rename-Item \"$dir\\*\" 'package.msi' | Out-Null",
+        "Write-Host \"Replacing Start Menu with Open Shell, please wait and don't cancel the script...\" -F Yellow",
+        "msiexec /i \"$dir\\package.msi\" /qn",
+        "Stop-Process -Name 'explorer'; Start-Sleep -Seconds 2; Write-Host \"Done!\" -F Yellow"
+    ],
+    "pre_uninstall": [
+        "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+        "Stop-Process -Name 'StartMenu' -Force",
+        "Remove-Item \"$env:LOCALAPPDATA\\OpenShell\" -Force -Recurse | Out-Null",
+        "Write-Host \"Restoring previous Start Menu, please wait and don't cancel the script...\" -F Yellow",
+        "msiexec /x \"$dir\\package.msi\" /qn",
+        "taskkill /F /IM 'explorer.exe' | Out-Null; Start-Sleep -Seconds 16",
+        "Write-Host 'Previous Start Menu Restored!' -F Yellow; Start-Process 'explorer.exe' -Wait"
+    ],
+    "checkver": "github",
+    "autoupdate": {
+        "url": "https://github.com/Open-Shell/Open-Shell-Menu/releases/download/v$version/OpenShellSetup_$underscoreVersion.exe#/package.exe"
+    }
+}

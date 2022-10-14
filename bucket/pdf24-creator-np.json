@@ -25,12 +25,12 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download.pdf24.org/pdf24-creator-$versions.msi#/Setup.msi_",
-                "hash": {
-                    "url": "https://creator.pdf24.org/listVersions.php",
-                    "find": "<td>$sha256</td>"
-                }
+                "url": "https://download.pdf24.org/pdf24-creator-$versions.msi#/Setup.msi_"
             }
+        },
+        "hash": {
+            "url": "https://creator.pdf24.org/listVersions.php",
+            "find": "<td>$sha256</td>"
         }
     }
 }

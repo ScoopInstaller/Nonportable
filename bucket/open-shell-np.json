@@ -7,10 +7,10 @@
     "hash": "0417041CFFED3478F13A840E45EE304CCF8D1F9CA38E4126BC315161AC9F1669",
     "architecture": {
         "64bit": {
-            "pre_install": "Set-Location $dir; Start-Process \"$dir\\package.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract64' | Out-Null; Set-Location"
+            "pre_install": "Set-Location $dir; Start-Process \"$dir\\package.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract64' | Out-Null; Set-Location '-'"
         },
         "32bit": {
-            "pre_install": "Set-Location $dir; Start-Process \"$dir\\package.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract32' | Out-Null; Set-Location"
+            "pre_install": "Set-Location $dir; Start-Process \"$dir\\package.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract32' | Out-Null; Set-Location '-'"
         }
     },
     "installer": {

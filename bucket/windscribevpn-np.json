@@ -1,36 +1,36 @@
 {
-    "version": "11.6.0",
-    "homepage": "https://tools.pdf24.org/en/creator",
-    "description": "Free and easy to use PDF software with several functions",
-    "license": {
-        "identifier": "Freeware",
-        "url": "https://www.pdf24.org/en/terms-of-use"
-    },
-    "architecture": {
-        "64bit": {
-            "url": "https://download.pdf24.org/pdf24-creator-11.6.0.msi#/Setup.msi_",
-            "hash": "70146F0079B3DAEE377EAAB202BCAF341593084F754B245F6E49B950EF26DCA4"
-        }
-    },
+    "##": "This package is non-portable because the app requires installing drivers/services to work properly.",
+    "version": "2.4.11",
+    "description": "Open Source VPN with AdBlocking Proxy.",
+    "homepage": "https://windscribe.com/",
+    "license": "GPL-2.0",
+    "url": "https://github.com/Windscribe/Desktop-App/releases/download/v2.4.11/Windscribe_2.4.11.exe#/vpnsetup.exe",
+    "hash": "5328DBC9EDDDB1AF7231354C16AC95FA2DE0FC66CFC4F2B3CD57057D42DA0333",
     "pre_install": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList ('/i', \"$dir\\Setup.msi_\", '/qn'); Stop-Process -Name 'pdf24' -Force -ErrorAction 'SilentlyContinue'"
+        "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+        "Start-Process \"$dir\\vpnsetup.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('-silent', '-dir', \"$dir\\Windscribe\")",
+        "Stop-Process -Name \"Windscribe\" -Force -ErrorAction SilentlyContinue",
+        "Stop-Service -Name \"WindscribeService\" -Force -ErrorAction SilentlyContinue",
+        "Remove-Item \"$Env:Public\\Desktop\\Windscribe.lnk\" -Force | Out-Null",
+        "Remove-Item \"$dir\\vpnsetup.exe\" | Out-Null"
     ],
     "pre_uninstall": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Stop-Process -Name 'pdf24' -Force -ErrorAction 'SilentlyContinue'; Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList ('/x', \"$dir\\Setup.msi_\", '/qn')",
-        "Start-Sleep -Seconds 2"
+        "Stop-Service -Name \"WindscribeService\" -Force -ErrorAction SilentlyContinue",
+        "Remove-Service -Name \"WindscribeService\" -ErrorAction SilentlyContinue",
+        "Stop-Process -Name \"Windscribe\" -Force -ErrorAction SilentlyContinue"
     ],
-    "checkver": "Version\\s([\\d.]+)",
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+            "Write-Host \"Please click the 'Yes' button to uninstall $app properly\"",
+            "Start-Process \"$dir\\Windscribe\\uninstall.exe\" -WindowStyle 'Hidden' -Verb 'RunAs' -ArgumentList '/SILENT' -Wait"
+        ]
+    },
+    "bin": "Windscribe\\windscribe-cli.exe",
+    "checkver": {
+        "github": "https://github.com/Windscribe/Desktop-App/"
+    },
     "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://download.pdf24.org/pdf24-creator-$versions.msi#/Setup.msi_",
-                "hash": {
-                    "url": "https://creator.pdf24.org/listVersions.php",
-                    "find": "<td>$sha256</td>"
-                }
-            }
-        }
+        "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version.exe#/vpnsetup.exe"
     }
 }

@@ -22,8 +22,7 @@
     "uninstaller": {
         "script": [
             "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
-            "Write-Host \"Please click the 'Yes' button to uninstall $app properly\"",
-            "Start-Process \"$dir\\Windscribe\\uninstall.exe\" -WindowStyle 'Hidden' -Verb 'RunAs' -ArgumentList '/SILENT' -Wait"
+            "Start-Process \"$dir\\Windscribe\\uninstall.exe\" -WindowStyle 'Hidden' -Verb 'RunAs' -ArgumentList '/VERYSILENT' -Wait"
         ]
     },
     "bin": "Windscribe\\windscribe-cli.exe",

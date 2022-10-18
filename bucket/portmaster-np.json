@@ -1,0 +1,38 @@
+{
+    "version": "0.9.7",
+    "homepage": "https://safing.io/",
+    "description": "An open-source application firewall that allows for monitoring of network activity, blocking system-wide trackers and ads, aswell as enforcing system-wide DNS-over-HTTPS and DNS-over-TLS.",
+    "license": "AGPL-3.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://updates.safing.io/latest/windows_amd64/packages/portmaster-installer.exe",
+            "hash": "b0c03a122b27165af162a071e51d3997059083715cdb056df62b68acb88280b4"
+        }
+    },
+    "pre_install": [
+        "if (!(is_admin)) { throw 'Administrator privileges are required' }",
+        "Write-Host 'Please wait for Portmaster to install. Do not cancel this script!' -F 'Yellow'",
+        "Start-Process \"$dir\\portmaster-installer.exe\" -Verb RunAs -ArgumentList '/S' -Wait; Remove-Item \"$dir\\portmaster-installer.exe\""
+    ],
+    "post_install": "Write-Host 'Please restart your computer for Portmaster to work properly' -F 'Red'",
+    "pre_uninstall": [
+        "if (!(is_admin)) { throw 'Administrator privileges are required' }",
+        "Write-Host 'Please wait for Portmaster to uninstall. Do not cancel this script!' -F 'Yellow'",
+        "Start-Process \"$env:ProgramData\\Safing\\Portmaster\\portmaster-uninstaller.exe\" -Verb RunAs -ArgumentList '/S' -Wait; Start-Sleep -Seconds 5"
+    ],
+    "post_uninstall": "Write-Host 'Please restart your computer to uninstall Portmaster properly' -F 'Red'",
+    "checkver": {
+        "github": "https://github.com/safing/portmaster"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://updates.safing.io/latest/windows_amd64/packages/portmaster-installer.exe",
+                "hash": {
+                    "url": "https://raw.githubusercontent.com/safing/checksums/master/sha256_latest.txt",
+                    "regex": "$sha256\\s./latest/windows_amd64/packages/portmaster-installer.exe"
+                }
+            }
+        }
+    }
+}

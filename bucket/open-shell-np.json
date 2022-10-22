@@ -16,20 +16,19 @@
     "installer": {
         "script": [
             "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
-            "Remove-Item \"$dir\\package.exe\" | Out-Null; Rename-Item \"$dir\\*.msi\" 'package.msi' | Out-Null",
-            "Write-Host \"Replacing Start Menu with Open Shell, please wait and don't cancel the script...\" -F Yellow",
-            "msiexec /i \"$dir\\package.msi\" /qn",
-            "Stop-Process -Name 'explorer'; Start-Sleep -Seconds 2; Write-Host \"Done!\" -F Yellow"
+            "Remove-Item \"$dir\\package.exe\"; Rename-Item \"$dir\\*.msi\" 'package.msi' | Out-Null",
+            "Write-Host \"Replacing Start Menu with Open Shell, please wait and don't cancel the script...\" -F 'Yellow'",
+            "Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList @('/i', \"$dir\\package.msi\", '/qn')",
+            "Stop-Process -Name 'explorer'; Start-Sleep -Seconds 2; Write-Host \"Done!\" -F 'Yellow'"
         ]
     },
     "pre_uninstall": [
         "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
-        "Stop-Process -Name 'StartMenu' -Force",
-        "Remove-Item \"$env:LOCALAPPDATA\\OpenShell\" -Force -Recurse | Out-Null",
-        "Write-Host \"Restoring previous Start Menu, please wait and don't cancel the script...\" -F Yellow",
-        "msiexec /x \"$dir\\package.msi\" /qn",
-        "taskkill /F /IM 'explorer.exe' | Out-Null; Start-Sleep -Seconds 16",
-        "Write-Host 'Previous Start Menu Restored!' -F Yellow; Start-Process 'explorer.exe' -Wait"
+        "Stop-Process -Name 'StartMenu' -Force -ErrorAction 'SilentlyContinue'",
+        "Write-Host \"Restoring previous Start Menu, please wait and don't cancel the script...\" -F 'Yellow'",
+        "Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList @('/x', \"$dir\\package.msi\", '/qn')",
+        "Start-Process 'taskkill' -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList ('/F', '/IM', 'explorer.exe'); Start-Sleep -Seconds 16",
+        "Write-Host 'Previous Start Menu Restored!' -F 'Yellow'; Start-Process 'explorer.exe' -Wait -Verb 'RunAs' -WindowStyle 'Hidden'"
     ],
     "checkver": "github",
     "autoupdate": {

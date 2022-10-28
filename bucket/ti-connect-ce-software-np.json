@@ -9,17 +9,17 @@
         "script": [
             "Start-Process -Wait msiexec \"/i `\"$dir\\setup.msi_`\" /qn APPDIR=`\"$dir`\" SHORTCUTDIR=`\"$dir\\shortcuts`\" DesktopFolder=`\"$dir\\shortcuts`\"\" -Verb RunAs",
             "Remove-Item -Recurse \"$dir\\shortcuts\"",
-            "Remove-Item \"$env:PUBLIC\\Desktop\\TI-Connect CE.lnk\""
+            "Remove-Item \"$env:PUBLIC\\Desktop\\TI Connect CE.lnk\""
         ]
     },
     "uninstaller": {
         "script": "Start-Process -Wait msiexec \"/x `\"$dir\\setup.msi_`\" /qn\" -Verb RunAs"
     },
-    "bin": "TI-Connect CE\\TI-Connect CE.exe",
+    "bin": "TI Connect CE\\TI Connect CE.exe",
     "shortcuts": [
         [
-            "TI-Connect CE\\TI-Connect CE.exe",
-            "TI-Connect CE"
+            "TI Connect CE\\TI Connect CE.exe",
+            "TI Connect CE"
         ]
     ],
     "checkver": "ed-tech/(?<path>[\\w/]+)/TIConnectCE-(?<version>[\\w.]+)\\.msi",

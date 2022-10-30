@@ -8,23 +8,22 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://download.pdf24.org/pdf24-creator-11.6.0.exe#/setup.exe",
-            "hash": "444B4EF1FEA5C2D63B1FB6735CF316B320CE6569F015D02E66A89A0BF657F2D5"
+            "url": "https://download.pdf24.org/pdf24-creator-11.6.0.msi#/setup.msi_",
+            "hash": "70146F0079B3DAEE377EAAB202BCAF341593084F754B245F6E49B950EF26DCA4"
         }
     },
     "pre_install": [
         "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
         "Write-Host \"Please wait and don't cancel the script...\" -F 'Yellow'",
-        "Start-Process \"$dir\\setup.exe\" -Verb 'RunAs' -ArgumentList @('/VERYSILENT', \"/DIR=$dir\", '/ALLUSERS', '/SUPPRESSMSGBOXES')",
-        "Start-Sleep -Seconds 22; Stop-Process -Name 'explorer' -Force -ErrorAction 'SilentlyContinue'",
+        "Start-Process 'msiexec' -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn', \"INSTALLDIR=$dir\", \"TARGETDIR=$dir\")",
         "Stop-Service -Name 'pdf24' -Force -ErrorAction 'SilentlyContinue'; Stop-Process -Name 'pdf24' -Force -ErrorAction 'SilentlyContinue'",
-        "Remove-Item \"$dir\\setup.exe\" -ErrorAction 'SilentlyContinue'"
+        "Stop-Process -Name 'explorer' -Force -ErrorAction 'SilentlyContinue'; Start-Sleep -Seconds 3"
     ],
     "pre_uninstall": [
         "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+        "Stop-Service -Name 'pdf24' -Force -ErrorAction 'SilentlyContinue'; Stop-Process -Name 'pdf24' -Force -ErrorAction 'SilentlyContinue'",
         "Write-Host \"Please wait and don't cancel the script...\" -F 'Yellow'",
-        "Stop-Process -Name 'pdf24' -Force -ErrorAction 'SilentlyContinue'; Stop-Service -Name 'pdf24' -Force -ErrorAction 'SilentlyContinue'",
-        "Start-Process \"$dir\\unins000.exe\" -Wait -Verb 'RunAs' -ArgumentList @('/VERYSILENT', '/FORCECLOSEAPPLICATIONS', '/SUPPRESSMSGBOXES')",
+        "Start-Process 'msiexec' -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('/x', \"$dir\\setup.msi_\", '/qn')",
         "Stop-Process -Name 'explorer' -Force -ErrorAction 'SilentlyContinue'; Start-Sleep -Seconds 3"
     ],
     "checkver": "Version\\s([\\d.]+)",

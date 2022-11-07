@@ -1,14 +1,14 @@
 {
-    "version": "18.10.0",
+    "version": "19.0.1",
     "description": "JavaScript runtime environment.",
     "homepage": "https://nodejs.org",
     "license": "MIT",
     "notes": "npm global prefix set to: $env:APPDATA\\npm",
     "architecture": {
         "64bit": {
-            "url": "https://nodejs.org/dist/v18.10.0/node-v18.10.0-win-x64.7z",
-            "hash": "a41d5d395ca349ab946571e2fa939729707ee8dacc15e88ef420b51635e36f9c",
-            "extract_dir": "node-v18.10.0-win-x64"
+            "url": "https://nodejs.org/dist/v19.0.1/node-v19.0.1-win-x64.7z",
+            "hash": "5e3f6e568dc520b3af6b9e16b92dedb1a42badd903c53d6504d79380c5bebe5c",
+            "extract_dir": "node-v19.0.1-win-x64"
         }
     },
     "installer": {

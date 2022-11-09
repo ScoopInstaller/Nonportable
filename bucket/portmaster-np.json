@@ -18,7 +18,7 @@
         "}",
         "if ($cmd -eq 'update') {Stop-Process 'portmaster-start', 'portmaster-core_v*', 'portmaster-notifier_v*' -Force}"
     ],
-    "post_install": "if ($cmd -eq 'install') {Write-Host 'Please restart your computer for Portmaster to $cmd properly' -F 'Red'}",
+    "post_install": "if ($cmd -eq 'install') {Write-Host 'Please restart your computer for Portmaster to install properly' -F 'Red'}",
     "pre_uninstall": [
         "if (!(is_admin)) { throw 'Administrator privileges are required' }",
         "if (!(Test-Path \"$home\\Portmaster-NP Backup\")) {New-Item \"$home\\Portmaster-NP Backup\" -ItemType 'Directory' | Out-Null}",
@@ -26,7 +26,7 @@
         "Copy-item \"$env:ProgramData\\Safing\\Portmaster\\*\" \"$home\\Portmaster-NP Backup\" -Include @('config.json', 'databases', 'logs') -Recurse -Force; Start-Sleep -Seconds 4",
         "if ($cmd -eq 'uninstall') {Start-Process \"$env:ProgramData\\Safing\\Portmaster\\portmaster-uninstaller.exe\" -Verb RunAs -ArgumentList '/S' -Wait; Start-Sleep -Seconds 5}"
     ],
-    "post_uninstall": "if ($cmd -eq 'uninstall') {Write-Host 'Please restart your computer to $cmd Portmaster properly' -F 'Red'}",
+    "post_uninstall": "if ($cmd -eq 'uninstall') {Write-Host 'Please restart your computer to uninstall Portmaster properly' -F 'Red'}",
     "checkver": {
         "github": "https://github.com/safing/portmaster"
     },

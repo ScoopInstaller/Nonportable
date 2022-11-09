@@ -11,7 +11,7 @@
     },
     "pre_install": [
         "if (!(is_admin)) { throw 'Administrator privileges are required' }",
-        "Write-Host 'Please wait for Portmaster to $cmd. Do not cancel this script!' -F 'Yellow'",
+        "Write-Host \"Please wait for Portmaster to $cmd. Do not cancel this script!\" -F 'Yellow'",
         "Start-Process \"$dir\\portmaster-installer.exe\" -Verb RunAs -ArgumentList '/S' -Wait; Remove-Item \"$dir\\portmaster-installer.exe\"; Start-Sleep -Seconds 4",
         "if (Test-Path \"$home\\Portmaster-NP Backup\") {",
         "   Copy-item \"$home\\Portmaster-NP Backup\\*\" \"$env:ProgramData\\Safing\\Portmaster\" -Recurse -Force",
@@ -22,7 +22,7 @@
     "pre_uninstall": [
         "if (!(is_admin)) { throw 'Administrator privileges are required' }",
         "if (!(Test-Path \"$home\\Portmaster-NP Backup\")) {New-Item \"$home\\Portmaster-NP Backup\" -ItemType 'Directory' | Out-Null}",
-        "Write-Host 'Please wait for Portmaster to $cmd. Do not cancel this script!' -F 'Yellow'",
+        "Write-Host \"Please wait for Portmaster to $cmd. Do not cancel this script!\" -F 'Yellow'",
         "Copy-item \"$env:ProgramData\\Safing\\Portmaster\\*\" \"$home\\Portmaster-NP Backup\" -Include @('config.json', 'databases', 'logs') -Recurse -Force; Start-Sleep -Seconds 4",
         "if ($cmd -eq 'uninstall') {Start-Process \"$env:ProgramData\\Safing\\Portmaster\\portmaster-uninstaller.exe\" -Verb RunAs -ArgumentList '/S' -Wait; Start-Sleep -Seconds 5}"
     ],

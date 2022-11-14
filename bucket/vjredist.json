@@ -1,0 +1,24 @@
+{
+    "version": "2.0",
+    "description": "The Microsoft Visual J#™ Redistributable Package version 2.0 includes everything you need to run your Visual J# applications on a computer that already has the Microsoft .NET Framework v2.0 installed.",
+    "homepage": "https://www.microsoft.com/en-us/download/details.aspx?id=4712",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx"
+    },
+    "notes": "You can now remove this installer with 'scoop uninstall vjredist'",
+    "url": [
+        "https://download.microsoft.com/download/9/a/0/9a01eb1e-fe80-41af-a3f8-ea41220918f7/vjredist.exe"
+    ],
+    "hash": [
+        "602587003735be073198b9d2a0a0bd0fcacc0ffc38601055e941fc926e38c27d"
+    ],
+    "post_install": [
+        "# For error codes, see https://docs.microsoft.com/en-us/windows/win32/msi/error-codes",
+        "$ec = @{",
+        "    1638 = 'This product is already installed';",
+        "    3010 = 'A restart is required to complete the installation';",
+        "}",
+        "Invoke-ExternalCommand -FilePath \"$dir\\vjredist.exe\" -ArgumentList '/q' -ContinueExitCodes $ec | Out-Null"
+    ]
+}

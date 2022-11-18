@@ -16,7 +16,7 @@
         "if (Test-Path \"$home\\Portmaster-NP Backup\") {",
         "   Copy-item \"$home\\Portmaster-NP Backup\\*\" \"$env:ProgramData\\Safing\\Portmaster\" -Recurse -Force",
         "}",
-        "if ($cmd -eq 'update') {Stop-Process 'portmaster-start', 'portmaster-core_v*', 'portmaster-notifier_v*' -Force}"
+        "if ($cmd -eq 'update') {Stop-Process 'portmaster-start', 'portmaster-core_v*', 'portmaster-notifier_v*' -Force -ErrorAction 'SilentlyContinue'}"
     ],
     "post_install": "if ($cmd -eq 'install') {Write-Host 'Please restart your computer for Portmaster to install properly' -F 'Red'}",
     "pre_uninstall": [

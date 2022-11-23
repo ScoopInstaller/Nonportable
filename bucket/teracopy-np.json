@@ -8,8 +8,8 @@
     "installer": {
         "file": "teracopy.exe",
         "args": [
-        	"/qn",
-        	"/passive"
+            "/qn",
+            "/passive"
         ]
     },
     "uninstaller": {

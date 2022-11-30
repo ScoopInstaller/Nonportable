@@ -8,7 +8,7 @@
     },
     "depends": "7zip19.00-helper",
     "url": "https://download.microsoft.com/download/#/dl.7z_",
-    "hash": "7f3ef770b32ae654cb9fe3c17083906929e4cc54b27c1f48d1a90bfdd77fae32",
+    "hash": "9cdf77614a2be4277498adb07d313c8b387143f40abe7403d23d7379fd551c28",
     "pre_install": [
         "$scriptdir = \"$bucketsdir\\nonportable\\scripts\"",
         "if ($architecture -eq '64bit') {",

@@ -28,11 +28,14 @@
         "}"
     ],
     "checkver": {
+        "url": "https://scoop.sh",
+        "useragent": "$app/$version",
         "script": [
             "$redirUrl = [System.Net.HttpWebRequest]::Create('https://www.vmware.com/go/getplayer-win').GetResponse().ResponseUri.AbsoluteUri",
             "return \"$redirUrl\""
         ],
-        "regex": "WKST-PLAYER-(<CleanVer>[\\d]+)\\/VMware-player-full-([\\d.]+-[\\w]+)"
+        "regex": "WKST-PLAYER-(<CleanVer>[\\d]+)\\/VMware-player-full-([\\d.]+-[\\w]+)",
+        "replace": "$1"
     },
     "autoupdate": {
         "architecture": {

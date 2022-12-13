@@ -39,10 +39,10 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_$version`_x64_Logitech.exe#/setup.exe"
+                "url": "https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_$version_x64_Logitech.exe#/setup.exe"
             },
             "32bit": {
-                "url": "https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_$version`_x86_Logitech.exe#/setup.exe"
+                "url": "https://download01.logi.com/web/ftp/pub/techsupport/gaming/LGS_$version_x86_Logitech.exe#/setup.exe"
             }
         }
     }

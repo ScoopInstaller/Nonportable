@@ -25,7 +25,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://encodegui.com/dl/EncodeGUI_$version`_setup.zip"
+                "url": "https://encodegui.com/dl/EncodeGUI_$version_setup.zip"
             }
         }
     }

@@ -13,12 +13,9 @@
     "hash": [
         "602587003735be073198b9d2a0a0bd0fcacc0ffc38601055e941fc926e38c27d"
     ],
-    "post_install": [
-        "# For error codes, see https://docs.microsoft.com/en-us/windows/win32/msi/error-codes",
-        "$ec = @{",
-        "    1638 = 'This product is already installed';",
-        "    3010 = 'A restart is required to complete the installation';",
-        "}",
-        "Invoke-ExternalCommand -FilePath \"$dir\\vjredist.exe\" -ArgumentList '/q' -ContinueExitCodes $ec | Out-Null"
-    ]
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error 'This package requires admin rights to install'; break }",
+            "Start-Process -Wait \"$dir\\vjredist.exe\" -ArgumentList @('/ai', '/gm2') -Verb RunAs"
+        ]
 }

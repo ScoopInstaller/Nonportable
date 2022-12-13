@@ -16,7 +16,7 @@
     "installer": {
         "script": [
             "if (!(is_admin)) { error 'This package requires admin rights to install'; break }",
-            "Start-Process -Wait \"$dir\\vjredist.exe\" -ArgumentList @('/ai', '/gm2') -Verb RunAs"
+            "Start-Process -Wait \"$dir\\vjredist.exe\" -ArgumentList @('/Q') -Verb RunAs"
         ]
     }
 }

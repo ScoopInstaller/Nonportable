@@ -9,13 +9,13 @@
         "64bit": {
             "pre_install": [
                 "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
-                "Set-Location \"$dir\"; Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract64'; Set-Location '-'"
+                "Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract64' -WorkingDirectory $dir"
             ]
         },
         "32bit": {
             "pre_install": [
                 "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
-                "Set-Location \"$dir\"; Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract32'; Set-Location '-'"
+                "Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract32' -WorkingDirectory $dir"
             ]
         }
     },

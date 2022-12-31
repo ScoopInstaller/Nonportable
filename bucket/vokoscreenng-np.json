@@ -15,8 +15,9 @@
         "Remove-Item \"$dir\\setup.exe\", \"$dir\\vcredist_2010_x64.exe\""
     ],
     "pre_uninstall": [
-        "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
-        "Start-Process \"$dir\\Uninstall.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('pr', '-c', '--am', '--al')"
+        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+        "Start-Process \"$dir\\Uninstall.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList @('pr', '-c', '--am', '--al')",
+        "Start-Sleep -Seconds 2"
     ],
     "checkver": {
         "url": "https://linuxecke.volkoh.de/vokoscreen/vokoscreen-download.html",

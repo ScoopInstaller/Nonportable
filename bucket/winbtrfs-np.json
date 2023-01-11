@@ -29,13 +29,14 @@
             "}",
             "",
             "Write-Host \"Installing driver...\"",
-            "Invoke-ExternalCommand nefconw -ArgumentList @('--inf-default-install', '--inf-path', \"$dir\\btrfs.inf\") -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the uninstallation.' } | Out-Null"
+            "Invoke-ExternalCommand nefconw -ArgumentList @('--install-driver', '--inf-path', \"$dir\\btrfs.inf\") -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the uninstallation.' } | Out-Null"
         ]
     },
     "uninstaller": {
         "script": [
             "if ($cmd -ne 'uninstall') { return }",
             "Invoke-ExternalCommand nefconw -ArgumentList @('--remove-device-node', '--hardware-id', 'ROOT\\btrfs', '--class-guid', '71a27cdd-812a-11d0-bec7-08002be2092f') -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the uninstallation.' } | Out-Null",
+            "nefconw --uninstall-driver --inf-path \"$dir\\btrfs.inf\"",
             "nefconw --remove-driver-service --service-name btrfs"
         ]
     },

@@ -8,13 +8,13 @@
     "architecture": {
         "64bit": {
             "pre_install": [
-                "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+                "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
                 "Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract64' -WorkingDirectory \"$dir\""
             ]
         },
         "32bit": {
             "pre_install": [
-                "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+                "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
                 "Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -ArgumentList 'extract32' -WorkingDirectory \"$dir\""
             ]
         }
@@ -28,7 +28,7 @@
         ]
     },
     "pre_uninstall": [
-        "if (!(is_admin)) {error \"$app requires admin rights to $cmd\"; break}",
+        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
         "Stop-Process -Name 'StartMenu' -Force -ErrorAction 'SilentlyContinue'",
         "Write-Host \"Restoring previous Start Menu, please wait and don't cancel the script...\" -F 'Yellow'",
         "Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList @('/x', \"$dir\\setup.msi\", '/qn')",

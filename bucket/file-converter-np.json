@@ -20,7 +20,7 @@
     ],
     "pre_uninstall": [
         "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "if (Get-Process -Name 'FileConverter' -ErrorAction 'SilentlyContinue') {Stop-Process -Name 'FileConverter' -ErrorAction 'SilentlyContinue' -Force}",
+        "if (Get-Process -Name 'FileConverter' -ErrorAction 'SilentlyContinue') { Stop-Process -Name 'FileConverter' -ErrorAction 'SilentlyContinue' -Force }",
         "Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList @('/x', \"$dir\\setup.msi_\", '/qn')",
         "Stop-Process -Name 'explorer' -Force; Start-Sleep -Seconds 2"
     ],

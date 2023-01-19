@@ -40,6 +40,7 @@
             "64bit": {
                 "url": "https://download3.vmware.com/software/WKST-PLAYER-$matchHalf/VMware-player-full-$version.exe#/setup.exe",
                 "hash": {
+                    "type": "sha256",
                     "url": "https://customerconnect.vmware.com/channel/public/api/v1.0/dlg/details?locale=en_US&downloadGroup=WKST-PLAYER-$matchHalf",
                     "mode": "json",
                     "jsonpath": "$.downloadFiles.sha256checksum",

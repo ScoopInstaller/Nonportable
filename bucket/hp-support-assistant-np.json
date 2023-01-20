@@ -8,17 +8,18 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://ftp.ext.hp.com/pub/softpaq/sp142501-143000/sp142943.exe#/setup.exe",
+            "url": "https://ftp.ext.hp.com/pub/softpaq/sp142501-143000/sp142943.exe#/installer.exe",
             "hash": "fbcc4c56bccabeec8f2d7d04b650a25b0b43718531bff4175d593c5d99d771f3"
         }
     },
     "post_install": [
         "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -ArgumentList @('/f', \"$dir\", '/s'); Remove-Item \"$dir\\setup.exe\""
+        "Start-Process \"$dir\\installer.exe\" -Wait -Verb 'RunAs' -ArgumentList '/s'; Remove-Item \"$dir\\installer.exe\""
     ],
     "pre_uninstall": [
         "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Start-Process \"$dir\\UninstallHPSA.exe\" -Wait -Verb 'RunAs' -ArgumentList '/s'; Start-Sleep -Seconds 4"
+        "$HP_Uninstaller = (Get-ChildItem \"$env:SystemDrive\\SWSetup\" -Recurse -Filter 'Uninstall*').FullName",
+        "Start-Process $HP_Uninstaller -Wait -Verb 'RunAs' -ArgumentList @('-s', '-f'); Start-Sleep -Seconds 4"
     ],
     "checkver": {
         "useragent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",

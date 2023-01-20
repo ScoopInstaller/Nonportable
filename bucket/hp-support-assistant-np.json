@@ -8,7 +8,7 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://ftp.ext.hp.com/pub/softpaq/sp142501-143000/sp142943.exe#/installer.exe",
+            "url": "https://ftp.ext.hp.com/pub/softpaq/sp142501-143000/sp142943.exe#/setup.exe",
             "hash": "fbcc4c56bccabeec8f2d7d04b650a25b0b43718531bff4175d593c5d99d771f3"
         }
     },

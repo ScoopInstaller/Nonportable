@@ -13,10 +13,18 @@
         }
     },
     "installer": {
-        "args": "--silent"
+        "args": [
+            "/silent",
+            "/norestart"
+        ],
+        "keep": true
     },
     "uninstaller": {
-        "script": "cmd /c ((Get-ItemProperty -Path HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object {$_.DisplayName -eq \"PowerToys (Preview)\"} | Select-Object -Expand UninstallString) -replace '/I','/x')"
+        "file": "setup.exe",
+        "args": [
+            "/silent",
+            "/uninstall"
+        ]
     },
     "checkver": "github",
     "autoupdate": {

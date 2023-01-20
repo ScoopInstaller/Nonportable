@@ -11,7 +11,7 @@
     ],
     "pre_uninstall": [
         "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Remove-Item \"$env:ProgramData\\Packages\\64360VelerSoftware.DevToys_j80j2txgjg9dj\" -Force -Recurse",
+        "Remove-Item \"$env:ProgramData\\Packages\\64360VelerSoftware.DevToys_j80j2txgjg9dj\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
         "Start-Process 'powershell' -Wait -WindowStyle 'Hidden' -ArgumentList @('-Command', \"Get-AppxPackage 64360VelerSoftware.DevToys | Remove-AppxPackage\") | Out-Null",
         "Start-Sleep -Seconds 2"
     ],

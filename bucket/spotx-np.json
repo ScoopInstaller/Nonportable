@@ -40,6 +40,6 @@
         "regex": "([\\w.-]+)"
     },
     "autoupdate": {
-        "url": "https://raw.githubusercontent.com/SpotX-CLI/SpotX-Win/main/Install.ps1"
+        "url": "https://raw.githubusercontent.com/amd64fox/SpotX/main/Install.ps1"
     }
 }

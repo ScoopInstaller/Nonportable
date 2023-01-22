@@ -32,7 +32,8 @@
         "Stop-Process -Name 'StartMenu' -Force -ErrorAction 'SilentlyContinue'",
         "Write-Host \"Restoring previous Start Menu, please wait and don't cancel the script...\" -F 'Yellow'",
         "Start-Process 'msiexec' -Wait -Verb 'RunAs' -ArgumentList @('/x', \"$dir\\setup.msi\", '/qn')",
-        "Start-Process 'taskkill' -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList ('/F', '/IM', 'explorer.exe'); Start-Sleep -Seconds 16",
+        "Start-Process 'taskkill' -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList ('/F', '/IM', 'explorer.exe')",
+        "while (Test-Path \"$env:ProgramFiles\\Open-Shell\") { Start-Sleep -Milliseconds 5500  }",
         "Write-Host 'Previous Start Menu Restored!' -F 'Yellow'; Start-Process 'explorer.exe' -Wait -Verb 'RunAs' -WindowStyle 'Hidden'"
     ],
     "checkver": "github",

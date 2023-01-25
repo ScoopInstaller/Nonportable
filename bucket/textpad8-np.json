@@ -14,14 +14,10 @@
         }
     },
     "installer": {
-        "script": [
-            "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList @('/S', '/v/qn') -Verb RunAs | Out-Null"
-        ]
+        "script": "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList @('/S', '/v/qn') -Verb RunAs | Out-Null"
     },
     "uninstaller": {
-        "script": [
-            "Start-Process -Wait 'msiexec' -ArgumentList @('/x', '{31C6C263-89DE-4D24-B60E-9E35DCDE4B33}', '/qn') -Verb RunAs | Out-Null"
-        ]
+        "script": "Start-Process -Wait 'msiexec' -ArgumentList @('/x', '{31C6C263-89DE-4D24-B60E-9E35DCDE4B33}', '/qn') -Verb RunAs | Out-Null"
     },
     "checkver": {
         "url": "https://www.textpad.com/download",

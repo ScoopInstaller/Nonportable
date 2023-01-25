@@ -22,8 +22,10 @@
         "regex": ">TextPad (9[\\d.]+)\\s*"
     },
     "autoupdate": {
-        "64bit": {
-            "url": "https://www.textpad.com/file?path=v$majorVersion$minorVersion/setupv$majorVersion.exe"
+        "architecture": {
+            "64bit": {
+                "url": "https://www.textpad.com/file?path=v$majorVersion$minorVersion/setupv$majorVersion.exe"
+            }
         }
     }
 }

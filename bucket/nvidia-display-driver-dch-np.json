@@ -48,13 +48,13 @@
         ]
     },
     "checkver": {
-        "url": "https://www.nvidia.com/Download/processFind.aspx?psid=95&pfid=694&osid=19&lid=1",
-        "regex": ">([\\d.]{6})<"
+        "url": "https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&psid=98&osID=57&languageCode=1033&beta=0&isWHQL=1&dltype=-1&dch=1&upCRD=0&sort1=0&numberOfResults=1",
+        "regex": "\"Version\"\\s?:\\s?\"(?<version>[\\d.]+)\".*\"DownloadURL\"\\s?:\\s?\"https://us.download.nvidia.com/(?<path>[^\"]*)\""
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://us.download.nvidia.com/Windows/$version/$version-desktop-win10-64bit-international-dch-whql.exe#/dl.7z"
+                "url": "https://us.download.nvidia.com/$matchPath#/dl.7z_"
             }
         }
     }

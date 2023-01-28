@@ -23,7 +23,7 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://us.download.nvidia.com/Windows/528.24/528.24-desktop-win10-win11-64bit-international-dch-whql.exe#/dl.7z",
+            "url": "https://us.download.nvidia.com/Windows/528.24/528.24-desktop-win10-win11-64bit-international-dch-whql.exe#/dl.7z_",
             "hash": "3dc4dc8d2f7ab3ea2d54c6c52ff2db6b1ee56f1572dbf7d8bba5bcac3455c234"
         }
     },
@@ -65,7 +65,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://us.download.nvidia.com/$matchPath#/dl.7z"
+                "url": "https://us.download.nvidia.com/$matchPath#/dl.7z_"
             }
         }
     }

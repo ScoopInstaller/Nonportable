@@ -1,6 +1,6 @@
 {
     "version": "528.24",
-    "description": "NVIDIA display driver (Declarative Componentized Hardware version).",
+    "description": "NVIDIA display driver (Declarative Componentized Hardware version). DCH drivers are installed on most new desktop and mobile workstation systems.",
     "homepage": "https://www.nvidia.com/Download/index.aspx",
     "license": "Freeware",
     "notes": [

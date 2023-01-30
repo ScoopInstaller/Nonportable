@@ -8,7 +8,7 @@
         "lid: language ID (US English == 1), see https://www.nvidia.com/Download/API/lookupValueSearch.aspx?TypeID=5"
     ],
     "version": "528.24",
-    "description": "NVIDIA display driver",
+    "description": "NVIDIA display driver (standard version).",
     "homepage": "https://www.nvidia.com/Download/index.aspx",
     "license": {
         "identifier": "Freeware",

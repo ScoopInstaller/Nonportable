@@ -1,6 +1,6 @@
 {
     "version": "528.24",
-    "description": "NVIDIA display driver.",
+    "description": "NVIDIA display driver (Declarative Componentized Hardware version).",
     "homepage": "https://www.nvidia.com/Download/index.aspx",
     "license": "Freeware",
     "notes": [

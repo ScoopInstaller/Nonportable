@@ -13,15 +13,23 @@
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
             "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList '/qn' -RunAs | Out-Null",
-            "Stop-Process -Name ProtonVPN  # This closes the login screen appeared after installing the app",
-            "Remove-Item \"$Env:Public\\Desktop\\ProtonVPN.lnk\"",
+            "Remove-Item \"$Env:Public\\Desktop\\Proton VPN.lnk\"",
             "Remove-Item \"$dir\\setup.exe\""
         ]
     },
+    "post_install": [
+        "Start-Sleep -Seconds 3",
+        "Stop-Process -Name ProtonVPN -ErrorAction SilentlyContinue # This closes the login screen appeared after installing the app"
+    ],
     "uninstaller": {
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', '{0102D7E4-DD33-494D-B34C-2DD6976A54B1}', '/qn') -RunAs | Out-Null"
+            "# Uninstall ProtonVPN",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', '{8C16DE53-E22C-406E-83C9-447D01A536B5}', '/qn') -RunAs | Out-Null",
+            "# Uninstall ProtonVPNTap",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', '{87BDF456-9882-44E6-8FFC-F73B83E42EAD}', '/qn') -RunAs | Out-Null",
+            "# Uninstall ProtonVPNTun",
+            "Invoke-ExternalCommand msiexec -ArgumentList @('/x', '{B1EBF050-CC3E-45B0-9DE5-339C6241F3DA}', '/qn') -RunAs | Out-Null"
         ]
     },
     "checkver": {

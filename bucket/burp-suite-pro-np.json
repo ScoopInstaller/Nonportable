@@ -33,7 +33,7 @@
                     "mode": "json",
                     "type": "sha256",
                     "url": "https://portswigger.net/burp/releases/data",
-                    "jsonpath": "$.ResultSet.Results[0].builds[0].Sha256Checksum"
+                    "jsonpath": "$.ResultSet.Results[0].builds[5].Sha256Checksum"
                 }
             }
         }

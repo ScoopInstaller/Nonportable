@@ -28,7 +28,13 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=$version&type=WindowsX64#/setup.exe"
+                "url": "https://portswigger-cdn.net/burp/releases/download?product=community&version=$version&type=WindowsX64#/setup.exe",
+                "hash": {
+                    "mode": "json",
+                    "type": "sha256",
+                    "url": "https://portswigger.net/burp/releases/data",
+                    "jsonpath": "$.ResultSet.Results[0].builds[10].Sha256Checksum"
+                }
             }
         }
     }

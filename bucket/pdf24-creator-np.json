@@ -33,7 +33,7 @@
                 "url": "https://download.pdf24.org/pdf24-creator-$version.msi#/setup.msi_",
                 "hash": {
                     "url": "https://creator.pdf24.org/listVersions.php",
-                    "find": "<td>$sha256</td>"
+                    "regex": "$basename</a></td>\\s\\n\\s+<td>$sha256"
                 }
             }
         }

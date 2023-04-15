@@ -33,7 +33,7 @@
         },
         "hash": {
             "url": "https://portswigger.net/burp/releases/data",
-            "regex": "\"ProductId\":\"community\",\"ProductPlatform\":\"WindowsX64\",\"ProductPlatformLabel\":\"Windows (64-bit)\",\"Sha256Checksum\":\"$sha256\",\"Version\":\"$version"
+            "regex": "\"ProductId\":\"community\",\"ProductPlatform\":\"WindowsX64\",\"ProductPlatformLabel\":\"Windows\\s\\(64-bit\\)\",\"Sha256Checksum\":\"$sha256\",\"Version\":\"$version"
         }
     }
 }

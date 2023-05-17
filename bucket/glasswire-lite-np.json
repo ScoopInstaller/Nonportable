@@ -1,5 +1,5 @@
 {
-    "version": "3.2.490",
+    "version": "2.3.449",
     "description": "Firewall & network monitoring software to detect and block threats (Lite version, uses less resources)",
     "homepage": "https://www.glasswire.com/",
     "license": {
@@ -28,13 +28,13 @@
     },
     "checkver": {
         "url": "https://www.glasswire.com/changes/",
-        "regex": "<b>Version ([\\d.]+)"
+        "regex": "(?s)<h3 id=\"v([\\d]+[\\d.]+)\">.*?Hash SHA-256 Lite"
     },
     "autoupdate": {
         "url": "https://download.glasswire.com/GlassWireLiteSetup.exe#/setup.exe",
         "hash": {
             "url": "https://www.glasswire.com/changes/",
-            "regex": "Hash Lite # ($sha256)"
+            "regex": "Hash SHA-256 Lite:.*?$sha256"
         }
     }
 }

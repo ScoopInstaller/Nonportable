@@ -1,10 +1,10 @@
 {
-    "version": "1.0.30",
+    "version": "1.0.31.0",
     "homepage": "https://www.10xeditor.com/index.htm",
     "description": "A fast performing, feature packed C++ editor/IDE.",
     "license": {
         "identifier": "Shareware",
-        "url": "https://www.10xeditor.com/License.htm"
+        "url": "https://www.puredevsoftware.com/download.php?file=10x_Editor_SaaS_License_Agreement.pdf"
     },
     "architecture": {
         "64bit": {
@@ -21,8 +21,15 @@
         "Start-Process \"$dir\\setup.exe\" -Wait -Verb 'RunAs' -WindowStyle 'Hidden' -Args @('/silent', '/uninstall'); Start-Sleep -Seconds 2"
     ],
     "checkver": {
-        "url": "https://www.10xeditor.com/versions.htm",
-        "regex": "Version\\s\\(([\\d.]+)\\)"
+        "script": [
+            "$dl_url = 'https://www.puredevsoftware.com/download.php?file=10xInstaller.exe#/setup.exe'",
+            "$dl = cache_path '10x-np' 'unknown' $dl_url",
+            "Invoke-WebRequest $dl_url -OutFile $dl",
+            "$ver = (Get-Item $dl).VersionInfo.ProductVersion",
+            "Move-Item -Force $dl (cache_path '10x-np' $ver $dl_url)",
+            "$ver"
+        ],
+        "regex": "([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {

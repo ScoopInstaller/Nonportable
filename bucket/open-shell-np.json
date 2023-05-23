@@ -37,6 +37,8 @@
         "    for ($i = 0; $i -lt 60; $i++) {",
         "        if (-Not (Test-Path \"$env:ProgramFiles\\Open-Shell\")) {",
         "            break",
+        "        } elseif (-Not (Test-Path \"${env:ProgramFiles(x86)}\\Open-Shell\")) {",
+        "            break",
         "        }",
         "        Start-Sleep -Milliseconds 1000",
         "    }",

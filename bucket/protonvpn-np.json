@@ -6,16 +6,17 @@
     "license": "GPL-3.0",
     "architecture": {
         "64bit": {
-            "url": "https://download.protonvpn.net/download/ProtonVPN_v3.0.5.exe#/setup.exe",
+            "url": "https://download.protonvpn.net/download/ProtonVPN_v3.0.5.exe",
             "hash": "04d3b827e5a2c3899d797d2c5a19433fda43c3abc4e3e8b3fa5548c525973e4f"
         }
     },
     "installer": {
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-            "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('/VERYSILENT', '/SP-', '/SUPPRESSMSGBOXES', '/NORESTART') -RunAs | Out-Null",
-            "Stop-Process -Name 'ProtonVPN' -ErrorAction 'SilentlyContinue' -Force # This closes the login screen appeared after installing the app",
-            "Remove-Item \"$dir\\setup.exe\""
+            "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList @('/VERYSILENT', '/SP-', '/SUPPRESSMSGBOXES', '/NORESTART') -RunAs | Out-Null",
+            "# Closes the login screen appeared after installing the app",
+            "Stop-Process -Name 'ProtonVPN' -ErrorAction SilentlyContinue -Force",
+            "Remove-Item \"$dir\\$fname\""
         ]
     },
     "uninstaller": {
@@ -33,7 +34,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://download.protonvpn.net/download/ProtonVPN_v$version.exe#/setup.exe",
+                "url": "https://download.protonvpn.net/download/ProtonVPN_v$version.exe",
                 "hash": {
                     "url": "https://protonvpn.com/download/windows-releases.json",
                     "jsonpath": "$.Categories[?(@.Name == 'Stable')].Releases[?(@.Version == '$version')].File.SHA256CheckSum"

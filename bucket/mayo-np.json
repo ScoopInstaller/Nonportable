@@ -1,0 +1,31 @@
+{
+    "bin": "mayo.exe",
+    "homepage": "https://github.com/fougue/mayo",
+    "description": "3D CAD viewer and converter based on Qt + OpenCascade",
+    "version": "0.7.0.1113",
+    "innosetup": true,
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/fougue/mayo/releases/download/v0.7.0/mayo_v0.7.0.1113-f88a35d_winx64_installer.exe"
+        }
+    },
+    "hash": "",
+    "shortcuts": [
+        [
+            "mayo.exe",
+            "Mayo"
+        ]
+    ],
+    "license": "BSD 2-Clause",
+    "checkver": {
+        "url": "https://api.github.com/repos/fougue/mayo/releases",
+        "regex": "mayo_v([\\d.]+)-(?<hash>[a-f0-9]+)_winx64_installer.exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/fougue/mayo/releases/download/v$matchHead/mayo_v$version-$matchHash_winx64_installer.exe"
+            }
+        }
+    }
+}

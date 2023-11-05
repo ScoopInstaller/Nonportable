@@ -12,13 +12,14 @@
     ],
     "installer": {
         "script": [
+            "using namespace System.Security.Cryptography.X509Certificates",
             "# Add cert first before installing driver",
             "$cert = (Get-AuthenticodeSignature \"$dir\\OpenZFS.cat\").SignerCertificate",
             "if (!(Get-ChildItem Cert:/CurrentUser/TrustedPublisher -Recurse | Where-Object { $_.Thumbprint -eq $cert.Thumbprint })) {",
             "    Write-Host 'Cert not found, adding to trusted store...'",
-            "    $store = [System.Security.Cryptography.X509Certificates.X509Store]::new([Security.Cryptography.X509Certificates.StoreName]::TrustedPublisher, [Security.Cryptography.X509Certificates.StoreLocation]::LocalMachine)",
-            "    $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]::ReadWrite)",
-            "    $store.Add($cert.Export([System.Security.Cryptography.X509Certificates.X509ContentType]::Cert))",
+            "    $store = [X509Store]::new([StoreName]::TrustedPublisher, [StoreLocation]::LocalMachine)",
+            "    $store.Open([OpenFlags]::ReadWrite)",
+            "    $store.Add($cert.Export([X509ContentType]::Cert))",
             "    $store.Close()",
             "}",
             "",

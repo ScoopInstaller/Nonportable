@@ -1,5 +1,5 @@
 {
-    "version": "4.6.0",
+    "version": "16.0.16731.20398",
     "description": "Family of client software, server software and services developed by Microsoft. This package only includes Excel, PowerPoint and Word.",
     "homepage": "https://www.office.com/",
     "license": {
@@ -7,8 +7,8 @@
         "url": "https://www.microsoft.com/licensing/terms/productoffering/OfficeDesktopApplicationsWindows/MCA"
     },
     "depends": "7zip19.00-helper",
-    "url": "https://download.microsoft.com/download/#/dl.7z_",
-    "hash": "df94969534f926d47c31b65707b8a4736bbf40469c23785549e18bc90dbc97a1",
+    "url": "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_16731-20398.exe#/dl.7z_",
+    "hash": "40bd32615a9dd98729adf2833d9f52468babe62b6a2fd0dbfc8c748adc8a24fa",
     "pre_install": [
         "$scriptdir = \"$bucketsdir\\nonportable\\scripts\"",
         "if ($architecture -eq '64bit') {",

@@ -1,5 +1,5 @@
 {
-    "version": "1.25.9",
+    "version": "1.26.7",
     "homepage": "https://www.veracrypt.fr/en/Home.html",
     "description": "A free open source disk encryption software.",
     "license": "Apache-2.0",
@@ -12,8 +12,8 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://launchpad.net/veracrypt/trunk/1.25.9/+download/VeraCrypt_Setup_x64_1.25.9.msi#/setup.msi_",
-            "hash": "md5:25f8a853a23f4b64bd5c723d0c41443d"
+            "url": "https://launchpad.net/veracrypt/trunk/1.26.7/+download/VeraCrypt_Setup_x64_1.26.7.msi#/setup.msi_",
+            "hash": "md5:d7824445f363880a0a452a8dc08b6f15"
         }
     },
     "pre_install": [

@@ -1,5 +1,5 @@
 {
-    "version": "0.0.1.2",
+    "version": "0.0.1.4",
     "description": "Windows Indirect Display Driver using the IddCx class extension driver. Virtual monitors for Windows 10/11.",
     "homepage": "https://github.com/ge9/IddSampleDriver",
     "license": "MIT,CC0 | Public Domain",
@@ -7,8 +7,8 @@
     "depends": "extras/nefcon",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ge9/IddSampleDriver/releases/download/0.0.1.2/IddSampleDriver.zip",
-            "hash": "c73d6f3b8af35d68b369de68200b1d4ad2a958d7c45d672a20a1ffe01d24f72c"
+            "url": "https://github.com/ge9/IddSampleDriver/releases/download/0.0.1.4/IddSampleDriver.zip",
+            "hash": "e93b88f31ce3201814cba1fb4e11eb43e6f991f4d2a5e33145728a8dbfdd4eb7"
         }
     },
     "extract_dir": "IddSampleDriver",

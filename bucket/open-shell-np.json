@@ -1,10 +1,10 @@
 {
-    "version": "4.4.170",
+    "version": "4.4.191",
     "homepage": "https://github.com/Open-Shell/Open-Shell-Menu",
     "description": "A fork of Classic Shell with additional fixes and more features.",
     "license": "MIT",
-    "url": "https://github.com/Open-Shell/Open-Shell-Menu/releases/download/v4.4.170/OpenShellSetup_4_4_170.exe#/setup.exe",
-    "hash": "0417041CFFED3478F13A840E45EE304CCF8D1F9CA38E4126BC315161AC9F1669",
+    "url": "https://github.com/Open-Shell/Open-Shell-Menu/releases/download/v4.4.191/OpenShellSetup_4_4_191.exe#/setup.exe",
+    "hash": "9e9c32badb52444ca8a8726aef7c220ff48de8c7916cdfdca4dff6e009ac1f0c",
     "architecture": {
         "64bit": {
             "pre_install": [
@@ -28,21 +28,23 @@
         ]
     },
     "pre_uninstall": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Write-Host \"Restoring previous Start Menu, please wait and don't cancel the script...\" -F 'Yellow'",
-        "Stop-Process -Name 'StartMenu' -Force -ErrorAction 'SilentlyContinue'",
-        "Start-Sleep -Milliseconds 1000",
-        "Start-Process 'msiexec' -Verb 'RunAs' -ArgumentList @('/x', \"$dir\\setup.msi\", '/qn')",
-        "for ($i = 0; $i -lt 60; $i++) {",
-        "  if (-Not (Test-Path \"$env:ProgramFiles\\Open-Shell\")) {",
-        "       break",
-        "   }",
-        "   Start-Sleep -Milliseconds 1000",
-        "}",
-        "Start-Process 'taskkill' -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList ('/F', '/IM', 'explorer.exe')",
-        "Start-Sleep -Milliseconds 5000",
-        "Start-Process 'explorer.exe' -Verb 'RunAs' -WindowStyle 'Hidden'",
-        "Write-Host 'Previous Start Menu Restored!' -F 'Yellow'"
+        "if ($cmd -eq 'uninstall') {",
+        "    if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+        "    Write-Host \"Restoring previous Start Menu, please wait and don't cancel the script...\" -F 'Yellow'",
+        "    Stop-Process -Name 'StartMenu' -Force -ErrorAction 'SilentlyContinue'",
+        "    Start-Sleep -Milliseconds 1000",
+        "    Start-Process 'msiexec' -Verb 'RunAs' -ArgumentList @('/x', \"$dir\\setup.msi\", '/qn')",
+        "    for ($i = 0; $i -lt 60; $i++) {",
+        "        if ((-Not (Test-Path \"$env:ProgramFiles\\Open-Shell\")) -or (-Not (Test-Path \"${env:ProgramFiles(x86)}\\Open-Shell\"))) {",
+        "            break",
+        "        }",
+        "        Start-Sleep -Milliseconds 1000",
+        "    }",
+        "    Start-Process 'taskkill' -Verb 'RunAs' -WindowStyle 'Hidden' -ArgumentList ('/F', '/IM', 'explorer.exe')",
+        "    Start-Sleep -Milliseconds 5000",
+        "    Start-Process 'explorer.exe' -Verb 'RunAs' -WindowStyle 'Hidden'",
+        "    Write-Host 'Previous Start Menu Restored!' -F 'Yellow'",
+        "}"
     ],
     "checkver": "github",
     "autoupdate": {

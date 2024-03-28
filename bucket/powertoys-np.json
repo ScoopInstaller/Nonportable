@@ -1,5 +1,5 @@
 {
-    "version": "0.69.1",
+    "version": "0.79.0",
     "description": "System utilities to maximize productivity.",
     "homepage": "https://github.com/microsoft/PowerToys",
     "license": "MIT",
@@ -8,8 +8,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/microsoft/PowerToys/releases/download/v0.69.1/PowerToysSetup-0.69.1-x64.exe#/setup.exe",
-            "hash": "058a382779270fefd262a55b573e0d6a8501771c7dc52f41993fc440b5dde5ff"
+            "url": "https://github.com/microsoft/PowerToys/releases/download/v0.79.0/PowerToysSetup-0.79.0-x64.exe#/setup.exe",
+            "hash": "3fd2a6bd9c8f8973bfbbf5db9236c3d8af3ae57e5aec275ddeb5ef31581f80fe"
         }
     },
     "installer": {

@@ -1,5 +1,5 @@
 {
-    "version": "15.41.10",
+    "version": "15.52.3",
     "description": "Software for remote control, desktop sharing, online meetings, web conferencing and file transfer between computers.",
     "homepage": "https://www.teamviewer.com/",
     "license": {
@@ -42,7 +42,7 @@
     "checkver": {
         "useragent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.26 Safari/537.36",
         "url": "https://www.teamviewer.com/en-us/download/windows/",
-        "regex": "<p>Current\\sversion:\\s([\\d.]+)</p>"
+        "regex": "<span data-dl-version-label>([\\d.]+)</span>"
     },
     "autoupdate": {
         "url": "https://example.com/#/dummy.txt"

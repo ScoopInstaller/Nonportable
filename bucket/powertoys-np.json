@@ -9,7 +9,7 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/microsoft/PowerToys/releases/download/v0.80.1/PowerToysSetup-0.80.1-x64.exe#/setup.exe",
-            "hash": "23e35f7b33c6f24237bca3d5e8edf9b3bd4802dd656c402b40a4fc82670f8be3"
+            "hash": "62373a08bb8e1c1173d047509f3ea5dcc0be1845787e07bcda3f6a09da2a0c17"
         }
     },
     "installer": {

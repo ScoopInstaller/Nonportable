@@ -1,6 +1,6 @@
 {
     "version": "1.2.3",
-    "homepage": "https://file-converter.org/",
+    "homepage": "https://file-converter.io/",
     "description": "A Windows File Explorer shell extension that allows for converting and compressing one or several file(s) using the context menu.",
     "license": "GPL-3.0",
     "architecture": {

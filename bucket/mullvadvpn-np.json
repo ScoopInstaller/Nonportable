@@ -22,7 +22,7 @@
         "Start-Sleep -Seconds 2"
     ],
     "checkver": {
-        "url": "https://mullvad.net/en/download/windows/",
+        "url": "https://mullvad.net/en/download/windows",
         "regex": ">Latest\\sversion:\\s([\\d.]+)"
     },
     "autoupdate": {

@@ -1,12 +1,12 @@
 {
-    "version": "8.6",
+    "version": "8.9",
     "homepage": "https://www.pgadmin.org/",
     "description": "PostgreSQL administration and development platform.",
     "license": "PostgreSQL",
     "architecture": {
         "64bit": {
-            "url": "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v8.6/windows/pgadmin4-8.6-x64.exe",
-            "hash": "8ef6bd7866665bcc6d2cc10e8c85e6016ca4a6b3ca76f8e7f7b5f349f6929c82"
+            "url": "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v8.9/windows/pgadmin4-8.9-x64.exe",
+            "hash": "8d7253e1b2d64d27a2280267acf8d56c580b9914f9c079048fd0ec27ab8f2497"
         }
     },
     "installer": {

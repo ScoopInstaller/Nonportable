@@ -23,7 +23,7 @@
     },
     "checkver": {
         "url": "https://vb-audio.com/Voicemeeter/potato.htm",
-        "regex": "Voicemeeter ([\\d.]+) \\(EXE file\\)"
+        "regex": "Voicemeeter ([\\d.]+) \\(ZIP Package\\)"
     },
     "autoupdate": {
         "url": "https://download.vb-audio.com/Download_CABLE/Voicemeeter8Setup.exe#/setup.exe"

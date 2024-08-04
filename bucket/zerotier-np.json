@@ -23,10 +23,10 @@
         ]
     },
     "checkver": {
-        "url": "https://www.zerotier.com/download/",
-        "regex": "(?s)Latest version\\: <a.*?>([\\d.]+)</a>"
+        "url": "https://download.zerotier.com/RELEASES/",
+        "regex": "/RELEASES/([\\d.]+)/dist/ZeroTier%20One.msi"
     },
     "autoupdate": {
-        "url": "https://download.zerotier.com/RELEASES/$version/dist/ZeroTierOne.msi#/setup.msi_"
+        "url": "https://download.zerotier.com/RELEASES/$version/dist/ZeroTier%20One.msi"
     }
 }

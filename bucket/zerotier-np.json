@@ -27,6 +27,6 @@
         "re": "Latest Version \\| ([\\d.]+)"
     },
     "autoupdate": {
-        "url": "https://download.zerotier.com/RELEASES/$version/dist/ZeroTier%20One.msi"
+        "url": "https://download.zerotier.com/RELEASES/$version/dist/ZeroTier%20One.msi#/setup.msi_"
     }
 }

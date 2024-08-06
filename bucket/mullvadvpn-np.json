@@ -9,18 +9,22 @@
             "hash": "40b6c1d8cb9259d944c737d9e3cdb483bf425335069fd2685cf13629334cc938"
         }
     },
-    "pre_install": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Start-Process \"$dir\\setup.exe\" -Verb 'RunAs' -Args @('/allusers', '/S')",
-        "while (!(Get-Process -Name 'mullvad-daemon' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Seconds 5 }",
-        "Remove-Item \"$dir\\setup.exe\""
-    ],
-    "pre_uninstall": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Stop-Service -Name 'MullvadVPN' -ErrorAction 'SilentlyContinue' -Force; Stop-Process -Name 'Mullvad VPN' -ErrorAction 'SilentlyContinue' -Force",
-        "Start-Process \"$env:ProgramFiles\\Mullvad VPN\\Uninstall Mullvad VPN.exe\" -Wait -Verb 'RunAs' -Args @('/allusers', '/S')",
-        "Start-Sleep -Seconds 2"
-    ],
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Start-Process \"$dir\\setup.exe\" -Verb 'RunAs' -Args @('/allusers', '/S')",
+            "while (!(Get-Process -Name 'mullvad-daemon' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Seconds 5 }",
+            "Remove-Item \"$dir\\setup.exe\""
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Stop-Service -Name 'MullvadVPN' -ErrorAction 'SilentlyContinue' -Force; Stop-Process -Name 'Mullvad VPN' -ErrorAction 'SilentlyContinue' -Force",
+            "Start-Process \"$env:ProgramFiles\\Mullvad VPN\\Uninstall Mullvad VPN.exe\" -Wait -Verb 'RunAs' -Args @('/allusers', '/S')",
+            "Start-Sleep -Seconds 2"
+        ]
+    },
     "checkver": {
         "url": "https://mullvad.net/en/download/windows/",
         "regex": ">Latest\\sversion:\\s([\\d.]+)"

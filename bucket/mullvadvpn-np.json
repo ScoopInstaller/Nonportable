@@ -1,6 +1,6 @@
 {
     "version": "2024.4",
-    "homepage": "https://mullvad.net/en/",
+    "homepage": "https://mullvad.net/en/vpn",
     "description": "The official desktop client for Mullvad VPN, a privacy-respecting VPN service.",
     "license": "GPL-3.0",
     "architecture": {

@@ -26,8 +26,7 @@
         ]
     },
     "checkver": {
-        "url": "https://mullvad.net/en/download/windows/",
-        "regex": ">Latest\\sversion:\\s([\\d.]+)"
+        "github": "https://github.com/mullvad/mullvadvpn-app"
     },
     "autoupdate": {
         "architecture": {

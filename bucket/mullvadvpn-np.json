@@ -26,7 +26,8 @@
         ]
     },
     "checkver": {
-        "github": "https://github.com/mullvad/mullvadvpn-app"
+        "url": "https://api.mullvad.net/app/v1/releases/windows/$version",
+        "jsonpath": "$.latest_stable"
     },
     "autoupdate": {
         "architecture": {

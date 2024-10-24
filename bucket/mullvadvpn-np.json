@@ -1,12 +1,12 @@
 {
-    "version": "2023.6",
+    "version": "2024.4",
     "homepage": "https://mullvad.net/en/",
     "description": "The official desktop client for Mullvad VPN, a privacy-respecting VPN service.",
     "license": "GPL-3.0",
     "architecture": {
         "64bit": {
-            "url": "https://mullvad.net/media/app/MullvadVPN-2023.6.exe#/setup.exe",
-            "hash": "1a212857d3edcfe44cfdf0ac50db27a1fb325721f7fd9aa9a1e8fcc8b4bda64c"
+            "url": "https://mullvad.net/media/app/MullvadVPN-2024.4.exe#/setup.exe",
+            "hash": "40b6c1d8cb9259d944c737d9e3cdb483bf425335069fd2685cf13629334cc938"
         }
     },
     "pre_install": [

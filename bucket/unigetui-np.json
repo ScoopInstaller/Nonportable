@@ -8,19 +8,19 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/marticliment/UniGetUI/releases/download/3.1.2/UniGetUI.Installer.exe#/setup.exe",
-            "hash": "456A4F2D548C590ECF56E90D1846DDF2BCD9E3D7BDE6747602328885675A2C8F"
+            "url": "https://github.com/marticliment/UniGetUI/releases/download/3.1.2/UniGetUI.Installer.exe#/setup.exe#/setup.exe",
+            "hash": "456a4f2d548c590ecf56e90d1846ddf2bcd9e3d7bde6747602328885675a2c8f"
         }
     },
     "installer": {
         "script": [
-            "if (!(is_admin)) { Write-Host \"\nERROR: $app requires admin rights to $cmd\" -ForegroundColor DarkRed; break }",
+            "if (!(is_admin)) { Write-Host \" ERROR: $app requires admin rights to $cmd\" -ForegroundColor DarkRed; break }",
             "Start-Process -Wait \"$dir\\setup.exe\" \"/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /NoAutoStart /ALLUSERS /NoWinGet /NoChocolatey\""
         ]
     },
     "uninstaller": {
         "script": [
-            "if (!(is_admin)) { Write-Host \"\nERROR: $app requires admin rights to $cmd\" -ForegroundColor DarkRed; break }",
+            "if (!(is_admin)) { Write-Host \" ERROR: $app requires admin rights to $cmd\" -ForegroundColor DarkRed; break }",
             "$uninstaller = (Get-ItemProperty -ErrorAction Ignore \"HKCU:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{889610CC-4337-4BDB-AC3B-4F21806C0BDE}_is1\" -Name UninstallString).UninstallString",
             "if (!$uninstaller) { $uninstaller = (Get-ItemProperty -ErrorAction Ignore \"HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{889610CC-4337-4BDB-AC3B-4F21806C0BDE}_is1\" -Name UninstallString).UninstallString }",
             "if (!$uninstaller) { warn 'Could not find app info in registry' }",
@@ -33,5 +33,8 @@
                 "url": "https://github.com/marticliment/UniGetUI/releases/download/$version/UniGetUI.Installer.exe#/setup.exe#/setup.exe"
             }
         }
+    },
+    "checkver": {
+        "github": "https://github.com/marticliment/UniGetUI"
     }
 }

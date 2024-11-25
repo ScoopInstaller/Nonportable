@@ -19,6 +19,6 @@
         "github": "https://github.com/files-community/Files"
     },
     "autoupdate": {
-        "url": "https://cdn.files.community/files/stable/Files.Package_$version.0_Stable_Test/Files.Package_$version.0_x64_arm64_Stable.msixbundle#/setup.msixbundle"
+        "url": "https://cdn.files.community/files/stable/Files.Package_$version.0.0_Stable_Test/Files.Package_$version.0.0_x64_arm64_Stable.msixbundle#/setup.msixbundle"
     }
 }

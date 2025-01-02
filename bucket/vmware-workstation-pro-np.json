@@ -1,5 +1,5 @@
 {
-    "version": "17.6.0-24238078",
+    "version": "17.6.2-24409262",
     "homepage": "https://www.vmware.com/products/desktop-hypervisor.html",
     "description": "An application for creating and running virtual machines on your computer.",
     "license": {
@@ -11,8 +11,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.6.0/24238078/windows/core/VMware-workstation-17.6.0-24238078.exe.tar",
-            "hash": "8866101cd4d411dc4f75ecba2458b95ad5ca4edd177e2a500a9d3662ea37fc50"
+            "url": "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.6.2/24409262/windows/core/VMware-workstation-17.6.2-24409262.exe.tar",
+            "hash": "d0f62805019d1ca5a1d5bafdf4d030dd782bd17abecea0662a5197563825ec8b"
         }
     },
     "pre_install": [
@@ -52,18 +52,17 @@
         "url": "https://scoop.sh",
         "script": [
             "try {",
-            "    ([string]$version = ([Version[]](($_ = (Invoke-RestMethod https://softwareupdate.vmware.com/cds/vmw-desktop/ws/).html.body.ul.li.a.'#text')[1..$_.Length]) | Sort-Object)[-1]),",
-            "    ([UInt32[]](($_ = (Invoke-RestMethod https://softwareupdate.vmware.com/cds/vmw-desktop/ws/$version).html.body.ul.li.a.'#text')[1..$_.Length]) | Sort-Object)[-1] -join ' '",
+            "    ([string]$version = ([Version[]]($_ = (Invoke-RestMethod https://softwareupdate.vmware.com/cds/vmw-desktop/ws/).html.body.ul.li.a.'#text')[1..$_.Length] | Measure-Object -Maximum).Maximum),",
+            "    ([UInt32[]](($_ = (Invoke-RestMethod https://softwareupdate.vmware.com/cds/vmw-desktop/ws/$version).html.body.ul.li.a.'#text')[1..$_.Length]) | Measure-Object -Maximum).Maximum -join '-'",
             "}",
             "catch { '' }"
         ],
-        "regex": "\\A([\\d.]+) (\\d+)\\Z",
-        "replace": "${1}-${2}"
+        "regex": "\\A(([\\d.]+)-(\\d+))\\Z"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/$match1/$match2/windows/core/VMware-workstation-$version.exe.tar"
+                "url": "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/$match2/$match3/windows/core/VMware-workstation-$version.exe.tar"
             }
         }
     }

@@ -1,0 +1,93 @@
+{
+    "version": "5.0.4.30422",
+    "description": "Directory and file compare functions in one package",
+    "homepage": "https://www.scootersoftware.com",
+    "license": {
+        "identifier": "Shareware",
+        "url": "https://www.scootersoftware.com/kb/licensev5"
+    },
+    "notes": [
+        "The manifest is already updated to v5, if you want to stay on v4 proceed as follows:",
+        "",
+        "- Install v4 via 'scoop install versions/beyondcompare4'",
+        "- Consider uninstalling v5 via 'scoop uninstall nonportable/beyondcompare-np'",
+        "",
+        "Or maybe you want to upgrade license from v4 to v5: https://www.scootersoftware.com/kb/upgradepolicy"
+    ],
+    "innosetup": true,
+    "architecture": {
+        "64bit": {
+            "url": "https://www.scootersoftware.com/files/BCompareSetup-5.0.4.30422.zip",
+            "hash": "2cfb571c94885fce248e6eac4da3f02c930db35176bd964f22b203a6833f5672",
+            "installer": {
+                "file": "BCompareSetup.exe",
+                "args": [
+                    "/DIR=\"$dir\"",
+                    "/VERYSILENT",
+                    "/SUPPRESSMSGBOXES",
+                    "/NORESTART"
+                ]
+            }
+        },
+        "32bit": {
+            "url": "https://www.scootersoftware.com/files/BCompareSetup-5.0.4.30422.zip",
+            "hash": "2cfb571c94885fce248e6eac4da3f02c930db35176bd964f22b203a6833f5672",
+            "installer": {
+                "file": "BCompareSetup.exe",
+                "args": [
+                    "/32",
+                    "/DIR=\"$dir\"",
+                    "/VERYSILENT",
+                    "/SUPPRESSMSGBOXES",
+                    "/NORESTART"
+                ]
+            }
+        }
+    },
+    "bin": [
+        "Bcomp.exe",
+        "BCompare.exe",
+        "BCClipboard.exe"
+    ],
+    "shortcuts": [
+        [
+            "BCompare.exe",
+            "Beyond Compare 5"
+        ],
+        [
+            "BCClipboard.exe",
+            "Clipboard Compare"
+        ]
+    ],
+    "post_install": [
+        "$dir_escaped = \"$dir\".Replace('\\', '\\\\')",
+        "\"install-context-$architecture\", \"uninstall-context\" | ForEach-Object {",
+        "  if (Test-Path \"$bucketsdir\\$bucket\\scripts\\$app\\$_.reg\") {",
+        "    $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\$app\\$_.reg\"",
+        "    $content = $content.Replace('$install_dir', $dir_escaped)",
+        "    if ($global) {",
+        "      $content = $content.Replace('HKEY_CURRENT_USER', 'HKEY_LOCAL_MACHINE')",
+        "    }",
+        "    $outfile_no_arch = $_.Replace(\"-$architecture\", \"\")",
+        "    $content | Set-Content -Path \"$dir\\$outfile_no_arch.reg\"",
+        "  }",
+        "}",
+        "",
+        "if ($cmd -eq 'install') {",
+        "   Invoke-Command {reg import \"$dir\\install-context.reg\" 2>&1 | Out-Null}",
+        "}"
+    ],
+    "pre_uninstall": [
+        "",
+        "if ($cmd -eq 'uninstall') {",
+        "   Invoke-Command {reg import \"$dir\\uninstall-context.reg\" 2>&1 | Out-Null}",
+        "}"
+    ],
+    "checkver": {
+        "url": "https://www.scootersoftware.com/kb/dl5_winalternate",
+        "regex": "files/BCompareSetup-([\\d.]+)\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://www.scootersoftware.com/files/BCompareSetup-$version.zip"
+    }
+}

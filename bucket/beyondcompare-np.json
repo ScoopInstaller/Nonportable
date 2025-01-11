@@ -14,13 +14,11 @@
         "",
         "Or maybe you want to upgrade license from v4 to v5: https://www.scootersoftware.com/kb/upgradepolicy"
     ],
-    "innosetup": true,
+    "url": "https://www.scootersoftware.com/files/BCompare-5.0.4.30422.exe",
+    "hash": "d74892601a50514b5636e27d4be4d3ac38597f2f6c7c7b6b5b169a48ffa1f341",
     "architecture": {
         "64bit": {
-            "url": "https://www.scootersoftware.com/files/BCompareSetup-5.0.4.30422.zip",
-            "hash": "2cfb571c94885fce248e6eac4da3f02c930db35176bd964f22b203a6833f5672",
             "installer": {
-                "file": "BCompareSetup.exe",
                 "args": [
                     "/DIR=\"$dir\"",
                     "/VERYSILENT",
@@ -32,16 +30,15 @@
             }
         },
         "32bit": {
-            "url": "https://www.scootersoftware.com/files/BCompareSetup-5.0.4.30422.zip",
-            "hash": "2cfb571c94885fce248e6eac4da3f02c930db35176bd964f22b203a6833f5672",
             "installer": {
-                "file": "BCompareSetup.exe",
                 "args": [
                     "/32",
                     "/DIR=\"$dir\"",
                     "/VERYSILENT",
                     "/SUPPRESSMSGBOXES",
-                    "/NORESTART"
+                    "/NORESTART",
+                    "/NOICONS",
+                    "/CURRENTUSER"
                 ]
             }
         }
@@ -88,10 +85,10 @@
         "}"
     ],
     "checkver": {
-        "url": "https://www.scootersoftware.com/kb/dl5_winalternate",
-        "regex": "files/BCompareSetup-([\\d.]+)\\.zip"
+        "url": "https://www.scootersoftware.com/download",
+        "regex": "BCompare-([\\d.]+)\\.exe"
     },
     "autoupdate": {
-        "url": "https://www.scootersoftware.com/files/BCompareSetup-$version.zip"
+        "url": "https://www.scootersoftware.com/files/BCompare-$version.exe"
     }
 }

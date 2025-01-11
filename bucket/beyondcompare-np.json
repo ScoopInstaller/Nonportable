@@ -75,7 +75,8 @@
         "",
         "if ($cmd -eq 'install') {",
         "   Invoke-Command {reg import \"$dir\\install-context.reg\" 2>&1 | Out-Null}",
-        "}"
+        "}",
+        "Remove-Item -Path \"$dir\\unins*\" -Force -Recurse"
     ],
     "pre_uninstall": [
         "",

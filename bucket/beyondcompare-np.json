@@ -61,7 +61,7 @@
     ],
     "post_install": [
         "$dir_escaped = \"$dir\".Replace('\\', '\\\\')",
-        "\"install-context-$architecture\", \"uninstall-context\" | ForEach-Object {",
+        "\"install-context-$architecture\", \"uninstall-context\", \"delete-entry-apps-and-features\" | ForEach-Object {",
         "  if (Test-Path \"$bucketsdir\\$bucket\\scripts\\$app\\$_.reg\") {",
         "    $content = Get-Content \"$bucketsdir\\$bucket\\scripts\\$app\\$_.reg\"",
         "    $content = $content.Replace('$install_dir', $dir_escaped)",
@@ -75,6 +75,7 @@
         "",
         "if ($cmd -eq 'install') {",
         "   Invoke-Command {reg import \"$dir\\install-context.reg\" 2>&1 | Out-Null}",
+        "   Invoke-Command {reg import \"$dir\\delete-entry-apps-and-features.reg\" 2>&1 | Out-Null}",
         "}",
         "Remove-Item -Path \"$dir\\unins*\" -Force -Recurse"
     ],

@@ -25,7 +25,9 @@
                     "/DIR=\"$dir\"",
                     "/VERYSILENT",
                     "/SUPPRESSMSGBOXES",
-                    "/NORESTART"
+                    "/NORESTART",
+                    "/NOICONS",
+                    "/CURRENTUSER"
                 ]
             }
         },

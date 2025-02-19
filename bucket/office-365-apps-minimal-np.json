@@ -1,5 +1,5 @@
 {
-    "version": "8.7.7",
+    "version": "2.2.282.0",
     "description": "Family of client software, server software and services developed by Microsoft. This package only includes Excel, PowerPoint and Word.",
     "homepage": "https://www.office.com/",
     "license": {
@@ -8,7 +8,7 @@
     },
     "depends": "7zip19.00-helper",
     "url": "https://download.microsoft.com/download/#/dl.7z_",
-    "hash": "8ad6e38f75c012ea956a0e29ad582b94a6b5b87c6b65aebf3407f47de5947c4c",
+    "hash": "921aa671ad145af62089fc826ef008cf563388d9f436a0ba6f8410bf985f03d3",
     "pre_install": [
         "$scriptdir = \"$bucketsdir\\nonportable\\scripts\"",
         "if ($architecture -eq '64bit') {",

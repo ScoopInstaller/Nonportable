@@ -3,13 +3,24 @@
     "description": "Automatically switches between the dark and light theme of Windows 10 at scheduled times.",
     "homepage": "https://github.com/Armin2208/Windows-Auto-Night-Mode",
     "license": "GPL-3.0-only",
-    "url": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/10.4.2.29/AutoDarkModeX_10.4.2.29_x86.exe#/setup.exe",
+    "url": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/10.4.2.29/AutoDarkModeX_10.4.2.29_$architecture.exe#/setup.exe",
     "hash": "B7404DA1B91F207AFA63F3B444B427F2CE11E4AAE710544B1360768CF8C61AB4",
     "notes": "Settings need to be reapplied after updating.",
+    "architecture": {
+        "x86": {
+            "url": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/10.4.2.29/AutoDarkModeX_10.4.2.29_x86.exe#/setup.exe",
+            "hash": "B7404DA1B91F207AFA63F3B444B427F2CE11E4AAE710544B1360768CF8C61AB4"
+        },
+        "ARM64": {
+            "url": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/10.4.2.29/AutoDarkModeX_10.4.2.29_ARM64.exe",
+            "hash": "5CB18E96EA5129F5C60169819E74EB6E41CCA774373B82B1C4323295FB635FE4"
+        }
+    },
     "installer": {
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
             "if ([Environment]::OSVersion.Version.Major -lt 10) { error \"$app only supports Windows 10\"; break }",
+            "$arch = if ([System.Environment]::Is64BitOperatingSystem -and (Get-WmiObject -Class Win32_Processor | Select-Object -ExpandProperty AddressWidth) -eq 64) { 'ARM64' } else { 'x86' }",
             "Start-Process \"$dir\\setup.exe\" -ArgumentList @('/SP-', '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', \"/DIR=`\"$dir`\"\") -Wait -Verb RunAs | Out-Null",
             "Remove-Item \"$dir\\setup.exe\""
         ]
@@ -22,9 +33,19 @@
     },
     "checkver": "github",
     "autoupdate": {
-        "url": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/$version/AutoDarkModeX_$version_x86.exe#/setup.exe",
-        "hash": {
-            "url": "$baseurl/AutoDarkModeX_$version.sha256"
+        "architecture": {
+            "x86": {
+                "url": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/$version/AutoDarkModeX_$version_x86.exe#/setup.exe",
+                "hash": {
+                    "url": "$baseurl/AutoDarkModeX_$version_x86.exe.sha256"
+                }
+            },
+            "ARM64": {
+                "url": "https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases/download/$version/AutoDarkModeX_$version_ARM64.exe#/setup.exe",
+                "hash": {
+                    "url": "$baseurl/AutoDarkModeX_$version_ARM64.exe.sha256"
+                }
+            }
         }
     }
 }

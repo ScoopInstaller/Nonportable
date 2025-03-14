@@ -33,7 +33,7 @@
             "$ProgressPreference = 'SilentlyContinue'",
             "$url1 = 'https://docs.microsoft.com/en-us/officeupdates/odt-release-history'",
             "$regex1 = '<p>Version ([\\d.]+)'",
-            "$url2 = 'https://www.microsoft.com/en-au/download/confirmation.aspx?id=49117'",
+            "$url2 = 'https://www.microsoft.com/en-us/download/details.aspx?id=49117'",
             "$regex2 = 'download/([\\w/-]+)(officedeploymenttool_[\\d-]+\\.exe)'",
             "",
             "$cont = $(Invoke-WebRequest $url1).Content",

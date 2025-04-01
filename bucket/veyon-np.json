@@ -1,16 +1,16 @@
 {
-    "version": "4.9.2.0",
+    "version": "4.9.4.0",
     "description": "Computer monitoring and classroom management software.",
     "homepage": "https://veyon.io/",
     "license": "GPL-2.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/veyon/veyon/releases/download/v4.9.2/veyon-4.9.2.0-win64-setup.exe#/installer.exe",
-            "hash": "88a04da1fdae175c76d2f52e4b550b0775fbb90c277035d0202c6e997b9fd42f"
+            "url": "https://github.com/veyon/veyon/releases/download/v4.9.4/veyon-4.9.4.0-win64-setup.exe#/installer.exe",
+            "hash": "803865666df9fce52a33bd7af18ae2371fa05886d3009825b5e8b87f3d93358d"
         },
         "32bit": {
-            "url": "https://github.com/veyon/veyon/releases/download/v4.9.2/veyon-4.9.2.0-win32-setup.exe#/installer.exe",
-            "hash": "11e09169867bcd2ff1e2fde005e03403a39530bd9fe1297087a8969aec379832"
+            "url": "https://github.com/veyon/veyon/releases/download/v4.9.4/veyon-4.9.4.0-win32-setup.exe#/installer.exe",
+            "hash": "3b30b1d67fa6148a6e87afd126ccdd90fcb9a80d081946238d458f77ff8ca182"
         }
     },
     "installer": {

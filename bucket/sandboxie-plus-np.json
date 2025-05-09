@@ -3,18 +3,18 @@
         "For command-line usage, see: https://sandboxie-plus.com/sandboxie/startcommandline/",
         "The installer is made with InnoSetup, but the app will not work without installing the drivers (via the installer)"
     ],
-    "version": "1.15.8",
+    "version": "1.15.12",
     "description": "Sandbox isolation software (plus variant)",
     "homepage": "https://sandboxie-plus.com/",
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.8/Sandboxie-Plus-x64-v1.15.8.exe#/setup.exe",
-            "hash": "e729992177ae4f0e223e2bab3fe8b06d82e9275e69c83f391ccee1b806f47af8"
+            "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.12/Sandboxie-Plus-x64-v1.15.12.exe#/setup.exe",
+            "hash": "06c801528b8e0e456495019abc77b43a7367d29da88c227cbba755c1946f320c"
         },
         "32bit": {
-            "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.8/Sandboxie-Plus-x86-v1.15.8.exe#/setup.exe",
-            "hash": "3e3dc3fbae23595b9cc8df268dd033ddda066dc25bcae2b8986eea2086b14654"
+            "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.12/Sandboxie-Plus-x86-v1.15.12.exe#/setup.exe",
+            "hash": "88545c9ef4479c62522eb85038eceb69ebf7fac129c7b5973bde009bcb830542"
         }
     },
     "installer": {

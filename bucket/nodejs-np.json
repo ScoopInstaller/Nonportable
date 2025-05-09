@@ -1,14 +1,14 @@
 {
-    "version": "23.10.0",
+    "version": "24.0.0",
     "description": "JavaScript runtime environment.",
     "homepage": "https://nodejs.org",
     "license": "MIT",
     "notes": "npm global prefix set to: $env:APPDATA\\npm",
     "architecture": {
         "64bit": {
-            "url": "https://nodejs.org/dist/v23.10.0/node-v23.10.0-win-x64.7z",
-            "hash": "8d56f1d2a39ec17f45b53f35c201ec206db8c9d052fdc32d9a36efd41608c7e4",
-            "extract_dir": "node-v23.10.0-win-x64"
+            "url": "https://nodejs.org/dist/v24.0.0/node-v24.0.0-win-x64.7z",
+            "hash": "22ebf01fa7ef63ffb48a9cd23feec0d790d9e427d7b99166a49ec8ae5cb637cd",
+            "extract_dir": "node-v24.0.0-win-x64"
         }
     },
     "installer": {

@@ -1,6 +1,6 @@
 {
     "##": "For command-line usage, see: https://sandboxie-plus.com/sandboxie/startcommandline/",
-    "version": "5.70.8",
+    "version": "5.70.12",
     "description": "Sandbox isolation software (classic variant)",
     "homepage": "https://sandboxie-plus.com/",
     "license": "GPL-3.0-or-later",
@@ -10,12 +10,12 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.8/Sandboxie-Classic-x64-v5.70.8.exe#/setup.exe",
-            "hash": "5e5891a6078831ebcc95f1a377c38a75ad8035587839b2dbc536885940d4fac9"
+            "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.12/Sandboxie-Classic-x64-v5.70.12.exe#/setup.exe",
+            "hash": "ff75aea3627bdec7b39683ff426eefe506ba8dbf983525e38720c152f52f0b9b"
         },
         "32bit": {
-            "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.8/Sandboxie-Classic-x86-v5.70.8.exe#/setup.exe",
-            "hash": "7fefb3773f5523618a363fd923afe83fe97c6c73a3f96f1a72feda254155bb87"
+            "url": "https://github.com/sandboxie-plus/Sandboxie/releases/download/v1.15.12/Sandboxie-Classic-x86-v5.70.12.exe#/setup.exe",
+            "hash": "1c87774f08b4c72d15ace03d728aefc024d78ff6396f1233630909aa5b2e1a7c"
         }
     },
     "installer": {

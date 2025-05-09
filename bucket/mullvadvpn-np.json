@@ -1,12 +1,12 @@
 {
-    "version": "2024.2",
+    "version": "2025.5",
     "homepage": "https://mullvad.net/en/",
     "description": "The official desktop client for Mullvad VPN, a privacy-respecting VPN service.",
     "license": "GPL-3.0",
     "architecture": {
         "64bit": {
-            "url": "https://mullvad.net/media/app/MullvadVPN-2024.2.exe#/setup.exe",
-            "hash": "d17b57268c3776c9e72dc5d1cb56d1eaf5e07003270c4b696b53ba70a8668bf6"
+            "url": "https://cdn.mullvad.net/app/desktop/releases/2025.5/MullvadVPN-2025.5.exe#/setup.exe",
+            "hash": "a447dc78985e04265299fbecfabbfdc7807329b098e7e07669bf3d9ef2b75799"
         }
     },
     "pre_install": [
@@ -21,4 +21,15 @@
         "Start-Process \"$env:ProgramFiles\\Mullvad VPN\\Uninstall Mullvad VPN.exe\" -Wait -Verb 'RunAs' -Args @('/allusers', '/S')",
         "Start-Sleep -Seconds 2"
     ],
+    "checkver": {
+        "url": "https://mullvad.net/en/download/windows/",
+        "regex": ">Latest\\sversion:\\s([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://cdn.mullvad.net/app/desktop/releases/$version/MullvadVPN-$version.exe#/setup.exe"
+            }
+        }
+    }
 }

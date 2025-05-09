@@ -1,5 +1,5 @@
 {
-    "version": "3.0.2.8",
+    "version": "3.1.1.9",
     "description": "Audio mixer application endowed with virtual audio device (POTATO/ultimate version)",
     "homepage": "https://vb-audio.com/Voicemeeter/",
     "license": {
@@ -8,7 +8,7 @@
     },
     "notes": "Free for non-professional use only.",
     "url": "https://download.vb-audio.com/Download_CABLE/Voicemeeter8Setup.exe#/setup.exe",
-    "hash": "d50c871aa746df69a6bbeacd9c911b6a56314da3f24cc8a4f55a6bcb5480ef75",
+    "hash": "0b387b01bb2be21f2594bbabd58d4039914f67c62fb943fdcb58898165dfd8ed",
     "installer": {
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
@@ -23,7 +23,7 @@
     },
     "checkver": {
         "url": "https://vb-audio.com/Voicemeeter/potato.htm",
-        "regex": "Voicemeeter ([\\d.]+) \\(EXE file\\)"
+        "regex": "Voicemeeter ([\\d.]+) \\(ZIP Package\\)"
     },
     "autoupdate": {
         "url": "https://download.vb-audio.com/Download_CABLE/Voicemeeter8Setup.exe#/setup.exe"

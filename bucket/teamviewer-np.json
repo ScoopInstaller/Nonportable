@@ -29,7 +29,7 @@
         "    $answer = Read-Host -Prompt \"Enter 'y' to continue, any other key to cancel\"",
         "    if ('y' -eq $answer) {",
         "        Write-Host \"Stopping process...\" -ForegroundColor Yellow -NoNewline",
-        "        Stop-Process -Name 'teamviewer' -ErrorAction SilentlyContinue",
+        "        Stop-Process -Name 'teamviewer' -ErrorAction Stop",
         "        Start-Sleep -Milliseconds 250",
         "    } else {",
         "        Write-Host \"Uninstallation cancelled.\" -ForegroundColor Red",

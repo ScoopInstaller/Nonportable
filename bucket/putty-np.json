@@ -1,16 +1,16 @@
 {
-    "version": "0.78",
+    "version": "0.83",
     "description": "SSH and telnet client.",
     "homepage": "https://www.chiark.greenend.org.uk/~sgtatham/putty/",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.78-installer.msi",
-            "hash": "sha512:5ddb97078b417f22c54dce768564dec58fd92a9c190f7a6cac9c7979a0f136dd439da1d59dd3c088e709433f5c4f79c033abd4b6ca8989d38620c20f4623386e"
+            "url": "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.83-installer.msi",
+            "hash": "sha512:076885732ff889343edf9173ffb3b8ba60e74ae9167852e07122693063b2d5f420ef679fb216e0411d743b4bf0bd6c53d4f0e8e04c317c77eb51c53d31e119a3"
         },
         "32bit": {
-            "url": "https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.78-installer.msi",
-            "hash": "sha512:bec890b5c9d2f5f3ba00666c9ff39df60ffbc874ee67ed8cd942f4999023b42bffc8b8dc6896a708e84ef0d5a6440c17889cdcf52d78f91eba179f6969589fa7"
+            "url": "https://the.earth.li/~sgtatham/putty/latest/w32/putty-0.83-installer.msi",
+            "hash": "sha512:99c7a783145252822038eb8f48fd7b951b133a7b0491517c94c2fe8194b6df074930b318e5dae21a0a1275cd7040b23559d8d0f48a795cc8cc048b80fda4e098"
         }
     },
     "installer": {

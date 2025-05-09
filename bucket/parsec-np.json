@@ -1,5 +1,5 @@
 {
-    "version": "150-86h",
+    "version": "150-95-0",
     "description": "Remote desktop software",
     "homepage": "https://parsec.app",
     "license": {
@@ -9,11 +9,11 @@
     "architecture": {
         "64bit": {
             "url": "https://builds.parsecgaming.com/package/parsec-windows.exe#/setup.exe",
-            "hash": "ae654731f8e85ec41a77edbfad7ec0064497421803fbc5105ca8a935af57fd6e"
+            "hash": "ae5b66322e5a7c26ad21ccc556bdc1618796166565d2939142c5aa3d76c38ace"
         },
         "32bit": {
             "url": "https://builds.parsecgaming.com/package/parsec-windows32.exe#/setup.exe",
-            "hash": "56729f814139fbc29d1d0e5ae50c3dc3816beb3ae8931ae567dece46c01e3baa"
+            "hash": "f6250ee5d02cbc50ee0128b9b0eecfdfb3b13cabf176777958b6971b6ed988d1"
         }
     },
     "pre_install": [

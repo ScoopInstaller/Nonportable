@@ -7,7 +7,7 @@
         "url": "https://www.glasswire.com/license"
     },
     "url": "https://download.glasswire.com/GlassWireSetup.exe#/setup.exe",
-    "hash": "9c7732d6c38b9e7756a49168ce41b1471711a7a14ffeeb201b61eaf6b791987c",
+    "hash": "4beaedc5a10eebc72fca3ae9928028afc402b1e9f92565ff235be93b1217f34f",
     "installer": {
         "script": [
             "if(!(is_admin)) { error \"$app requires admin rights to install\"; break }",

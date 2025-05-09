@@ -1,5 +1,5 @@
 {
-    "version": "5.10.10.1013",
+    "version": "5.21.150.1026",
     "description": "Android emulator",
     "homepage": "https://www.bluestacks.com/",
     "license": {
@@ -8,12 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://cdn3.bluestacks.com/downloads/windows/nxt/5.10.10.1013/bc20f2d6dcedf968c6bcbd7ff2dacaf3/FullInstaller/x64/BlueStacksFullInstaller_5.10.10.1013_amd64_native.exe#/setup.exe",
-            "hash": "11004d829ef27a44f82d527442e71a3273a9b884795e12b32a2b4ee4fd218051"
+            "url": "https://cdn3.bluestacks.com/downloads/windows/nxt/5.21.150.1026/d38633a7cfb05064017b34130c3da255/FullInstaller/x64/BlueStacksFullInstaller_5.21.150.1026_amd64_native.exe#/setup.exe",
+            "hash": "bd9aabda26cc1e26d7308effe76503cd229c334be36bd359bc85290789ef8c64"
         },
         "32bit": {
-            "url": "https://cdn3.bluestacks.com/downloads/windows/nxt/5.10.10.1013/bc20f2d6dcedf968c6bcbd7ff2dacaf3/FullInstaller/x86/BlueStacksFullInstaller_5.10.10.1013_x86_native.exe#/setup.exe",
-            "hash": "18e1f67ed71fa0e6f650a86d726e04e7d96323ed8c81662439ffd36eb5dc6bc2"
+            "url": "https://cdn3.bluestacks.com/downloads/windows/nxt/5.21.150.1026/d38633a7cfb05064017b34130c3da255/FullInstaller/x86/BlueStacksFullInstaller_5.21.150.1026_x86_native.exe#/setup.exe",
+            "hash": "79bc97e854e11cde0907092a72f2be68fec385c37b21e56166eb7a6892aefd23"
         }
     },
     "installer": {

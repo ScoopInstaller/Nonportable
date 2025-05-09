@@ -50,11 +50,13 @@
         "regex": "<span data-dl-version-label>([\\d.]+)<\\/span>"
     },
     "autoupdate": {
-        "64bit": {
-            "url": "https://dl.teamviewer.com/download/version_$majorVersionx/TeamViewer_Setup_x64.exe#/setup.exe"
-        },
-        "32bit": {
-            "url": "https://dl.teamviewer.com/download/version_$majorVersionx/TeamViewer_Setup.exe#/setup.exe"
+        "architecture": {
+            "64bit": {
+                "url": "https://dl.teamviewer.com/download/version_$majorVersionx/TeamViewer_Setup_x64.exe#/setup.exe"
+            },
+            "32bit": {
+                "url": "https://dl.teamviewer.com/download/version_$majorVersionx/TeamViewer_Setup.exe#/setup.exe"
+            }
         }
     }
 }

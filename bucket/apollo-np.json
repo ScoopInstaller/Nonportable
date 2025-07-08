@@ -1,5 +1,5 @@
 {
-    "version": "v0.3.1-hotfox.1",
+    "version": "0.3.7-hotfix.1",
     "description": "A Gamestream host for Artemis / Moonlight with automatic setup for virtual desktops.",
     "homepage": "https://github.com/ClassicOldSong/Apollo",
     "license": "GPL-3.0-only",
@@ -9,8 +9,8 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://github.com/ClassicOldSong/Apollo/releases/download/v0.3.1-hotfox.1/Apollo.exe#/dl.7z",
-            "hash": "8FD3E74AFD6FBC5EAC079EE0D84A46ECFC1E9334F2EBAD0CEC5BEDE6E77732FB"
+            "url": "https://github.com/ClassicOldSong/Apollo/releases/download/v0.3.7-hotfix.1/Apollo-0.3.7-hotfix.1.exe#/dl.7z",
+            "hash": "6f9738c0d773a19292c78627931493f03bcf953bb76ad5647be2d57b67cd9624"
         }
     },
     "pre_install": [
@@ -36,7 +36,7 @@
         ]
     ],
     "persist": "config",
-    "pre_uninstall":[
+    "pre_uninstall": [
         "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
         "Start-Process \"$dir\\scripts\\delete-firewall-rule.bat\" -WindowStyle Hidden -Wait",
         "Start-Process \"$dir\\scripts\\uninstall-service.bat\" -WindowStyle Hidden -Wait",
@@ -44,11 +44,14 @@
         "Start-Process \"$dir\\scripts\\uninstall-gamepad.bat\" -WindowStyle Hidden -Wait",
         "Start-Process \"$dir\\drivers\\sudovda\\uninstall.bat\" -WindowStyle Hidden"
     ],
-    "checkver": "github",
+    "checkver": {
+        "github": "https://github.com/ClassicOldSong/Apollo",
+        "regex": "tag/v?([\\d.]+(?:[.-][\\w.]+)?)"
+    },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/ClassicOldSong/Apollo/releases/download/$version/Apollo.exe#/dl.7z"
+                "url": "https://github.com/ClassicOldSong/Apollo/releases/download/v$version/Apollo-$version.exe#/dl.7z"
             }
         }
     }

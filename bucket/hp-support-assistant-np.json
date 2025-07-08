@@ -1,6 +1,6 @@
 {
     "##": "Please make sure you have a HP laptop/desktop computer, otherwise it will not work.",
-    "version": "9.39.17.0.155001-155500.155262",
+    "version": "9.46.17.0.160001-160500.160330",
     "homepage": "https://support.hp.com/us-en/help/hp-support-assistant",
     "description": "A free self-help tool, available for your HP PC with Windows 10. Giving you built in troubleshooters and quick access to support resources for your registered HP devices.",
     "license": {
@@ -9,8 +9,8 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://ftp.ext.hp.com/pub/softpaq/sp155001-155500/sp155262.exe#/installer.exe",
-            "hash": "eb6834444b7a83237bc2f15ad7a4b7a4110533ce7f410085bd18e508288eaeca"
+            "url": "https://ftp.ext.hp.com/pub/softpaq/sp160001-160500/sp160330.exe#/installer.exe",
+            "hash": "9e4ef56f4f68f43ff8e8a45d4ed2f8843aea1b5025e9c23f4d9f8ef357fa8119"
         }
     },
     "post_install": [

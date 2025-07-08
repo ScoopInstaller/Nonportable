@@ -1,19 +1,19 @@
 {
-    "version": "22.13.1",
+    "version": "22.17.0",
     "description": "JavaScript runtime environment.",
     "homepage": "https://nodejs.org",
     "license": "MIT",
     "notes": "npm global prefix set to: $env:APPDATA\\npm",
     "architecture": {
         "64bit": {
-            "url": "https://nodejs.org/dist/v22.13.1/node-v22.13.1-win-x64.7z",
-            "hash": "d495abe2ae53962065fad979814259735fd90a4e03c6b94ccd3e32bc933aeda5",
-            "extract_dir": "node-v22.13.1-win-x64"
+            "url": "https://nodejs.org/dist/v22.17.0/node-v22.17.0-win-x64.7z",
+            "hash": "77f58f65389a84b1243e58fc5af1bee1ceda57a029e22644cac1c1d3117aa826",
+            "extract_dir": "node-v22.17.0-win-x64"
         },
         "32bit": {
-            "url": "https://nodejs.org/dist/v22.13.1/node-v22.13.1-win-x86.7z",
-            "hash": "3c87ddd4aac7f980ed11caf97942bd87a647ce61d644ca08321508836b3d1899",
-            "extract_dir": "node-v22.13.1-win-x86"
+            "url": "https://nodejs.org/dist/v22.17.0/node-v22.17.0-win-x86.7z",
+            "hash": "4f9aa2d620c4ccd90ca895644807e8114ab8d28919271f105434669d4f2c671e",
+            "extract_dir": "node-v22.17.0-win-x86"
         }
     },
     "installer": {

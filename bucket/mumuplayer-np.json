@@ -1,0 +1,41 @@
+{
+    "version": "4.1.34.3742",
+    "description": "Best Android Emulator on PC for Running Mobile Games and Apps",
+    "homepage": "https://mumuplayer.com",
+    "license": "Proprietary",
+    "url": "http://a11.gdl.netease.com/MuMuNG-setup-V4.1.34.3742-overseas-0718171742.exe#/setup.exe",
+    "hash": "57b76b51272c3db901265fb423d94f9af02d5089baa62a327db6d411e5803d65",
+    "installer": {
+        "args": [
+            "/S",
+            "/auto_start=false",
+            "/D=$dir"
+        ]
+    },
+    "uninstaller": {
+        "file": "uninstall.exe",
+        "args": [
+            "/S",
+            "/no_browser"
+        ]
+    },
+    "persist": [
+        "configs",
+        "vms"
+    ],
+    "checkver": {
+        "script": [
+            "$url = \"https://api.mumuglobal.com/api/v1/download/nemux?architecture=x86_64&machine=%22%22&usage=1\"",
+            "$response = Invoke-RestMethod -Uri $url -Method Post",
+            "Write-Output $response.data.mumu.version $response.data.mumu.checksum $response.data.mumu.link"
+        ],
+        "regex": "([\\d.]+)\\s([A-Z\\d]{32})\\s(.*)"
+    },
+    "autoupdate": {
+        "url": "$match3#/setup.exe",
+        "hash": {
+            "url": "http://httpbin.org/get?md5=$match2",
+            "regex": "md5=.*?$md5"
+        }
+    }
+}

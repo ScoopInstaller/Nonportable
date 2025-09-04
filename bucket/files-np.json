@@ -3,8 +3,12 @@
     "homepage": "https://files.community/",
     "description": "A modern file manager that helps users organize their files and folders.",
     "license": "MIT",
-    "url": "https://cdn.files.community/files/stable/Files.Package_4.0.0.0_Test/Files.Package_4.0.0.0_x64_arm64.msixbundle",
-    "hash": "78bfc3fb7c0b71cae6f360de8fcdde670c8363a031a771db68a01280ba9707c8",
+    "architecture": {
+        "64bit": {
+            "url": "https://cdn.files.community/files/stable/Files.Package_4.0.0.0_Test/Files.Package_4.0.0.0_x64_arm64.msixbundle",
+            "hash": "78bfc3fb7c0b71cae6f360de8fcdde670c8363a031a771db68a01280ba9707c8"
+        }
+    },
     "installer": {
         "script": "Add-AppxPackage -Path \"$dir\\$fname\""
     },
@@ -28,6 +32,10 @@
         "regex": "(\\d.+)"
     },
     "autoupdate": {
-        "url": "https://cdn.files.community/files/stable/Files.Package_$version_Test/Files.Package_$version_x64_arm64.msixbundle"
+        "architecture": {
+            "64bit": {
+                "url": "https://cdn.files.community/files/stable/Files.Package_$version_Test/Files.Package_$version_x64_arm64.msixbundle"
+            }
+        }
     }
 }

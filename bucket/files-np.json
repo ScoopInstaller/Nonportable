@@ -29,7 +29,7 @@
             "  Write-Output \"$major.$minor.$build.$revision\"",
             "} catch { error $_.Exception.Message; throw }"
         ],
-        "regex": "(\\d.+)"
+        "regex": "(\\dd.+)"
     },
     "autoupdate": {
         "architecture": {
@@ -39,3 +39,4 @@
         }
     }
 }
+

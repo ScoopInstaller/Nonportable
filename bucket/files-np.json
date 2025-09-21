@@ -1,6 +1,6 @@
 {
     "version": "4.0.11.0",
-    "homepage": "https://github.com/files-community/Files",
+    "homepage": "https://files.community/",
     "description": "A modern file manager that helps users organize their files and folders.",
     "license": "MIT",
     "architecture": {
@@ -29,7 +29,7 @@
             "    Write-Output \"$major.$minor.$build.$revision\"",
             "} catch { error $_.Exception.Message; throw }"
         ],
-        "regex": "(\\d.+)"
+        "regex": "([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {

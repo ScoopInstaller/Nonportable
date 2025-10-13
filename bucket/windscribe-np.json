@@ -9,19 +9,14 @@
       "hash": "91378b0597fa5320c8fe62520e644d5c864d0f7ae1aa7c85e0c772a6b744e867"
     }
   },
-  "installer": {
-    "args": [
-      "/VERYSILENT",
-      "/NORESTART"
-    ]
-  },
+  "installer": { "args": ["/VERYSILENT", "/NORESTART"] },
   "uninstaller": {
     "script": [
       "$uninst = (Get-ItemProperty 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*','HKLM:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -ErrorAction SilentlyContinue | Where-Object {$_.DisplayName -like 'Windscribe*'} | Select-Object -First 1).UninstallString",
       "if ($uninst) { Start-Process -FilePath $uninst -ArgumentList '/VERYSILENT /NORESTART' -Wait }"
     ]
   },
-  "checkver": "github",
+  "checkver": { "github": "Windscribe/Desktop-App" },
   "autoupdate": {
     "architecture": {
       "64bit": {

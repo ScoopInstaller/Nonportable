@@ -1,0 +1,104 @@
+name: windscribe-autobump
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  MANIFEST: bucket/windscribe-np.json
+  UPSTREAM_REPO: ScoopInstaller/Nonportable
+  BRANCH_PREFIX: chore/windscribe-v
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync with upstream
+        env: { GH_TOKEN: ${{ secrets.UPSTREAM_PAT }} }
+        run: gh repo sync $GITHUB_REPOSITORY --source ${{ env.UPSTREAM_REPO }} --branch master
+
+      - name: Find latest stable asset
+        id: discover
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $headers = @{ "User-Agent"="scoop-autoupdate"; "Accept"="application/vnd.github+json" }
+          $rels = Invoke-RestMethod -Headers $headers -Uri "https://api.github.com/repos/Windscribe/Desktop-App/releases"
+          $stable = $rels | Where-Object { -not $_.prerelease }
+          if (-not $stable) { throw "No hay releases estables" }
+          $pick = $null
+          foreach ($r in $stable) {
+            $a = $r.assets | Where-Object { $_.name -like "*_amd64.exe" } | Select-Object -First 1
+            if ($a) { $pick = [pscustomobject]@{ ver=$r.tag_name.TrimStart('v'); url=$a.browser_download_url }; break }
+          }
+          if (-not $pick) { throw "Sin asset *_amd64.exe" }
+          "version=$($pick.ver)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "url=$($pick.url)"     | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Skip if already up-to-date
+        id: compare
+        shell: pwsh
+        run: |
+          $m = Get-Content "${{ env.MANIFEST }}" -Raw | ConvertFrom-Json
+          if ($m.version -eq "${{ steps.discover.outputs.version }}") { "noop=true"  | Out-File $env:GITHUB_OUTPUT -Append } else { "noop=false" | Out-File $env:GITHUB_OUTPUT -Append }
+
+      - name: Stop if no changes
+        if: steps.compare.outputs.noop == 'true'
+        run: echo "Sin cambios"
+
+      - name: Download and hash
+        if: steps.compare.outputs.noop != 'true'
+        id: hash
+        shell: pwsh
+        run: |
+          $tmp = Join-Path $env:RUNNER_TEMP "Windscribe_${{ steps.discover.outputs.version }}_amd64.exe"
+          Invoke-WebRequest -Uri "${{ steps.discover.outputs.url }}" -OutFile $tmp
+          $sha = (Get-FileHash -Algorithm SHA256 -Path $tmp).Hash.ToLower()
+          "sha=$sha" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Update manifest
+        if: steps.compare.outputs.noop != 'true'
+        shell: pwsh
+        run: |
+          $v  = "${{ steps.discover.outputs.version }}"
+          $m  = Get-Content "${{ env.MANIFEST }}" -Raw | ConvertFrom-Json
+          $m.version = $v
+          $m.architecture."64bit".url  = "https://github.com/Windscribe/Desktop-App/releases/download/v$($v)/Windscribe_$($v)_amd64.exe"
+          $m.architecture."64bit".hash = "${{ steps.hash.outputs.sha }}"
+          $m | ConvertTo-Json -Depth 10 | Out-File -FilePath "${{ env.MANIFEST }}" -Encoding UTF8
+
+      - name: Create branch and push
+        if: steps.compare.outputs.noop != 'true'
+        env:
+          BRANCH: ${{ env.BRANCH_PREFIX }}${{ steps.discover.outputs.version }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add "${{ env.MANIFEST }}"
+          git commit -m "windscribe-np: bump to v${{ steps.discover.outputs.version }}"
+          git push --set-upstream origin "$BRANCH"
+
+      - name: Open PR to upstream
+        if: steps.compare.outputs.noop != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.UPSTREAM_PAT }}
+          HEAD_REF: ${{ env.BRANCH_PREFIX }}${{ steps.discover.outputs.version }}
+        run: |
+          gh pr create \
+            --repo "${{ env.UPSTREAM_REPO }}" \
+            --title "windscribe-np: bump to v${{ steps.discover.outputs.version }}" \
+            --body  "Auto-actualización desde fork. URL y SHA256 tomados de GitHub Releases." \
+            --head  "${{ github.repository_owner }}:$HEAD_REF" \
+            --base  "master" \
+          || echo "PR ya existente o no crítico"

@@ -1,0 +1,26 @@
+name: sync-upstream
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "23 5 * * *"   # diario (opcional)
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync fork with upstream
+        env:
+          GH_TOKEN: ${{ secrets.UPSTREAM_PAT }}
+        run: |
+          gh --version
+          # Sincroniza tu fork (este repo) desde ScoopInstaller/Nonportable en la rama master
+          gh repo sync $GITHUB_REPOSITORY --source ScoopInstaller/Nonportable --branch master

@@ -16,7 +16,7 @@
       "if ($uninst) { Start-Process -FilePath $uninst -ArgumentList '/VERYSILENT /NORESTART' -Wait }"
     ]
   },
-  "checkver": { "github": "Windscribe/Desktop-App" },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {

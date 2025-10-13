@@ -24,8 +24,10 @@ jobs:
           fetch-depth: 0
 
       - name: Sync with upstream
-        env: { GH_TOKEN: ${{ secrets.UPSTREAM_PAT }} }
-        run: gh repo sync $GITHUB_REPOSITORY --source ${{ env.UPSTREAM_REPO }} --branch master
+        env:
+          GH_TOKEN: ${{ secrets.UPSTREAM_PAT }}
+        run: |
+          gh repo sync "$GITHUB_REPOSITORY" --source "${{ env.UPSTREAM_REPO }}" --branch master
 
       - name: Find latest stable asset
         id: discover
@@ -50,7 +52,11 @@ jobs:
         shell: pwsh
         run: |
           $m = Get-Content "${{ env.MANIFEST }}" -Raw | ConvertFrom-Json
-          if ($m.version -eq "${{ steps.discover.outputs.version }}") { "noop=true"  | Out-File $env:GITHUB_OUTPUT -Append } else { "noop=false" | Out-File $env:GITHUB_OUTPUT -Append }
+          if ($m.version -eq "${{ steps.discover.outputs.version }}") {
+            "noop=true"  | Out-File $env:GITHUB_OUTPUT -Append
+          } else {
+            "noop=false" | Out-File $env:GITHUB_OUTPUT -Append
+          }
 
       - name: Stop if no changes
         if: steps.compare.outputs.noop == 'true'

@@ -1,0 +1,27 @@
+{
+  "version": "2.16.14",
+  "description": "Windscribe VPN desktop client",
+  "homepage": "https://windscribe.com/",
+  "license": "Proprietary",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/Windscribe/Desktop-App/releases/download/v2.16.14/Windscribe_2.16.14_amd64.exe",
+      "hash": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "installer": { "args": ["/VERYSILENT", "/NORESTART"] },
+  "uninstaller": {
+    "script": [
+      "$uninst = (Get-ItemProperty 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*','HKLM:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -ErrorAction SilentlyContinue | Where-Object {$_.DisplayName -like 'Windscribe*'} | Select-Object -First 1).UninstallString",
+      "if ($uninst) { Start-Process -FilePath $uninst -ArgumentList '/VERYSILENT /NORESTART' -Wait }"
+    ]
+  },
+  "checkver": { "github": "Windscribe/Desktop-App" },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version_amd64.exe"
+      }
+    }
+  }
+}

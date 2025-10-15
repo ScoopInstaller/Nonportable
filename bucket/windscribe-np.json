@@ -41,7 +41,11 @@
     "Nonportable package. Run an elevated shell or use gsudo/sudo.",
     "Vendor may open a feedback web page after uninstall."
   ],
-  "checkver": "github",
+  "checkver": {
+    "github": {
+      "repo": "Windscribe/Desktop-App"
+    }
+  },
   "autoupdate": {
     "architecture": {
       "64bit": {

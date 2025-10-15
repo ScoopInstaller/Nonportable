@@ -1,0 +1,55 @@
+{
+  "version": "2.17.9",
+  "description": "Windscribe VPN desktop client",
+  "homepage": "https://github.com/Windscribe/Desktop-App",
+  "license": "GPL-2.0-only",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/Windscribe/Desktop-App/releases/download/v2.17.9/Windscribe_2.17.9_amd64.exe",
+      "hash": "91378b0597fa5320c8fe62520e644d5c864d0f7ae1aa7c85e0c772a6b744e867"
+    },
+    "arm64": {
+      "url": "https://github.com/Windscribe/Desktop-App/releases/download/v2.17.9/Windscribe_2.17.9_arm64.exe",
+      "hash": "11091e698096af3b159ed73f891deacc6c46ccdcab0ffd3a1de789b094b0dec0"
+    }
+  },
+  "installer": {
+    "script": [
+      "$admin=([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
+      "$exe = Join-Path $dir $fname",
+      "if (!(Test-Path $exe)) { throw \"Installer not found: $exe\" }",
+      "if($admin){ Start-Process -FilePath $exe -ArgumentList '-silent' -Wait } else { Start-Process -FilePath $exe -ArgumentList '-silent' -Verb RunAs -Wait }"
+    ]
+  },
+  "uninstaller": {
+    "script": [
+      "$paths=@('HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*','HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*','HKCU:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*','HKCU:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*')",
+      "function Find-Windscribe { Get-ItemProperty -Path $paths -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match '(?i)^windscribe' } | Select-Object -First 1 }",
+      "$w=Find-Windscribe; if(-not $w){ Write-Output 'Windscribe: no registry entry; nothing to uninstall.'; return }",
+      "$cmd=if($w.QuietUninstallString){$w.QuietUninstallString}else{$w.UninstallString}; if(-not $cmd){ throw 'Windscribe: no QuietUninstallString nor UninstallString in registry.' }",
+      "if($cmd -match '^\\s*\"(.*?)\"\\s*(.*)$'){ $exe=$matches[1]; $args=$matches[2] } else { $parts=$cmd -split '\\s+',2; $exe=$parts[0]; $args= if($parts.Count -gt 1){$parts[1]} else {''} }",
+      "$args = ($args -replace '(^|\\s)/SILENT(\\s|$)',' ').Trim()",
+      "if ($args -notmatch '/VERYSILENT') { $args = (($args + ' /VERYSILENT /SUPPRESSMSGBOXES /NORESTART').Trim()) }",
+      "$isAdmin=([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
+      "if($isAdmin){ Start-Process -FilePath $exe -ArgumentList $args | Out-Null } else { Start-Process -FilePath $exe -ArgumentList $args -Verb RunAs | Out-Null }",
+      "$deadline = (Get-Date).AddSeconds(240)",
+      "do { Start-Sleep -Seconds 2; $w=Find-Windscribe } while ($w -and (Get-Date) -lt $deadline)",
+      "if($w){ throw 'Windscribe: registry entry still present after 240s; please verify manually.' }"
+    ]
+  },
+  "notes": [
+    "Nonportable package. Run an elevated shell or use gsudo/sudo.",
+    "Vendor may open a feedback web page after uninstall."
+  ],
+  "checkver": "github",
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version_amd64.exe"
+      },
+      "arm64": {
+        "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version_arm64.exe"
+      }
+    }
+  }
+}

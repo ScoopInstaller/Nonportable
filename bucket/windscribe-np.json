@@ -38,14 +38,14 @@
                 "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version_amd64.exe",
                 "hash": {
                     "url": "https://github.com/Windscribe/Desktop-App/releases/tag/v$version",
-                    "regex": "Windscribe_\\d+(?:\\.\\d+)*_amd64\\.exe[^\\n]*?sha256:([a-fA-F0-9]{64})"
+                    "regex": "Windows\\s*amd64[\\s\\S]*?([A-Fa-f0-9]{64})"
                 }
             },
             "arm64": {
                 "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version_arm64.exe",
                 "hash": {
                     "url": "https://github.com/Windscribe/Desktop-App/releases/tag/v$version",
-                    "regex": "Windscribe_\\d+(?:\\.\\d+)*_arm64\\.exe[^\\n]*?sha256:([a-fA-F0-9]{64})"
+                    "regex": "Windows\\s*arm64[\\s\\S]*?([A-Fa-f0-9]{64})"
                 }
             }
         }

@@ -15,10 +15,9 @@
   },
   "installer": {
     "script": [
-      "$admin=([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)",
       "$exe = Join-Path $dir $fname",
       "if (!(Test-Path $exe)) { throw \"Installer not found: $exe\" }",
-      "if($admin){ Start-Process -FilePath $exe -ArgumentList '-silent' -Wait } else { Start-Process -FilePath $exe -ArgumentList '-silent' -Verb RunAs -Wait }"
+      "Start-Process -FilePath $exe -ArgumentList '-silent' -Verb RunAs -Wait"
     ]
   },
   "uninstaller": {
@@ -41,11 +40,7 @@
     "Nonportable package. Run an elevated shell or use gsudo/sudo.",
     "Vendor may open a feedback web page after uninstall."
   ],
-  "checkver": {
-    "github": {
-      "repo": "Windscribe/Desktop-App"
-    }
-  },
+  "checkver": "github",
   "autoupdate": {
     "architecture": {
       "64bit": {

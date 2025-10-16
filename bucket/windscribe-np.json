@@ -14,11 +14,7 @@
     }
   },
   "installer": {
-    "script": [
-      "$exe = Join-Path $dir $fname",
-      "if (!(Test-Path $exe)) { throw \"Installer not found: $exe\" }",
-      "Start-Process -FilePath $exe -ArgumentList '-silent' -Verb RunAs -Wait"
-    ]
+    "args": "-silent"
   },
   "uninstaller": {
     "script": [

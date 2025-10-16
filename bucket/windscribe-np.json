@@ -1,0 +1,53 @@
+{
+    "version": "2.17.9",
+    "description": "Windscribe Desktop App (nonportable). Requires administrator privileges.",
+    "homepage": "https://github.com/Windscribe/Desktop-App",
+    "license": "Proprietary",
+    "notes": "This package runs the official vendor installer. Use an elevated PowerShell session (Run as Administrator).",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/Windscribe/Desktop-App/releases/download/v2.17.9/Windscribe_2.17.9_amd64.exe",
+            "hash": "91378b0597fa5320c8fe62520e644d5c864d0f7ae1aa7c85e0c772a6b744e867",
+            "installer": {
+                "args": [
+                    "-silent",
+                    "-no-auto-start"
+                ]
+            }
+        },
+        "arm64": {
+            "url": "https://github.com/Windscribe/Desktop-App/releases/download/v2.17.9/Windscribe_2.17.9_arm64.exe",
+            "hash": "11091e698096af3b159ed73f891deacc6c46ccdcab0ffd3a1de789b094b0dec0",
+            "installer": {
+                "args": [
+                    "-silent",
+                    "-no-auto-start"
+                ]
+            }
+        }
+    },
+    "uninstaller": {
+        "script": "$pf=$env:ProgramFiles; $path=Join-Path $pf 'Windscribe\\uninstall.exe'; if (Test-Path $path) { $p=Start-Process -FilePath $path -ArgumentList '/VERYSILENT' -WorkingDirectory (Split-Path $path) -PassThru -WindowStyle Hidden; $p.WaitForExit() }"
+    },
+    "checkver": {
+        "github": "https://github.com/Windscribe/Desktop-App"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version_amd64.exe",
+                "hash": {
+                    "url": "https://github.com/Windscribe/Desktop-App/releases/tag/v$version",
+                    "regex": "Windows amd64\\s+([A-Fa-f0-9]{64})"
+                }
+            },
+            "arm64": {
+                "url": "https://github.com/Windscribe/Desktop-App/releases/download/v$version/Windscribe_$version_arm64.exe",
+                "hash": {
+                    "url": "https://github.com/Windscribe/Desktop-App/releases/tag/v$version",
+                    "regex": "Windows arm64\\s+([A-Fa-f0-9]{64})"
+                }
+            }
+        }
+    }
+}

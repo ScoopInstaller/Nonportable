@@ -27,9 +27,10 @@
     ],
     "checkver": {
         "url": "http://www.pcfreetime.com/formatfactory/CN/index.html",
-        "regex": "版本：([\\d+.]+)"
+        "regex": "版本：\\s*(\\d+(?:\\.\\d+)*)"
     },
     "autoupdate": {
         "url": "http://down.pcgeshi.com/FormatFactory_$version_setup.exe#sourceforge.net.exe"
     }
 }
+

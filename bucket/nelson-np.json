@@ -11,11 +11,11 @@
     },
     "post_install": "Start-Process \"$dir\\setup.exe\" -Wait -Args @('/SP-', \"/DIR=$dir\", '/VERYSILENT', '/CURRENTUSER', '/SUPPRESSMSGBOXES'); Remove-Item \"$dir\\setup.exe\"",
     "pre_uninstall": "Start-Process \"$dir\\unins000.exe\" -Wait -Args @('/VERYSILENT', '/SUPPRESSMSGBOXES'); Start-Sleep -Seconds 3",
-    "checkver": "Nelson\\s([\\d.]+)",
+    "checkver": "github",
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-x86-64.exehttps://github.com/nelson-lang/nelson/releases/download/v1.15.0/Nelson-1.15.0.5475-x86-64.exe#/setup.exe"
+                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-x86-64.exe"
             }
         }
     }

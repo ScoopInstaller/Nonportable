@@ -1,0 +1,22 @@
+{
+    "version": "1.15.0",
+    "homepage": "https://nelson-lang.github.io/nelson-website/",
+    "description": "Nelson is an open-source numerical computing language designed to offer engineers, scientists, and students a powerful yet intuitive environment for technical computing.",
+    "license": "LGPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/nelson-lang/nelson/releases/download/v1.15.0/Nelson-1.15.0.5475-x86-64.exe#/setup.exe",
+            "hash": "eacd4a9109094678c43a4c9de91d185b1357ef8ed0e8f49c4ac7849c0b608e99"
+        }
+    },
+    "post_install": "Start-Process \"$dir\\setup.exe\" -Wait -Args @('/SP-', \"/DIR=$dir\", '/VERYSILENT', '/CURRENTUSER', '/SUPPRESSMSGBOXES'); Remove-Item \"$dir\\setup.exe\"",
+    "pre_uninstall": "Start-Process \"$dir\\unins000.exe\" -Wait -Args @('/VERYSILENT', '/SUPPRESSMSGBOXES'); Start-Sleep -Seconds 3",
+    "checkver": "Nelson\\s([\\d.]+)",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-x86-64.exehttps://github.com/nelson-lang/nelson/releases/download/v1.15.0/Nelson-1.15.0.5475-x86-64.exe#/setup.exe"
+            }
+        }
+    }
+}

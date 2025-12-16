@@ -1,5 +1,5 @@
 {
-    "version": "15.70.6",
+    "version": "15.72.3",
     "description": "Software for remote control, desktop sharing, online meetings, web conferencing and file transfer between computers.",
     "homepage": "https://www.teamviewer.com/",
     "license": {
@@ -9,11 +9,11 @@
     "architecture": {
         "64bit": {
             "url": "https://dl.teamviewer.com/download/version_15x/TeamViewer_Setup_x64.exe#/setup.exe",
-            "hash": "2c1d8449e28594804dee0ed75526f9d4576c5eddb3d5d42b7849e53536665bc1"
+            "hash": "68c763d1bf14c4e36045b0215dbe79155300cfed22d474e891155ca7db476f82"
         },
         "32bit": {
             "url": "https://dl.teamviewer.com/download/version_15x/TeamViewer_Setup.exe#/setup.exe",
-            "hash": "750bd2425f29b83e1808cdb6565b7afbdddc31f783ac3061c511fc0859dc5523"
+            "hash": "8367da38be7e42a101d589cb737a3a96ab707eeae0116c21c85ed0f39afb217f"
         }
     },
     "installer": {

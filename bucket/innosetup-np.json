@@ -1,10 +1,10 @@
 {
-    "version": "6.5.4",
+    "version": "6.6.1",
     "description": "Installer for Windows programs.",
     "homepage": "http://www.jrsoftware.org/isinfo.php",
     "license": "http://www.jrsoftware.org/files/is/license.txt",
-    "url": "http://www.jrsoftware.org/download.php/is.exe#innosetup-6.5.4.exe",
-    "hash": "fa73bf47a4da250d185d07561c2bfda387e5e20db77e4570004cf6a133cc10b1",
+    "url": "http://www.jrsoftware.org/download.php/is.exe#innosetup-6.6.1.exe",
+    "hash": "d243ce440c02705530699554fb9612b9b2bd7a2a90629cdb7f41e66f5faeb91f",
     "installer": {
         "script": [
             "$args = @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/ALLUSERS', '/NORESTART', '/NOICONS', \"/DIR=`\"$dir`\"\")",

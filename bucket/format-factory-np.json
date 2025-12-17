@@ -1,23 +1,25 @@
 {
-    "version": "5.12.0.0",
+    "version": "5.21.0.0",
     "description": "Multifunctional, multimedia file conversion tool",
     "homepage": "http://www.pcfreetime.com/formatfactory/index.php",
     "license": {
         "identifier": "Freeware",
         "url": "http://www.pcfreetime.com/formatfactory/privacy_policy.php?language=en"
     },
-    "url": "http://down.pcgeshi.com/FormatFactory_5.12.0.0_setup.exe#sourceforge.net.exe",
-    "hash": "cdf408a21e5f70a5ee1e3d094b44f8f2b5631a2f4f0fccfdd1239766a331b696",
+    "architecture": {
+        "64bit": {
+            "url": "http://down.pcgeshi.com/FormatFactory_5.21.0.0_setup.exe#sourceforge.net.exe",
+            "hash": "1bd3cb391532d8ef3349bafc1d82f4ec4a836ca8580b495b9f93fc2a62112fb7"
+        }
+    },
     "installer": {
         "script": [
-            "Start-Process \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\") -Wait"
+            "Start-Process \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\") -Wait",
+            "Remove-Item \"$dir\\$fname\" -Force"
         ]
     },
-    "post_install": "Remove-Item \"$dir\\$fname\"",
     "uninstaller": {
-        "script": [
-            "Start-Process \"$dir\\Uninstall.exe\" -ArgumentList '/S' -Wait"
-        ]
+        "script": "Start-Process \"$dir\\Uninstall.exe\" -ArgumentList '/S' -Wait"
     },
     "shortcuts": [
         [
@@ -25,12 +27,12 @@
             "Format Factory"
         ]
     ],
-    "checkver": {
-        "url": "http://www.pcfreetime.com/formatfactory/CN/index.html",
-        "regex": "版本：\\s*(\\d+(?:\\.\\d+)*)"
-    },
+    "checkver": "Ver:V(\\d+(?:\\.\\d+)*)",
     "autoupdate": {
-        "url": "http://down.pcgeshi.com/FormatFactory_$version_setup.exe#sourceforge.net.exe"
+        "architecture": {
+            "64bit": {
+                "url": "http://down.pcgeshi.com/FormatFactory_$version_setup.exe#sourceforge.net.exe"
+            }
+        }
     }
 }
-

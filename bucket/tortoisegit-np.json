@@ -34,8 +34,8 @@
             "}"
         ]
     },
-    "pre_uninstall": "if (!(is_admin)) { error \"Admin rights required to uninstall TortoiseGit\"; break }",
     "post_install": "New-ItemProperty -Path 'HKCU:\\SOFTWARE\\TortoiseGit' -Name 'VersionCheck' -PropertyType DWord -Value 0 -Force | Out-Null",
+    "pre_uninstall": "if (!(is_admin)) { error \"Admin rights required to uninstall TortoiseGit\"; break }",
     "uninstaller": {
         "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/uninstall', \"$dir\\dl._msi\", '/passive', '/quiet', '/log', \"$dir\\uninstall.log\")"
     },

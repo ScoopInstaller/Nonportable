@@ -7,7 +7,7 @@
     "architecture": {
         "64bit": {
             "url": "https://cdn.files.community/files/stable/Files.Package_4.0.24.0_Test/Files.Package_4.0.24.0_x64_arm64.msixbundle",
-            "hash": "06ee6d8d3fd6fd3b7d3feb7823bad2790c2a63cf62f44a82ac22a66a4a124110"
+            "hash": "577c3d80ce6c28cadcd3d3352ea0775c484e63270222bc8368e84e3e12d41988"
         }
     },
     "installer": {

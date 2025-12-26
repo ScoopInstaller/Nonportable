@@ -1,0 +1,38 @@
+{
+    "version": "5.21.0.0",
+    "description": "Multifunctional, multimedia file conversion tool",
+    "homepage": "http://www.pcfreetime.com/formatfactory/index.php",
+    "license": {
+        "identifier": "Freeware",
+        "url": "http://www.pcfreetime.com/formatfactory/privacy_policy.php?language=en"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "http://down.pcgeshi.com/FormatFactory_5.21.0.0_setup.exe#sourceforge.net.exe",
+            "hash": "1bd3cb391532d8ef3349bafc1d82f4ec4a836ca8580b495b9f93fc2a62112fb7"
+        }
+    },
+    "installer": {
+        "script": [
+            "Start-Process \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\") -Wait",
+            "Remove-Item \"$dir\\$fname\" -Force"
+        ]
+    },
+    "uninstaller": {
+        "script": "Start-Process \"$dir\\Uninstall.exe\" -ArgumentList '/S' -Wait"
+    },
+    "shortcuts": [
+        [
+            "FormatFactory.exe",
+            "Format Factory"
+        ]
+    ],
+    "checkver": "Ver:V(\\d+(?:\\.\\d+)*)",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "http://down.pcgeshi.com/FormatFactory_$version_setup.exe#sourceforge.net.exe"
+            }
+        }
+    }
+}

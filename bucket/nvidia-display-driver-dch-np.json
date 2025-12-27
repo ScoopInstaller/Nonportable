@@ -1,5 +1,5 @@
 {
-    "version": "581.80",
+    "version": "591.44",
     "description": "NVIDIA display driver (Declarative Componentized Hardware version). DCH drivers are installed on most new desktop and mobile workstation systems.",
     "homepage": "https://www.nvidia.com/Download/index.aspx",
     "license": "Freeware",
@@ -12,8 +12,8 @@
     ],
     "architecture": {
         "64bit": {
-            "url": "https://us.download.nvidia.com/Windows/581.80/581.80-desktop-win10-win11-64bit-international-dch-whql.exe#/dl.7z_",
-            "hash": "0a08462764f4d36eeecb8da6abfc01a6e32c94359b9e1e3287399f057c1d2839"
+            "url": "https://us.download.nvidia.com/Windows/591.44/591.44-desktop-win10-win11-64bit-international-dch-whql.exe#/dl.7z_",
+            "hash": "3f103b9673a75b502fa9ad9968531e3962af7a8efab9d887d11ea9ad0c4e14a8"
         }
     },
     "installer": {
@@ -26,17 +26,21 @@
             "Expand-7zipArchive \"$dir\\dl.7z_\" \"$dir\\extract\" -Removal | Out-Null",
             "# Move everything we want",
             "Move-Item \"$dir\\extract\\Display.Driver\" -Destination \"$dir\\setup\"",
-            "Move-Item \"$dir\\extract\\Display.Optimus\" -Destination \"$dir\\setup\"",
+            "Move-Item \"$dir\\extract\\Display.Nview\" -Destination \"$dir\\setup\"",
+            "Move-Item \"$dir\\extract\\FrameViewSDK\" -Destination \"$dir\\setup\"",
             "Move-Item \"$dir\\extract\\HDAudio\" -Destination \"$dir\\setup\"",
+            "Move-Item \"$dir\\extract\\NvDLISR\" -Destination \"$dir\\setup\"",
             "Move-Item \"$dir\\extract\\NVI2\" -Destination \"$dir\\setup\"",
+            "Move-Item \"$dir\\extract\\NVPCF\" -Destination \"$dir\\setup\"",
             "Move-Item \"$dir\\extract\\PhysX\" -Destination \"$dir\\setup\"",
             "Move-Item \"$dir\\extract\\*.txt\" -Destination \"$dir\\setup\"",
             "Move-Item \"$dir\\extract\\setup.*\" -Destination \"$dir\\setup\"",
             "# The installer will not run without these legal files",
-            "New-Item \"$dir\\setup\\GFExperience\" -ItemType Directory | Out-Null",
-            "Move-Item \"$dir\\extract\\GFExperience\\PrivacyPolicy\" -Destination \"$dir\\setup\\GFExperience\"",
-            "Move-Item \"$dir\\extract\\GFExperience\\EULA.html\" -Destination \"$dir\\setup\\GFExperience\"",
-            "Move-Item \"$dir\\extract\\GFExperience\\FunctionalConsent*\" -Destination \"$dir\\setup\\GFExperience\"",
+            "New-Item \"$dir\\setup\\NvApp\" -ItemType Directory | Out-Null",
+            "Move-Item \"$dir\\extract\\NvApp\\EULA\" -Destination \"$dir\\setup\\NvApp\"",
+            "Move-Item \"$dir\\extract\\NvApp\\PrivacyPolicy\" -Destination \"$dir\\setup\\NvApp\"",
+            "Move-Item \"$dir\\extract\\NvApp\\Unified_EULA\" -Destination \"$dir\\setup\\NvApp\"",
+            "Move-Item \"$dir\\extract\\NvApp\\*.txt\" -Destination \"$dir\\setup\\NvApp\"",
             "",
             "if ($service_disabled) {",
             "    Start-Process -Wait -WindowStyle Hidden cmd \"/c call `\"$dir\\setup\\setup.exe`\" -s -noreboot && sc config NVDisplay.ContainerLocalSystem start= disabled && sc stop NVDisplay.ContainerLocalSystem\" -Verb RunAs",
@@ -48,7 +52,7 @@
         ]
     },
     "checkver": {
-        "url": "https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&psid=98&osID=57&languageCode=1033&beta=0&isWHQL=1&dltype=-1&dch=1&upCRD=0&sort1=0&numberOfResults=1",
+        "url": "https://gfwsl.geforce.com/services_toolkit/services/com/nvidia/services/AjaxDriverService.php?func=DriverManualLookup&psid=131&osID=57&languageCode=1033&beta=0&isWHQL=1&dltype=-1&dch=1&upCRD=0&sort1=0&numberOfResults=1",
         "regex": "\"Version\"\\s?:\\s?\"(?<version>[\\d.]+)\".*\"DownloadURL\"\\s?:\\s?\"https://us.download.nvidia.com/(?<path>[^\"]*)\""
     },
     "autoupdate": {

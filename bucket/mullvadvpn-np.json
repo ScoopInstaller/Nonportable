@@ -1,0 +1,35 @@
+{
+    "version": "2025.14",
+    "homepage": "https://mullvad.net/en/",
+    "description": "The official desktop client for Mullvad VPN, a privacy-respecting VPN service.",
+    "license": "GPL-3.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://cdn.mullvad.net/app/desktop/releases/2025.14/MullvadVPN-2025.14.exe#/setup.exe",
+            "hash": "cd9262981a9b30c48d7014b8b355a1e5adfcfb86b01cab25766de68d15fccd7b"
+        }
+    },
+    "pre_install": [
+        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+        "Start-Process \"$dir\\setup.exe\" -Verb 'RunAs' -Args @('/allusers', '/S')",
+        "while (!(Get-Process -Name 'mullvad-daemon' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Seconds 5 }",
+        "Remove-Item \"$dir\\setup.exe\""
+    ],
+    "pre_uninstall": [
+        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+        "Stop-Service -Name 'MullvadVPN' -ErrorAction 'SilentlyContinue' -Force; Stop-Process -Name 'Mullvad VPN' -ErrorAction 'SilentlyContinue' -Force",
+        "Start-Process \"$env:ProgramFiles\\Mullvad VPN\\Uninstall Mullvad VPN.exe\" -Wait -Verb 'RunAs' -Args @('/allusers', '/S')",
+        "Start-Sleep -Seconds 2"
+    ],
+    "checkver": {
+        "url": "https://mullvad.net/en/download/windows/",
+        "regex": ">Latest\\sversion:\\s([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://cdn.mullvad.net/app/desktop/releases/$version/MullvadVPN-$version.exe#/setup.exe"
+            }
+        }
+    }
+}

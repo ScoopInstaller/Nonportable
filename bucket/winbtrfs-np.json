@@ -1,5 +1,5 @@
 {
-    "version": "1.8.1",
+    "version": "1.9",
     "description": "Btrfs filesystem driver.",
     "homepage": "https://github.com/maharmstone/btrfs",
     "license": "LGPL-3.0-or-later",
@@ -7,9 +7,8 @@
         "If you using Windows 10 and have Secure Boot enabled, you may have to make a registry change in order for the driver to be loaded.",
         "See https://github.com/maharmstone/btrfs#secureboot."
     ],
-    "depends": "extras/nefcon",
-    "url": "https://github.com/maharmstone/btrfs/releases/download/v1.8.1/btrfs-1.8.1.zip",
-    "hash": "73757936f999b2bf17f3424753fd17c30da0afc1eb9e7563e9bdac788543058d",
+    "url": "https://github.com/maharmstone/btrfs/releases/download/v1.9/btrfs-1.9.zip",
+    "hash": "673b0ecc23634d85213ba46e309bfb788ac83fcc14e4976773b324592401303a",
     "pre_install": [
         "if (-not $global) {",
         "    Write-Host -Foreground Red \"$app should be installed globally.\"",
@@ -29,14 +28,16 @@
             "}",
             "",
             "Write-Host \"Installing driver...\"",
-            "Invoke-ExternalCommand nefconw -ArgumentList @('--inf-default-install', '--inf-path', \"$dir\\btrfs.inf\") -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the uninstallation.' } | Out-Null"
+            "Invoke-ExternalCommand pnputil -ArgumentList @('/add-driver', \"$dir\\btrfs.inf\", '/install') -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the installation.' } | Out-Null"
         ]
     },
     "uninstaller": {
         "script": [
             "if ($cmd -ne 'uninstall') { return }",
-            "Invoke-ExternalCommand nefconw -ArgumentList @('--remove-device-node', '--hardware-id', 'ROOT\\btrfs', '--class-guid', '71a27cdd-812a-11d0-bec7-08002be2092f') -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the uninstallation.' } | Out-Null",
-            "nefconw --remove-driver-service --service-name btrfs"
+            "Invoke-ExternalCommand pnputil -ArgumentList @('/remove-device', 'ROOT\\btrfs\\0000') -RunAs -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the uninstallation.' } | Out-Null",
+            "pnputil /delete-driver \"$dir\\btrfs.inf\" /uninstall | Out-Null",
+            "pnputil /delete-driver \"$dir\\btrfs-vol.inf\" /uninstall | Out-Null",
+            "sc delete btrfs | Out-Null"
         ]
     },
     "checkver": "github",

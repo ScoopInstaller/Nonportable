@@ -1,29 +1,33 @@
 {
-    "version": "6.15",
+    "version": "9.11",
     "homepage": "https://www.pgadmin.org/",
     "description": "PostgreSQL administration and development platform.",
     "license": "PostgreSQL",
     "architecture": {
         "64bit": {
-            "url": "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v6.15/windows/pgadmin4-6.15-x64.exe",
-            "hash": "f3b7ee63bcbf29f33a5d170a5d06b10b90329f6e15eea94671af6a114b014129"
+            "url": "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v9.11/windows/pgadmin4-9.11-x64.exe",
+            "hash": "9fde3c8afccee3c21803a41e1c38ceb7e64c0d9c7138c6a9f5b0825a163d6f7f"
         }
     },
     "installer": {
         "args": [
-            "/verysilent",
-            "/nocancel",
-            "/norestart",
-            "/dir=$dir"
+            "/VERYSILENT",
+            "/SUPPRESSMSGBOXES",
+            "/SP-",
+            "/NOCANCEL",
+            "/NORESTART",
+            "/NOICONS",
+            "/DIR=$dir"
         ]
     },
-    "post_install": "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\pgAdmin 4\"",
     "uninstaller": {
         "file": "unins000.exe",
         "args": [
-            "/verysilent",
-            "/nocancel",
-            "/norestart"
+            "/VERYSILENT",
+            "/SUPPRESSMSGBOXES",
+            "/SP-",
+            "/NOCANCEL",
+            "/NORESTART"
         ]
     },
     "bin": [

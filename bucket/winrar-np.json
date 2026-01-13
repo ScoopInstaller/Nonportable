@@ -1,16 +1,16 @@
 {
-    "version": "6.11",
+    "version": "7.01",
     "description": "File archiver utility.",
     "homepage": "https://rarlab.com/",
     "license": "Shareware",
     "architecture": {
         "64bit": {
-            "url": "https://www.rarlab.com/rar/winrar-x64-611.exe",
-            "hash": "24fc7955fada6b9802f4e50e935ebd5654fd7382faf641b27dd626f4b3563974"
+            "url": "https://www.rarlab.com/rar/winrar-x64-701.exe",
+            "hash": "31f7ba37180f820313b2d32e76252344598409cb932109dd84a071cd58b64aa6"
         },
         "32bit": {
-            "url": "https://www.rarlab.com/rar/winrar-x32-611.exe",
-            "hash": "59276c49519ebd5194b95622c1c81d4b2c45d14eb6b07ea6d9f2b37c9c7bbf93"
+            "url": "https://www.rarlab.com/rar/winrar-x32-701.exe",
+            "hash": "503d7256ab2198b774c91da1e100960b40d333bcbd1df0bcaea68cfed3f2599e"
         }
     },
     "installer": {

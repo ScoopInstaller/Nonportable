@@ -1,5 +1,5 @@
 {
-    "version": "2.3.449",
+    "version": "3.2.490",
     "description": "Firewall & network monitoring software to detect and block threats",
     "homepage": "https://www.glasswire.com/",
     "license": {
@@ -7,7 +7,7 @@
         "url": "https://www.glasswire.com/license"
     },
     "url": "https://download.glasswire.com/GlassWireSetup.exe#/setup.exe",
-    "hash": "cc6174aa776a0b1bc29c8a466de095e281cc9a238dee7363196dbbdbb7bb2873",
+    "hash": "cc31bedf69bcb43ee9b0269896fe76555e23352b5a777f4e62dddcaf777f530b",
     "installer": {
         "script": [
             "if(!(is_admin)) { error \"$app requires admin rights to install\"; break }",

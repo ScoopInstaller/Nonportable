@@ -1,10 +1,10 @@
 {
-    "version": "1.5.5-beta.7",
+    "version": "1.5.6.-beta.1",
     "description": "Fork of QTTabBar that focuses on localization and other improvements.",
     "homepage": "https://www.yuque.com/indiff/qttabbar",
     "license": "Freeware | GPL-3.0-or-later",
-    "url": "https://github.com/indiff/qttabbar/releases/download/v1.5.5-beta.7/classic2_skin.zip",
-    "hash": "d0b66292fed8c6d1eb5e9954fbe9541baabe1e278fb5cda0c0a13405af183c90",
+    "url": "https://github.com/indiff/qttabbar/releases/download/v1.5.6.-beta.1/QTTabBar.Setup_v1.5.6-beta.1_de.2024.zip",
+    "hash": "1dfd23691d3596bf2e25911b6396e2755f027aa0fde847443fad508afce712f8",
     "installer": {
         "script": [
             "if (!(is_admin)) { error \"$app requires administrator rights to $cmd\"; break }",

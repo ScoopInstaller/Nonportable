@@ -1,13 +1,13 @@
 {
-    "version": "3.08",
+    "version": "3.11",
     "description": "Script-driven installer authoring tool.",
     "homepage": "http://nsis.sourceforge.net/",
     "license": {
         "identifier": "Freeware",
         "url": "http://nsis.sourceforge.net/License"
     },
-    "url": "https://sourceforge.net/projects/nsis/files/NSIS%203/3.08/nsis-3.08-setup.exe#/setup.exe",
-    "hash": "sha1:c7cfce464cbf7f0532880e0913393e143b8d4ae0",
+    "url": "https://sourceforge.net/projects/nsis/files/NSIS%203/3.11/nsis-3.11-setup.exe#/setup.exe",
+    "hash": "sha1:a64bbad73d4638d668ffdbd0887be7d6528d6a9d",
     "installer": {
         "script": [
             "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs | Out-Null",

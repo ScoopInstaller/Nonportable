@@ -1,19 +1,19 @@
 {
-    "version": "18.12.0",
+    "version": "22.21.0",
     "description": "JavaScript runtime environment.",
     "homepage": "https://nodejs.org",
     "license": "MIT",
     "notes": "npm global prefix set to: $env:APPDATA\\npm",
     "architecture": {
         "64bit": {
-            "url": "https://nodejs.org/dist/v18.12.0/node-v18.12.0-win-x64.7z",
-            "hash": "cfa003b9ed643d41167a82802fdc1335a280b4844330423bf15f07dc3148d2bb",
-            "extract_dir": "node-v18.12.0-win-x64"
+            "url": "https://nodejs.org/dist/v22.21.0/node-v22.21.0-win-x64.7z",
+            "hash": "31a82a950fd2524651f0409307afe3276ae68a13a131e8b72945a3931109c8c3",
+            "extract_dir": "node-v22.21.0-win-x64"
         },
         "32bit": {
-            "url": "https://nodejs.org/dist/v18.12.0/node-v18.12.0-win-x86.7z",
-            "hash": "3c822e7179c544f7cf1b12ddd0de48e5d65d4c54f0c41d27949cddde4a603469",
-            "extract_dir": "node-v18.12.0-win-x86"
+            "url": "https://nodejs.org/dist/v22.21.0/node-v22.21.0-win-x86.7z",
+            "hash": "d2767e24741f915477002d6325dda40f7554ce9e5176c8d2e824dc127d273725",
+            "extract_dir": "node-v22.21.0-win-x86"
         }
     },
     "installer": {
@@ -30,8 +30,9 @@
         "npm.cmd"
     ],
     "checkver": {
-        "url": "https://nodejs.org/en/download/",
-        "regex": "LTS Version: <strong>([\\d.]+)</strong>"
+        "url": "https://nodejs.org/dist/index.json",
+        "jsonpath": "$..[?(@.lts != false)].version",
+        "regex": "v([\\d\\.]+).*"
     },
     "autoupdate": {
         "architecture": {

@@ -1,31 +1,49 @@
 {
-    "version": "0.63.0",
+    "version": "0.96.1",
     "description": "System utilities to maximize productivity.",
     "homepage": "https://github.com/microsoft/PowerToys",
     "license": "MIT",
-    "depends": "dotnet-sdk",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/microsoft/PowerToys/releases/download/v0.63.0/PowerToysSetup-0.63.0-x64.exe#/setup.exe",
-            "hash": "d9e5cae050e6cb54f672c2f13dceb753b6ff1047d7286e0a98baa95df0affff7"
+            "url": "https://github.com/microsoft/PowerToys/releases/download/v0.96.1/PowerToysSetup-0.96.1-x64.exe#/setup.exe",
+            "hash": "e67d2d4098ca0ceb6910d418989567f4a62cd868210e1b29d8a76e0e64a3626e"
+        },
+        "arm64": {
+            "url": "https://github.com/microsoft/PowerToys/releases/download/v0.96.1/PowerToysSetup-0.96.1-arm64.exe#/setup.exe",
+            "hash": "0f5562a1c2ad8bd42d19b79ead72bb7ad77c3ee2b93c2415ac15015ccdfb6f8e"
         }
     },
     "installer": {
-        "args": "--silent"
+        "args": [
+            "/silent",
+            "/norestart"
+        ],
+        "keep": true
     },
     "uninstaller": {
-        "script": "cmd /c ((Get-ItemProperty -Path HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Where-Object {$_.DisplayName -eq \"PowerToys (Preview)\"} | Select-Object -Expand UninstallString) -replace '/I','/x')"
+        "file": "setup.exe",
+        "args": [
+            "/silent",
+            "/uninstall"
+        ]
     },
-    "checkver": "github",
+    "checkver": {
+        "url": "https://api.github.com/repositories/184456251/releases/latest",
+        "jsonpath": "$.tag_name",
+        "regex": "(?:v|V)?([\\d.]+)"
+    },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/microsoft/PowerToys/releases/download/v$version/PowerToysSetup-$version-x64.exe#/setup.exe",
-                "hash": {
-                    "url": "https://github.com/microsoft/PowerToys/releases/tag/v$version",
-                    "regex": ">$sha256<"
-                }
+                "url": "https://github.com/microsoft/PowerToys/releases/download/v$version/PowerToysSetup-$version-x64.exe#/setup.exe"
+            },
+            "arm64": {
+                "url": "https://github.com/microsoft/PowerToys/releases/download/v$version/PowerToysSetup-$version-arm64.exe#/setup.exe"
             }
+        },
+        "hash": {
+            "url": "https://github.com/microsoft/PowerToys/releases/tag/v$version",
+            "regex": "(?s)$basename.*?$sha256<"
         }
     }
 }

@@ -1,10 +1,10 @@
 {
-    "version": "2.0",
+    "version": "2.6",
     "description": "This shell extension adds a few nice features to file browsers for managing video game ROM and disc images.",
     "homepage": "https://github.com/GerbilSoft/rom-properties",
     "license": "GPL-2.0",
-    "url": "https://github.com/GerbilSoft/rom-properties/releases/download/v2.0/rom-properties_2.0-windows.zip",
-    "hash": "54932d0d21dacdaa5ff926fd344f6821d98ef7cb5d45a605ef85933d215a169a",
+    "url": "https://github.com/GerbilSoft/rom-properties/releases/download/v2.6/rom-properties_2.6-windows.zip",
+    "hash": "0c8e3c56ed2fa76209894f7a906642a74546c9698d980604b8b4bd99389b7f76",
     "pre_install": "if (!(is_admin)) { error \"Administrator rights are required to install $app\"; break }",
     "installer": {
         "script": [

@@ -12,7 +12,8 @@
     "installer": {
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-            "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList @('/S')"
+            "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList @('/S')",
+            "Remove-Item \"$dir\\$fname\""
         ]
     },
     "uninstaller": {

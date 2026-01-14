@@ -19,7 +19,8 @@
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
             "if ([Environment]::OSVersion.Version.Major -lt 10) { error \"$app only supports Windows 10\"; break }",
             "Start-Process \"$dir\\setup.exe\" -ArgumentList @('/SP-', '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', \"/DIR=`\"$dir`\"\") -Wait -Verb RunAs | Out-Null",
-            "Remove-Item \"$dir\\setup.exe\""
+            "Remove-Item \"$dir\\setup.exe\"",
+            "Write-Output \"Updater:`n  Enabled: false\" | Out-File -Append -FilePath \"$env:APPDATA\\AutoDarkMode\\config.yaml\" -Encoding Ascii"
         ]
     },
     "uninstaller": {

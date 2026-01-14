@@ -25,7 +25,9 @@
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
             "$cec = @{1 = 'You may need to restart your PC for the app to be completely removed'}",
-            "Invoke-ExternalCommand \"$Env:AppData\\Resilio Sync\\Resilio Sync.exe\" -ArgumentList @('/UNINSTALL', '/S', '/REMSETTINGS') -ContinueExitCodes $cec"
+            "$args = @('/UNINSTALL', '/S')",
+            "if ($cmd -ne 'update') { $args += '/REMSETTINGS' }",
+            "Invoke-ExternalCommand \"$Env:AppData\\Resilio Sync\\Resilio Sync.exe\" -ArgumentList $args -ContinueExitCodes $cec"
         ]
     },
     "checkver": {

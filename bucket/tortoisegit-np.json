@@ -23,21 +23,24 @@
     "pre_install": "if (!(is_admin)) { error \"Admin rights required to install TortoiseGit\"; break }",
     "installer": {
         "script": [
-            "$succ = Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\dl._msi\", '/passive', '/quiet', '/log', \"$dir\\install.log\")",
+            "$succ = Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\$fname\", '/passive', '/quiet', '/log', \"$dir\\install.log\")",
             "if(-not $succ) {",
             "    Select-String -Path \"$dir\\install.log\" -Pattern \"MSI \\(s\\).*required\" | ForEach-Object { info \"from log: $_\" }",
             "    if (Select-String -Path \"$dir\\install.log\" -Pattern \"latest.*2015-2022 Redistributable\") {",
-            "       info \"Consider installing scoop package 'extras/vcredist2022'\"",
+            "       error \"Missing requirement 'Microsoft Visual C++ Redistributable for Visual Studio 2015-2022'\"",
+            "       info \"consider installing scoop package 'extras/vcredist2022'\"",
             "    }",
-            "    error \"Failed ($succ) to extract files from `\"$dir\\dl._msi`\".`nLog file:`n  $(friendly_path `\"$dir\\install.log`\")\"",
+            "    error \"Failed ($succ) to run `\"$dir\\$fname`\".`nLog file:`n  $(friendly_path `\"$dir\\install.log`\")\"",
             "    break",
             "}"
         ]
     },
-    "post_install": "New-ItemProperty -Path 'HKCU:\\SOFTWARE\\TortoiseGit' -Name 'VersionCheck' -PropertyType DWord -Value 0 -Force | Out-Null",
+    "post_install": [
+        "New-ItemProperty -Path 'HKCU:\\SOFTWARE\\TortoiseGit' -Name 'VersionCheck' -PropertyType DWord -Value 0 -Force | Out-Null"
+    ],
     "pre_uninstall": "if (!(is_admin)) { error \"Admin rights required to uninstall TortoiseGit\"; break }",
     "uninstaller": {
-        "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/uninstall', \"$dir\\dl._msi\", '/passive', '/quiet', '/log', \"$dir\\uninstall.log\")"
+        "script": "Invoke-ExternalCommand msiexec -ArgumentList @('/uninstall', \"$dir\\dl._msi\", '/qn', '/log', \"$dir\\uninstall.log\")"
     },
     "checkver": {
         "url": "https://tortoisegit.org/docs/releasenotes/",

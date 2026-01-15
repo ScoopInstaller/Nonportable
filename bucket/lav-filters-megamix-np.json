@@ -6,11 +6,11 @@
     "architecture": {
         "64bit": {
             "url": "https://www.videohelp.com/download/Megamix-LAVFilters-0.81-x64.exe",
-            "hash": "a7c97d68e5643cc056193daa7d9a841b803167646889ba46ee491e8d59b2512c"
+            "hash": "5d79f5d785e9aa92b96665e99e3e09aee4760979362178e2dc6853060fc10a73"
         },
         "32bit": {
             "url": "https://www.videohelp.com/download/Megamix-LAVFilters-0.81-x86.exe",
-            "hash": "a7c97d68e5643cc056193daa7d9a841b803167646889ba46ee491e8d59b2512c"
+            "hash": "5d79f5d785e9aa92b96665e99e3e09aee4760979362178e2dc6853060fc10a73"
         }
     },
     "installer": {

@@ -16,15 +16,19 @@
             "hash": "ee1042346a3c1ac06003313b83e794180509067c19bec6681e71486fd19d539f"
         }
     },
+    "pre_install": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
     "installer": {
         "script": [
-            "Start-Process -Wait \"$dir\\$fname\" -ArgumentList @('/SP-', \"/DIR=$dir\", '/VERYSILENT', '/SUPPRESSMSGBOXES') -Verb RunAs",
+            "$args_list = @('/SP-', \"/DIR=$dir\", '/VERYSILENT', '/SUPPRESSMSGBOXES')",
+            "Start-Process -FilePath \"$dir\\$fname\" -ArgumentList $args_list -WindowStyle 'Hidden' -Wait",
             "Remove-Item -Path \"$dir\\$fname\" -Force -ErrorAction SilentlyContinue"
         ]
     },
+    "pre_uninstall": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
     "uninstaller": {
         "script": [
-            "Start-Process -Wait \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES') -Verb RunAs | Out-Null",
+            "$args_list = @('/VERYSILENT', '/SUPPRESSMSGBOXES')",
+            "Start-Process -FilePath \"$dir\\unins000.exe\" -ArgumentList $args_list -WindowStyle 'Hidden' -Wait",
             "Start-Sleep -Seconds 3"
         ]
     },

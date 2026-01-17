@@ -8,11 +8,10 @@
             "url": "https://github.com/nelson-lang/nelson/releases/download/v1.16.0/Nelson-1.16.0.5575-x86-64.exe#/setup.exe",
             "hash": "539e5dc2e357543733a1371ccaf3b2ca1d03b57fddc94ae9e66c7890850e02cc"
         },
-            "arm64": {
+        "arm64": {
             "url": "https://github.com/nelson-lang/nelson/releases/download/v1.16.0/Nelson-1.16.0.5575-ARM64.exe#/setup.exe",
             "hash": "ee1042346a3c1ac06003313b83e794180509067c19bec6681e71486fd19d539f"
         }
-
     },
     "installer": {
         "script": [
@@ -32,11 +31,11 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-x86-64.exe"
+                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-x86-64.exe#/setup.exe"
             },
             "arm64": {
-                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-ARM64.exe"
+                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-ARM64.exe#/setup.exe"
             }
-         }
+        }
     }
 }

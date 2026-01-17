@@ -2,39 +2,44 @@
     "version": "1.16.0.5575",
     "homepage": "https://nelson-lang.github.io/nelson-website/",
     "description": "An open-source numerical computing language that provides engineers, scientists, and students with a powerful yet intuitive environment for technical computing.",
-    "license": "LGPL-3.0-or-later",
+    "license": {
+        "identifier": "LGPL-3.0-or-later",
+        "url": "https://github.com/nelson-lang/nelson/blob/HEAD/LICENSE"
+    },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/nelson-lang/nelson/releases/download/v1.16.0/Nelson-1.16.0.5575-x86-64.exe#/setup.exe",
+            "url": "https://github.com/nelson-lang/nelson/releases/download/v1.16.0/Nelson-1.16.0.5575-x86-64.exe",
             "hash": "539e5dc2e357543733a1371ccaf3b2ca1d03b57fddc94ae9e66c7890850e02cc"
         },
         "arm64": {
-            "url": "https://github.com/nelson-lang/nelson/releases/download/v1.16.0/Nelson-1.16.0.5575-ARM64.exe#/setup.exe",
+            "url": "https://github.com/nelson-lang/nelson/releases/download/v1.16.0/Nelson-1.16.0.5575-ARM64.exe",
             "hash": "ee1042346a3c1ac06003313b83e794180509067c19bec6681e71486fd19d539f"
         }
     },
     "installer": {
         "script": [
-            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-            "Start-Process -Wait \"$dir\\setup.exe\" -ArgumentList @('/SP-', \"/DIR=$dir\", '/VERYSILENT', '/SUPPRESSMSGBOXES') -Verb RunAs | Out-Null",
-            "Remove-Item \"$dir\\setup.exe\""
+            "Start-Process -Wait \"$dir\\$fname\" -ArgumentList @('/SP-', \"/DIR=$dir\", '/VERYSILENT', '/SUPPRESSMSGBOXES') -Verb RunAs",
+            "Remove-Item -Path \"$dir\\$fname\" -Force -ErrorAction SilentlyContinue"
         ]
     },
     "uninstaller": {
         "script": [
-            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
             "Start-Process -Wait \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES') -Verb RunAs | Out-Null",
             "Start-Sleep -Seconds 3"
         ]
     },
-    "checkver": "github",
+    "checkver": {
+        "url": "https://api.github.com/repositories/77338134/releases/latest",
+        "jsonpath": "$.assets[?(@.name =~ /Nelson/i)].browser_download_url",
+        "regex": "(?i)download/(?<tag>[^/]+)/Nelson-([\\d.]+)"
+    },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-x86-64.exe#/setup.exe"
+                "url": "https://github.com/nelson-lang/nelson/releases/download/$matchTag/Nelson-$version-x86-64.exe"
             },
             "arm64": {
-                "url": "https://github.com/nelson-lang/nelson/releases/download/v$majorVersion.$minorVersion.$patchVersion/Nelson-$version-ARM64.exe#/setup.exe"
+                "url": "https://github.com/nelson-lang/nelson/releases/download/$matchTag/Nelson-$version-ARM64.exe"
             }
         }
     }

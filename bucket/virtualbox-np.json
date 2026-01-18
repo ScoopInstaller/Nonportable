@@ -42,7 +42,7 @@
         "startmenu_shortcut \"$installDir\\VirtualBox.exe\" 'VirtualBox' $null $null $global",
         "Get-ChildItem -Path \"$installDir\" -Filter '*.exe' | ForEach-Object {",
         "   info \"Adding shim '$($_.BaseName)'\"",
-        "   shim \"$installDir/$_\" $global \"$($_.BaseName)\"",
+        "   shim \"$($_.FullName)\" $global \"$($_.BaseName)\"",
         "}"
     ],
     "pre_uninstall": [
@@ -77,3 +77,4 @@
         }
     }
 }
+

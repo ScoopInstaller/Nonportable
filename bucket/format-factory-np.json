@@ -1,7 +1,7 @@
 {
     "version": "5.21.0.0",
-    "description": "Multifunctional, multimedia file conversion tool",
-    "homepage": "http://www.pcfreetime.com/formatfactory/index.php",
+    "description": "A free, multifunctional set of tools for multimedia file processing.",
+    "homepage": "http://www.pcfreetime.com/formatfactory/index.php?language=en",
     "license": {
         "identifier": "Freeware",
         "url": "http://www.pcfreetime.com/formatfactory/privacy_policy.php?language=en"
@@ -12,22 +12,31 @@
             "hash": "81e474b28392d64e6e09fb8e4c324006ca3282d7a3529de7730d0459017a043c"
         }
     },
+    "pre_install": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
     "installer": {
         "script": [
-            "Start-Process \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\") -Wait",
-            "Remove-Item \"$dir\\$fname\" -Force"
+            "Start-Process -FilePath \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\") -WindowStyle 'Hidden' -Wait",
+            "@(",
+            "    \"$dir\\$fname\", \"$env:USERPROFILE\\Desktop\\格式播放器.lnk\"",
+            "    \"$([Environment]::GetFolderPath('StartMenu'))\\Programs\\格式工厂\"",
+            ") | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue"
         ]
-    },
-    "uninstaller": {
-        "script": "Start-Process \"$dir\\Uninstall.exe\" -ArgumentList '/S' -Wait"
     },
     "shortcuts": [
         [
             "FormatFactory.exe",
             "Format Factory"
+        ],
+        [
+            "FormatPlayer.exe",
+            "Format Player"
         ]
     ],
-    "checkver": "Ver:V(\\d+(?:\\.\\d+)*)",
+    "pre_uninstall": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
+    "uninstaller": {
+        "script": "Start-Process -FilePath \"$dir\\Uninstall.exe\" -ArgumentList @('/S') -WindowStyle 'Hidden' -Wait"
+    },
+    "checkver": "Ver:V([\\d.]+)",
     "autoupdate": {
         "architecture": {
             "64bit": {

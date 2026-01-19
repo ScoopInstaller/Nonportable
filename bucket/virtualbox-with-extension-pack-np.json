@@ -62,7 +62,7 @@
         "Invoke-ExternalCommand tar -Activity 'Extracting License' -ArgumentList @('-xzf', \"$($extpack.FullName)\", '-C', \"$dir\", './ExtPack-license.txt') | Out-Null",
         "$exthash = $(Get-FileHash -Path \"$dir\\ExtPack-license.txt\" -Algorithm SHA256).Hash",
         "Remove-Item \"$dir\\ExtPack-license.txt\"",
-        "Invoke-ExternalCommand VBoxManage -Activity 'Installing Orace VirtualBox Extension Pack' -ArgumentList @('extpack', 'install', \"--accept-license=$exthash\", \"$($extpack.FullName)\") -LogPath \"$dir\\install-log-extpack.txt\" | Out-Null",
+        "Invoke-ExternalCommand VBoxManage -Activity 'Installing Oracle VirtualBox Extension Pack' -ArgumentList @('extpack', 'install', \"--accept-license=$exthash\", \"$($extpack.FullName)\") -LogPath \"$dir\\install-log-extpack.txt\" | Out-Null",
         "Remove-Item \"$($extpack.FullName)\"",
         "info \"Guest additions are located at: '$installDir\\VBoxGuestAdditions.iso'\""
     ],
@@ -70,7 +70,7 @@
         "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
         "Remove-Item \"$(shortcut_folder $global)\\VirtualBox.lnk\" -ErrorAction SilentlyContinue",
         "if ($global) { $installDir = \"$env:ProgramW6432\\Oracle\\VirtualBox\" } else { $installDir = \"$dir\" }",
-        "Invoke-ExternalCommand VBoxManage -Activity 'Uninstalling Orace VirtualBox Extension Pack' -ArgumentList @('extpack', 'uninstall', 'Oracle VirtualBox Extension Pack') -LogPath \"$dir\\uninstall-log-extpack.txt\" | Out-Null",
+        "Invoke-ExternalCommand VBoxManage -Activity 'Uninstalling Oracle VirtualBox Extension Pack' -ArgumentList @('extpack', 'uninstall', 'Oracle VirtualBox Extension Pack') -LogPath \"$dir\\uninstall-log-extpack.txt\" | Out-Null",
         "Remove-Item \"$installDir\\ExtensionPacks\" -ErrorAction SilentlyContinue",
         "Get-ChildItem -Path \"$installDir\" -Filter '*.exe' | Select-Object -ExpandProperty BaseName | ForEach-Object { rm_shim \"$_\" \"$(shimdir $global)\" }"
     ],

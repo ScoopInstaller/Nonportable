@@ -59,11 +59,11 @@
         "   shim \"$($_.FullName)\" $global \"$($_.BaseName)\"",
         "}",
         "$extpack = Get-ChildItem -Path \"$dir\" -Filter 'Oracle_VirtualBox_Extension_Pack-*.vbox-extpack' | Select-Object -First 1",
-        "Invoke-ExternalCommand tar -Activity 'Extracting License' -ArgumentList @('-xzf', \"$dir\\$extpack\", '-C', \"$dir\", './ExtPack-license.txt') | Out-Null",
+        "Invoke-ExternalCommand tar -Activity 'Extracting License' -ArgumentList @('-xzf', \"$($extpack.FullName)\", '-C', \"$dir\", './ExtPack-license.txt') | Out-Null",
         "$exthash = $(Get-FileHash -Path \"$dir\\ExtPack-license.txt\" -Algorithm SHA256).Hash",
         "Remove-Item \"$dir\\ExtPack-license.txt\"",
-        "Invoke-ExternalCommand VBoxManage -Activity 'Installing Orace VirtualBox Extension Pack' -ArgumentList @('extpack', 'install', \"--accept-license=$exthash\", \"$dir\\$extpack\") -LogPath \"$dir\\install-log-extpack.txt\" | Out-Null",
-        "Remove-Item \"$dir\\$extpack\"",
+        "Invoke-ExternalCommand VBoxManage -Activity 'Installing Orace VirtualBox Extension Pack' -ArgumentList @('extpack', 'install', \"--accept-license=$exthash\", \"$($extpack.FullName)\") -LogPath \"$dir\\install-log-extpack.txt\" | Out-Null",
+        "Remove-Item \"$($extpack.FullName)\"",
         "info \"Guest additions are located at: '$installDir\\VBoxGuestAdditions.iso'\""
     ],
     "pre_uninstall": [

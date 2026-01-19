@@ -60,6 +60,7 @@
         "   shim \"$($_.FullName)\" $global \"$($_.BaseName)\"",
         "}",
         "$extpack = Get-ChildItem -Path \"$dir\" -Filter 'Oracle_VirtualBox_Extension_Pack-*.vbox-extpack' | Select-Object -First 1",
+        "if (-not $extpack) { error \"Extension pack not found under $dir\"; break }",
         "Invoke-ExternalCommand tar -Activity 'Extracting License' -ArgumentList @('-xzf', \"$($extpack.FullName)\", '-C', \"$dir\", './ExtPack-license.txt') | Out-Null",
         "$exthash = $(Get-FileHash -Path \"$dir\\ExtPack-license.txt\" -Algorithm SHA256).Hash",
         "Remove-Item \"$dir\\ExtPack-license.txt\"",

@@ -28,7 +28,7 @@
     },
     "pre_install": [
         "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "$succ = Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('-extract', '-path', \"$dir\", '-silent') -RunAs",
+        "$succ = Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList @('-extract', '-path', \"$dir\", '-silent')",
         "if(-not $succ) { error \"Failed ($succ) to unpack `\"$dir\\setup.exe`\"\" ; break }",
         "Remove-Item \"$dir\\setup.exe\""
     ],
@@ -79,7 +79,7 @@
             "$idnum = Get-CimInstance Win32_Product | Where-Object { $_.Name -match 'Oracle VirtualBox [\\d\\.]+' } | Select-Object -ExpandProperty IdentifyingNumber",
             "if (!$idnum) { error \"Could not find uninstaller for: Oracle VirtualBox\" }",
             "else {",
-            "   $succ = Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$idnum\", '/qn', '/norestart', '/log', \"$dir\\uninstall-log.txt\") -RunAs",
+            "   $succ = Invoke-ExternalCommand msiexec -ArgumentList @('/x', \"$idnum\", '/qn', '/norestart', '/log', \"$dir\\uninstall-log.txt\")",
             "   if(-not $succ) { error \"Failed ($succ) to uninstall `nLog file: `\"$dir\\uninstall-log.txt`\"\" }",
             "}"
         ]

@@ -48,7 +48,7 @@
     "pre_uninstall": [
         "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
         "Remove-Item \"$(shortcut_folder $global)\\VirtualBox.lnk\" -ErrorAction SilentlyContinue",
-        "if ($global) { $installDir = \"$env:ProgramW6432\\Oracle\\VirtualBox\" } else { $installDir = \"$dir\" }",
+        "if ($global) { $installDir = \"$env:ProgramW6432\\Oracle\\VirtualBox\" } else { $installDir = \"$original_dir\" }",
         "Get-ChildItem -Path \"$installDir\" -Filter '*.exe' | Select-Object -ExpandProperty BaseName | ForEach-Object { rm_shim \"$_\" \"$(shimdir $global)\" }"
     ],
     "uninstaller": {

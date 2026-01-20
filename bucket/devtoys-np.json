@@ -3,22 +3,35 @@
     "homepage": "https://devtoys.app/",
     "description": "A Swiss Army knife for developers.",
     "license": "MIT",
-    "url": "https://github.com/veler/DevToys/releases/download/v1.0.13.0/64360VelerSoftware.DevToys_1.0.13.0_neutral_._j80j2txgjg9dj.msixbundle#/setup.msixbundle",
-    "hash": "020dd37d165ce2568405a32cdbcb93bfbe0a79864df9eb8c742a6a771c785ae3",
-    "pre_install": [
-        "Start-Process 'powershell' -Wait -WindowStyle 'Hidden' -ArgumentList @('-Command', \"Add-AppxPackage \"\"$dir\\setup.msixbundle\"\"\"); Start-Sleep -Seconds 2",
-        "Remove-Item \"$dir\\setup.msixbundle\""
+    "url": [
+        "https://github.com/DevToys-app/DevToys/releases/download/v1.0.13.0/64360VelerSoftware.DevToys_1.0.13.0_neutral_._j80j2txgjg9dj.msixbundle"
     ],
-    "pre_uninstall": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Start-Process 'powershell' -Wait -WindowStyle 'Hidden' -ArgumentList @('-Command', \"Get-AppxPackage '*VelerSoftware.DevToys' | Remove-AppxPackage\") | Out-Null",
-        "Remove-Item \"$env:ProgramFiles\\WindowsApps\\*VelerSoftware.DevToys_*\" -Force -Recurse -ErrorAction 'SilentlyContinue'",
-        "Start-Sleep -Seconds 2"
+    "hash": [
+        "020dd37d165ce2568405a32cdbcb93bfbe0a79864df9eb8c742a6a771c785ae3"
     ],
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"`n$app requires admin rights to $cmd\"; break }",
+            "if (!$global) { error \"`n$app requires global installation for $cmd\"; break }",
+            "$res = Invoke-ExternalCommand dism -Activity \"`nInstalling msixbundle via dism\" -ArgumentList @('/Online', '/Add-ProvisionedAppxPackage', \"/PackagePath:$dir\\$fname\", '/SkipLicense') -LogPath \"$dir\\install-log.txt\"",
+            "if (!$res) { error \"Installation failed, check '$dir\\install-log.txt'\" ; break }",
+            "Remove-Item \"$dir\\$fname\""
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { error \"`n$app requires admin rights to $cmd\"; break }",
+            "$res = Invoke-ExternalCommand dism -Activity \"`nUninstalling via dism\" -ArgumentList @('/Online', '/Remove-ProvisionedAppxPackage', \"/PackageName:64360VelerSoftware.DevToys_${version}_neutral_~_j80j2txgjg9dj\") -LogPath \"$dir\\uninstall-log.txt\"",
+            "if (!$res) { error \"Uninstallation failed, check '$dir\\uninstall-log.txt'\" ; break }",
+            "Get-AppxPackage '64360VelerSoftware.DevToys' | Remove-AppxPackage"
+        ]
+    },
     "checkver": {
-        "github": "https://github.com/veler/DevToys"
+        "github": "https://github.com/DevToys-app/DevToys"
     },
     "autoupdate": {
-        "url": "https://github.com/veler/DevToys/releases/download/v$version/64360VelerSoftware.DevToys_$version_neutral_._j80j2txgjg9dj.msixbundle#/setup.msixbundle"
+        "url": [
+            "https://github.com/DevToys-app/DevToys/releases/download/v$version/64360VelerSoftware.DevToys_$version_neutral_._j80j2txgjg9dj.msixbundle"
+        ]
     }
 }

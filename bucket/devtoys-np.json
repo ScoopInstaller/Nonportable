@@ -39,9 +39,9 @@
         "script": [
             "if ($global) { error \"Global installation is not supported for $cmd\"; break }",
             "$xaml = Get-AppxPackage 'Microsoft.UI.Xaml.2.7' | Sort-Object -Property Version -Descending | Select-Object -First 1",
-            "if ($xaml) { $xamlversion = ($xaml).Version } else { $xamlversion = '0' }",
+            "if ($xaml) { $xamlversion = ($xaml).Version } else { $xamlversion = [version]'0.0.0.0' }",
             "$ProgressPreference = 'SilentlyContinue'",
-            "if ($xamlversion -lt '7.2208.15002.0') { Add-AppxPackage -Path \"$dir\\xaml.appx\" }",
+            "if ($xamlversion -lt [version]'7.2208.15002.0') { Add-AppxPackage -Path \"$dir\\xaml.appx\" }",
             "Add-AppxPackage -Path \"$dir\\devtoys.msixbundle\"",
             "Remove-Item -Path \"$dir\\xaml.appx\", \"$dir\\devtoys.msixbundle\""
         ]

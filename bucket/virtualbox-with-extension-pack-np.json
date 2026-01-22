@@ -41,9 +41,6 @@
             "Remove-Item -Path @(\"$dir\\VirtualBox-*64.msi\", \"$dir\\common.cab\")",
             "if (-not $succ) {",
             "   Select-String -Path \"$dir\\install-log.txt\" -Pattern 'MSI \\(.*' | ForEach-Object { warn \"from log:`n    $_\" }",
-            "   if (Select-String -Path \"$dir\\install-log.txt\" -Pattern 'needs.*2019 Redistributable' ) {",
-            "       info \"Consider installing scoop package 'extras/vcredist2022'\"",
-            "   }",
             "   error \"Failed ($succ) to install `\"$($setup.FullName)`\".`nLog file: `\"$dir\\install-log.txt`\"\"",
             "   break",
             "}"

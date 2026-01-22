@@ -38,13 +38,20 @@
     "installer": {
         "script": [
             "if ($global) { error \"Global installation is not supported for $cmd\"; break }",
-            "Add-AppxPackage -Path \"$dir\\xaml.appx\"",
+            "$xaml = Get-AppxPackage 'Microsoft.UI.Xaml.2.7' | Sort-Object -Property Version -Descending | Select-Object -First 1",
+            "if ($xaml) { $xamlversion = ($xaml).Version } else { $xamlversion = '0' }",
+            "$ProgressPreference = 'SilentlyContinue'",
+            "if ($xamlversion -lt '7.2208.15002.0') { Add-AppxPackage -Path \"$dir\\xaml.appx\" }",
             "Add-AppxPackage -Path \"$dir\\devtoys.msixbundle\"",
-            "Remove-Item xaml.appx devtoys.msixbundle"
+            "Remove-Item -Path \"$dir\\xaml.appx\", \"$dir\\devtoys.msixbundle\""
         ]
     },
     "uninstaller": {
-        "script": "Get-AppxPackage '64360VelerSoftware.DevToys' | ForEach-Object { Remove-AppxPackage $_ }"
+        "script": [
+            "$ProgressPreference = 'SilentlyContinue'",
+            "Get-AppxPackage '64360VelerSoftware.DevToys' | ForEach-Object { Remove-AppxPackage $_ }",
+            "Get-AppxPackage 'Microsoft.UI.Xaml.2.7' | ForEach-Object { Remove-AppxPackage $_ }"
+        ]
     },
     "checkver": {
         "github": "https://github.com/DevToys-app/DevToys"

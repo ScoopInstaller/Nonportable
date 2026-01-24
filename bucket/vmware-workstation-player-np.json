@@ -27,7 +27,8 @@
     "installer": {
         "script": [
             "Start-Process -FilePath \"$dir\\setup.exe\" -ArgumentList @('/x') -WindowStyle Hidden -Wait",
-            "Get-ChildItem -Path $env:TEMP -Filter 'VMware*' -Recurse -File | Move-Item -Destination \"$dir\\setup.msi\" -Force",
+            "$installer_files = Get-ChildItem -Path $env:TEMP -Filter 'VMware*' -Recurse -File | Sort-Object -Property LastWriteTime",
+            "$installer_files | Select-Object -Last 1 | Move-Item -Destination \"$dir\\setup.msi\" -Force",
             "$args_list = @('/i', \"$dir\\setup.msi\", '/qn', '/norestart', 'REBOOT=ReallySuppress', 'EULAS_AGREED=1', 'ADDLOCAL=ALL')",
             "Start-Process -FilePath 'msiexec.exe' -ArgumentList $args_list -WindowStyle Hidden -Wait",
             "Remove-Item -Path \"$dir\\setup.exe\" -Force -ErrorAction SilentlyContinue"

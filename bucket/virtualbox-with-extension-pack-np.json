@@ -84,8 +84,7 @@
     },
     "checkver": {
         "url": "https://www.virtualbox.org/wiki/Downloads",
-        "regex": "VirtualBox-(?<version>[\\d.]+)-(?<build>[\\d]+)-Win.exe",
-        "replace": "${version}.${build}"
+        "regex": "VirtualBox-([0-9a-z.-]+)-Win.exe"
     },
     "autoupdate": {
         "architecture": {

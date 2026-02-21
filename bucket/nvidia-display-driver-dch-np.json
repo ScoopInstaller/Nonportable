@@ -43,9 +43,9 @@
             "Move-Item \"$dir\\extract\\NvApp\\*.txt\" -Destination \"$dir\\setup\\NvApp\"",
             "",
             "$success = Invoke-ExternalCommand -Path \"$dir\\setup\\setup.exe\" @Args('-s', '-noreboot', \"-log:$dir\\logs\", '-loglevel:4')",
+            "Remove-Item \"$dir\\extract\", \"$dir\\setup\" -Force -Recurse",
             "if (!$success) { error \"setup.exe failed, check logs at '$dir\\logs'\" ; break }",
-            "",
-            "Remove-Item \"$dir\\extract\", \"$dir\\setup\", \"$dir\\logs\" -Force -Recurse"
+            "Remove-Item \"$dir\\logs\" -Force -Recurse"
         ]
     },
     "checkver": {

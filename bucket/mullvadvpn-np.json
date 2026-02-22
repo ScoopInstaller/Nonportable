@@ -11,10 +11,6 @@
             "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2025.14/MullvadVPN-2025.14_x64.exe",
             "hash": "332a1f05bc367a199f0a17fb1e19d3ffcbf79a5024bced619c9e771d31281830"
         },
-        "32bit": {
-            "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2025.14/MullvadVPN-2025.14.exe",
-            "hash": "cd9262981a9b30c48d7014b8b355a1e5adfcfb86b01cab25766de68d15fccd7b"
-        },
         "arm64": {
             "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2025.14/MullvadVPN-2025.14_arm64.exe",
             "hash": "4e08b1aa64aa9cde1a7290705a337b50b58d3a7cc4c317a979fd9507ee308309"
@@ -35,19 +31,16 @@
     },
     "checkver": {
         "url": "https://api.github.com/repositories/114742422/releases",
-        "jsonpath": "$[?(@.prerelease == false)].assets[?(@.name =~ /\\.exe$/i)].browser_download_url",
-        "regex": "(?i)download/(?<tag>[^/]+)/MullvadVPN-([\\d.]+)_(?:x|arm)64"
+        "jsonpath": "$[*].assets[?(@.name =~ /\\.exe$/i)].browser_download_url",
+        "regex": "(?i)download/(?<tag>[^/]+)/MullvadVPN-([\\w.-]+)_(?:x|arm)"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/$matchTag/MullvadVPN-$version_x64.exe"
-            },
-            "32bit": {
-                "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/$matchTag/MullvadVPN-$version.exe"
+                "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/$version/MullvadVPN-$version_x64.exe"
             },
             "arm64": {
-                "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/$matchTag/MullvadVPN-$version_arm64.exe"
+                "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/$version/MullvadVPN-$version_arm64.exe"
             }
         }
     }

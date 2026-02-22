@@ -85,7 +85,7 @@
             "    ArgumentList = @('extpack', 'uninstall', 'Oracle VirtualBox Extension Pack')",
             "}",
             "$extension_status = Invoke-ExternalCommand @progress_params -Activity 'Uninstalling Oracle VirtualBox Extension Pack...'",
-            "if (-not $extension_status) { abort 'Uninstallation Failed: Oracle VirtualBox Extension Pack uninstallation did not successfully.' }",
+            "if (-not $extension_status) { abort 'Uninstallation Failed: Oracle VirtualBox Extension Pack uninstallation was not successful.' }",
             "$registry_path = 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*'",
             "$product_id = Get-ItemProperty -Path $registry_path | Where-Object { $_.DisplayName -like '*Oracle VirtualBox*' } |",
             "        Select-Object -ExpandProperty PSChildName -First 1",

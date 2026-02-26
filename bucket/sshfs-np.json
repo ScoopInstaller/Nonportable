@@ -1,7 +1,7 @@
 {
     "version": "3.7.21011",
     "description": "SSHFS For Windows",
-    "homepage": "http://www.github.com/billziss-gh/sshfs-win",
+    "homepage": "https://winfsp.dev",
     "license": {
         "identifier": "GPL-2.0-or-later",
         "url": "https://github.com/winfsp/sshfs-win/blob/HEAD/License.txt"

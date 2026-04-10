@@ -20,7 +20,8 @@
             "if (($globaltest) -And !(is_admin)) { error \"Admin rights required to uninstall globally\"; break }",
             "$arguments = @('/uninstall', '/to', \"$dir\", '/silent')",
             "if ($globaltest) { $arguments += '/elevate' } else { $arguments += '/user' }",
-            "Invoke-ExternalCommand \"$dir/setup.exe\" -ArgumentList $arguments"
+            "Invoke-ExternalCommand \"$dir/setup.exe\" -ArgumentList $arguments",
+            "Remove-Item \"$dir/setup.exe\" -Force"
         ]
     },
     "checkver": {

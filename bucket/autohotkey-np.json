@@ -8,7 +8,6 @@
     "installer": {
         "script": [
             "if ($global) { error \"Global install currently not supported due to uninstall issue https://github.com/ScoopInstaller/Scoop/issues/6452\"; break }",
-            "if (($global) -And !(is_admin)) { error \"Admin rights required to install globally\"; break }",
             "$arguments = @('/installto', \"$dir\", '/silent')",
             "if ($global) { $arguments += '/elevate' } else { $arguments += '/user' }",
             "Invoke-ExternalCommand \"$dir/setup.exe\" -ArgumentList $arguments"

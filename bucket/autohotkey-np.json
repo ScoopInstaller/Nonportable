@@ -19,7 +19,7 @@
             "$arguments = @('/uninstall', '/to', \"$dir\", '/silent')",
             "if ($globaltest) { $arguments += '/elevate' } else { $arguments += '/user' }",
             "Invoke-ExternalCommand \"$dir/setup.exe\" -ArgumentList $arguments",
-            "Remove-Item \"$dir/setup.exe\" -Force"
+            "Remove-Item -Path \"$dir\\setup.exe\" -Force -ErrorAction SilentlyContinue"
         ]
     },
     "checkver": {

@@ -7,7 +7,7 @@
     "hash": "d7038e9ba08e9c63edcdb2e63552b434b87491b449d7082cf28a40cd4ece91af",
     "installer": {
         "script": [
-            "if ($global) { error \"Global install currently not supported due to uninstall issue https://github.com/ScoopInstaller/Scoop/issues/6452\"; break }",
+            "if ($global) { abort \"`n[ERROR]  Global install currently not supported due to uninstall issue https://github.com/ScoopInstaller/Scoop/issues/6452\" }",
             "$arguments = @('/installto', \"$dir\", '/silent')",
             "if ($global) { $arguments += '/elevate' } else { $arguments += '/user' }",
             "Invoke-ExternalCommand \"$dir/setup.exe\" -ArgumentList $arguments"

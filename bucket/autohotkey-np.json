@@ -10,7 +10,7 @@
             "if ($global) { error \"Global install currently not supported due to uninstall issue https://github.com/ScoopInstaller/Scoop/issues/6452\"; break }",
             "$arguments = @('/installto', \"$dir\", '/silent')",
             "if ($global) { $arguments += '/elevate' } else { $arguments += '/user' }",
-            "Invoke-ExternalCommand \"$dir/setup.exe\" -ArgumentList $arguments"
+            "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList $arguments"
         ]
     },
     "uninstaller": {
@@ -18,8 +18,8 @@
             "$globaltest = $False",
             "$arguments = @('/uninstall', '/to', \"$dir\", '/silent')",
             "if ($globaltest) { $arguments += '/elevate' } else { $arguments += '/user' }",
-            "Invoke-ExternalCommand \"$dir/setup.exe\" -ArgumentList $arguments",
-            "Remove-Item \"$dir/setup.exe\" -Force"
+            "Invoke-ExternalCommand \"$dir\\setup.exe\" -ArgumentList $arguments",
+            "Remove-Item \"$dir\\setup.exe\" -Force"
         ]
     },
     "checkver": {

@@ -1,6 +1,6 @@
 {
     "version": "3.9.3.5",
-    "description": "Link Shell Extension. Offers the creation of Hardlinks, Junctions, Volume Mountpoints, Symbolic Links and a folder cloning or copy process.",
+    "description": "A Windows shell extension for creating and managing NTFS links, including Hardlinks, Junctions, Volume Mountpoints, and Symbolic Links, directly through the file manager interface.",
     "homepage": "https://schinagl.priv.at/nt/hardlinkshellext/hardlinkshellext.html",
     "license": {
         "identifier": "Proprietary",
@@ -19,29 +19,26 @@
             "hash": "b7e7227e960f025be992c398dafacd03c416adf5210d3fc0ff1d5b5771afdc4b"
         }
     },
+    "pre_install": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
     "installer": {
         "script": [
-            "Invoke-ExternalCommand -FilePath \"$dir\\HardLinkShellExt.exe\" -Args @('/S', '/noredist', '/Language=English', \"/D=$dir\") -RunAs | Out-Null",
-            "Remove-Item \"$dir\\HardLinkShellExt.exe\" -ErrorAction SilentlyContinue"
+            "$install_args = @('/S', '/noredist', '/Language=English', \"/D=$dir\")",
+            "Start-Process -FilePath \"$dir\\$fname\" -ArgumentList $install_args -WindowStyle Hidden -Wait",
+            "Remove-Item -Path \"$dir\\$fname\" -Force -ErrorAction SilentlyContinue"
         ]
     },
+    "pre_uninstall": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
     "uninstaller": {
-        "64bit": {
-            "script": "Invoke-ExternalCommand -FilePath \"$dir\\uninst-HardLinkShellExt_X64.exe\" -Args @('/S' , '/noredist') -RunAs | Out-Null"
-        },
-        "32bit": {
-            "script": "Invoke-ExternalCommand -FilePath \"$dir\\uninst-HardLinkShellExt_win32.exe\" -Args @('/S' , '/noredist') -RunAs | Out-Null"
-        }
-    },
-    "shortcuts": [
-        [
-            "LSEConfig.exe",
-            "Link Shell Extension Configuration"
+        "script": [
+            "$removal_args = @('/S' , '/noredist')",
+            "$uninstaller_file = Get-ChildItem -Path $dir -Filter 'uninst*' -File | Select-Object -ExpandProperty FullName -First 1",
+            "if (-not $uninstaller_file) { abort \"`nInstallation Failed: Uninstaller not found in '$dir'.\" }",
+            "Start-Process -FilePath $uninstaller_file -ArgumentList $removal_args -WindowStyle Hidden -Wait"
         ]
-    ],
+    },
     "checkver": {
         "url": "https://schinagl.priv.at/nt/hardlinkshellext/hardlinkshellext.html",
-        "regex": ">Last Updated .+ Version ([\\d.]+)<"
+        "regex": "Last Updated.+?Version ([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {

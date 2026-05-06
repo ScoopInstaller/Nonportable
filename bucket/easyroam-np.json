@@ -1,29 +1,29 @@
 {
-  "version": "1.4.7",
-  "description": "Provides eduroam WLAN profiles for Windows.",
-  "homepage": "https://easyroam.de",
-  "license": "Proprietary",
-  "architecture": {
-    "64bit": {
-      "url": "https://packages.easyroam.de/windows/1.4.7/amd64/easyroam_1_4_7.msix#/dl.7z",
-      "hash": "C323741C3C959399D3E517815441A7E4052E34C04A145B5AA95A5A5789D67BA0"
-    }
-  },
-  "shortcuts": [
-    [
-      "easyroam_connect_desktop.exe",
-      "Easyroam"
-    ]
-  ],
-  "checkver": {
-    "url": "https://packages.easyroam.de/windows/version.json",
-    "jsonpath": "$.latestVersion"
-  },
-  "autoupdate": {
+    "version": "1.4.7",
+    "description": "Provides eduroam WLAN profiles for Windows.",
+    "homepage": "https://easyroam.de",
+    "license": "Proprietary",
     "architecture": {
-      "64bit": {
-        "url": "https://packages.easyroam.de/windows/$version/amd64/easyroam_$dashVersion.msix#/dl.7z"
-      }
+        "64bit": {
+            "url": "https://packages.easyroam.de/windows/1.4.7/amd64/easyroam_1_4_7.msix#/dl.7z",
+            "hash": "C323741C3C959399D3E517815441A7E4052E34C04A145B5AA95A5A5789D67BA0"
+        }
+    },
+    "shortcuts": [
+        [
+            "easyroam_connect_desktop.exe",
+            "Easyroam"
+        ]
+    ],
+    "checkver": {
+        "url": "https://packages.easyroam.de/windows/version.json",
+        "jsonpath": "$.latestVersion"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://packages.easyroam.de/windows/$version/amd64/easyroam_$underscoreVersion.msix#/dl.7z"
+            }
+        }
     }
-  }
 }

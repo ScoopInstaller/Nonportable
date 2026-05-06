@@ -1,34 +1,34 @@
 {
-  "version": "2603-8.18.0-24230927696",
-  "description": "Omnissa Horizon Client for Windows allows you to connect to your Omnissa Horizon virtual desktop.",
-  "homepage": "https://omnissahorizon.com",
-  "license": "Proprietary",
-  "depends": [
-    "dark",
-    "vcredist2022"
-  ],
-  "suggest": {
-    ".NET Desktop Runtime 8.0": "versions/windowsdesktop-runtime-8.0"
-  },
-  "architecture": {
-    "64bit": {
-      "url": "https://download3.omnissa.com/software/CART27FQ1_WIN_2603/Omnissa-Horizon-Client-2603-8.18.0-24230927696.exe",
-      "hash": "32A2AA9FE766B329FB2EB50F0CF2946DAB73E46FFFE19B501993952E99ADED25"
-    }
-  },
-  "installer": {
-    "script": [
-      "Expand-DarkArchive \"$dir\\$fname\" \"$dir\\tmp\" -Removal",
-      "$extract = 'Omnissa Horizon Client (x64).msi'",
-      "Expand-MsiArchive \"$dir\\tmp\\AttachedContainer\\$extract\" \"$dir\" -ExtractDir \"Omnissa\\Omnissa Horizon Client\" -Removal",
-      "Remove-Item \"$dir\\tmp\" -Recurse"
+    "version": "2603-8.18.0-24230927696",
+    "description": "Omnissa Horizon Client for Windows allows you to connect to your Omnissa Horizon virtual desktop.",
+    "homepage": "https://omnissahorizon.com",
+    "license": "Proprietary",
+    "depends": [
+        "dark",
+        "vcredist2022"
+    ],
+    "suggest": {
+        ".NET Desktop Runtime 8.0": "versions/windowsdesktop-runtime-8.0"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://download3.omnissa.com/software/CART27FQ1_WIN_2603/Omnissa-Horizon-Client-2603-8.18.0-24230927696.exe",
+            "hash": "32A2AA9FE766B329FB2EB50F0CF2946DAB73E46FFFE19B501993952E99ADED25"
+        }
+    },
+    "installer": {
+        "script": [
+            "Expand-DarkArchive \"$dir\\$fname\" \"$dir\\tmp\" -Removal",
+            "$extract = 'Omnissa Horizon Client (x64).msi'",
+            "Expand-MsiArchive \"$dir\\tmp\\AttachedContainer\\$extract\" \"$dir\" -ExtractDir \"Omnissa\\Omnissa Horizon Client\" -Removal",
+            "Remove-Item \"$dir\\tmp\" -Recurse"
+        ]
+    },
+    "bin": "horizon-client.exe",
+    "shortcuts": [
+        [
+            "horizon-client.exe",
+            "Omnissa Horizon Client"
+        ]
     ]
-  },
-  "bin": "horizon-client.exe",
-  "shortcuts": [
-    [
-      "horizon-client.exe",
-      "Omnissa Horizon Client"
-    ]
-  ]
 }

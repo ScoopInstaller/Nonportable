@@ -24,7 +24,6 @@
             "Remove-Item \"$dir\\tmp\" -Recurse"
         ]
     },
-    "bin": "horizon-client.exe",
     "shortcuts": [
         [
             "horizon-client.exe",

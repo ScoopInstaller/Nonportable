@@ -15,14 +15,14 @@
     "pre_uninstall": "if (-not (is_admin)) { abort \"`n[ERROR] $app requires admin rights to $cmd.\" }",
     "uninstaller": {
         "script": [
-            "$uninstaller = \"C:\\Program Files\\Npcap\\uninstall.exe\"",
+            "$uninstaller = \"$env:ProgramFiles\\Npcap\\uninstall.exe\"",
             "if (Test-Path $uninstaller) {",
             "    $p = Start-Process -FilePath $uninstaller -ArgumentList '/S' -Wait -PassThru",
             "    if ($p.ExitCode -ne 0) {",
             "        abort \"Npcap uninstaller failed with exit code $($p.ExitCode).\"",
             "    }",
             "} else {",
-            "    warn 'Npcap uninstaller not found in C:\\Program Files\\Npcap. Manual removal may be required.'",
+            "    warn \"Npcap uninstaller not found in $env:ProgramFiles\\Npcap. Manual removal may be required.\"",
             "}"
         ]
     },

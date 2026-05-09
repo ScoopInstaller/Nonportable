@@ -1,0 +1,33 @@
+{
+    "version": "1.88",
+    "description": "Npcap is the Nmap Project's packet capture (and sending) library for Microsoft Windows. Note: Driver installs to C:\\Program Files\\Npcap due to Windows kernel requirements.",
+    "homepage": "https://npcap.com",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://github.com/nmap/npcap/blob/master/LICENSE"
+    },
+    "url": "https://npcap.com/dist/npcap-1.88.exe",
+    "hash": "a2f4ec1e5ea353ff67efd24b2ebf081ba44532410fae8d5e146af0310aa4f56b",
+    "pre_install": "if (-not (is_admin)) { abort \"`n[ERROR] $app requires admin rights to $cmd.\" }",
+    "installer": {
+        "file": "npcap-1.88.exe"
+    },
+    "pre_uninstall": "if (-not (is_admin)) { abort \"`n[ERROR] $app requires admin rights to $cmd.\" }",
+    "uninstaller": {
+        "script": [
+            "$uninstaller = \"C:\\Program Files\\Npcap\\uninstall.exe\"",
+            "if (Test-Path $uninstaller) {",
+            "    Start-Process -FilePath $uninstaller -ArgumentList '/S' -Wait",
+            "} else {",
+            "    warn 'Npcap uninstaller not found in C:\\Program Files\\Npcap. Manual removal may be required.'",
+            "}"
+        ]
+    },
+    "checkver": {
+        "url": "https://npcap.com",
+        "regex": "Npcap ([\\d.]+) installer"
+    },
+    "autoupdate": {
+        "url": "https://npcap.com/dist/npcap-$version.exe"
+    }
+}

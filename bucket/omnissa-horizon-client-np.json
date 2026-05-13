@@ -29,5 +29,22 @@
             "horizon-client.exe",
             "Omnissa Horizon Client"
         ]
-    ]
+    ],
+    "checkver": {
+        "url": "https://customerconnect.omnissa.com/channel/public/api/v1.0/dlg/details?downloadGroup=CART26FQ2_WIN_2506&productId=1562",
+        "jsonpath": "$..downloadFiles..thirdPartyDownloadUrl",
+        "regex": "(?<downloadgroup>CART\\d+FQ\\d)_WIN_(?<majorversion>[\\d]+)/Omnissa-Horizon-Client-(?<version>[\\d.-]+).exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download3.omnissa.com/software/$matchDownloadgroup_WIN_$matchMajorversion/Omnissa-Horizon-Client-$version.exe#/Omnissa-Horizon-Client-Setup.exe",
+                "hash": {
+                    "mode": "json",
+                    "jsonpath": "$.downloadFiles..sha256checksum",
+                    "url": "https://customerconnect.omnissa.com/channel/public/api/v1.0/dlg/details?downloadGroup=$matchDownloadgroup_WIN_$majorVersion"
+                }
+            }
+        }
+    }
 }

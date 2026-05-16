@@ -1,8 +1,12 @@
 {
     "version": "2209-8.7.0-20649873",
-    "description": "VMware Horizon Client for Windows allows you to connect to your VMware Horizon virtual desktop.",
+    "description": "VMware Horizon Client for Windows allows you to connect to your VMware Horizon virtual desktop. (Deprecated, please use `nonportable/omnissa-horizon-client-np` instead)",
     "homepage": "https://www.vmware.com/products/horizon.html",
     "license": "Proprietary",
+    "notes": [
+        "`vmware-horizon-client-np` has been renamed to `omnissa-horizon-client-np`.",
+        "This manifest is deprecated and scheduled for removal on 2026-10-01.  Please use `nonportable/omnissa-horizon-client-np` instead."
+    ],
     "depends": "dark",
     "architecture": {
         "64bit": {

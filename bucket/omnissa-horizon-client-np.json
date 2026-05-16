@@ -1,0 +1,50 @@
+{
+    "version": "2603-8.18.0-24230927696",
+    "description": "Omnissa Horizon Client for Windows allows you to connect to your Omnissa Horizon virtual desktop.",
+    "homepage": "https://omnissahorizon.com",
+    "license": "Proprietary",
+    "depends": [
+        "dark",
+        "vcredist2022"
+    ],
+    "suggest": {
+        ".NET Desktop Runtime 8.0": "versions/windowsdesktop-runtime-8.0"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://download3.omnissa.com/software/CART27FQ1_WIN_2603/Omnissa-Horizon-Client-2603-8.18.0-24230927696.exe",
+            "hash": "32A2AA9FE766B329FB2EB50F0CF2946DAB73E46FFFE19B501993952E99ADED25"
+        }
+    },
+    "installer": {
+        "script": [
+            "Expand-DarkArchive \"$dir\\$fname\" \"$dir\\tmp\" -Removal",
+            "$extract = 'Omnissa Horizon Client (x64).msi'",
+            "Expand-MsiArchive \"$dir\\tmp\\AttachedContainer\\$extract\" \"$dir\" -ExtractDir \"Omnissa\\Omnissa Horizon Client\" -Removal",
+            "Remove-Item \"$dir\\tmp\" -Recurse"
+        ]
+    },
+    "shortcuts": [
+        [
+            "horizon-client.exe",
+            "Omnissa Horizon Client"
+        ]
+    ],
+    "checkver": {
+        "url": "https://customerconnect.omnissa.com/channel/public/api/v1.0/dlg/details?downloadGroup=CART26FQ2_WIN_2506&productId=1562",
+        "jsonpath": "$..downloadFiles..thirdPartyDownloadUrl",
+        "regex": "(?<downloadgroup>CART\\d+FQ\\d)_WIN_(?<majorversion>[\\d]+)/Omnissa-Horizon-Client-(?<version>[\\d.-]+).exe"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://download3.omnissa.com/software/$matchDownloadgroup_WIN_$matchMajorversion/Omnissa-Horizon-Client-$version.exe#/Omnissa-Horizon-Client-Setup.exe",
+                "hash": {
+                    "mode": "json",
+                    "jsonpath": "$.downloadFiles..sha256checksum",
+                    "url": "https://customerconnect.omnissa.com/channel/public/api/v1.0/dlg/details?downloadGroup=$matchDownloadgroup_WIN_$majorVersion"
+                }
+            }
+        }
+    }
+}

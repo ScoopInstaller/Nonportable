@@ -38,14 +38,16 @@
         "regex": "(\\d+?\\.\\d+?\\.\\d+?)"
     },
     "autoupdate": {
-        "64bit": {
-            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86_64-$version.exe#/install_gstreamer.exe"
-        },
-        "32bit": {
-            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86-$version.exe#/install_gstreamer.exe"
-        },
-        "arm64": {
-            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-arm64-$version.exe#/install_gstreamer.exe"
+        "architecture": {
+            "64bit": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86_64-$version.exe#/install_gstreamer.exe"
+            },
+            "32bit": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86-$version.exe#/install_gstreamer.exe"
+            },
+            "arm64": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-arm64-$version.exe#/install_gstreamer.exe"
+            }
         }
     }
 }

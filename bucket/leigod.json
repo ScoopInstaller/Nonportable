@@ -11,14 +11,18 @@
     "installer": {
         "script": [
             "$bytes = [System.IO.File]::ReadAllBytes(\"$dir\\$fname\")",
+            "$found = $false",
             "for ($i = 0; $i -lt $bytes.Length - 6; $i++) {",
             "    if ($bytes[$i] -eq 0x37 -and $bytes[$i+1] -eq 0x7A -and $bytes[$i+2] -eq 0xBC -and $bytes[$i+3] -eq 0xAF -and $bytes[$i+4] -eq 0x27 -and $bytes[$i+5] -eq 0x1C) {",
             "        $7zBytes = New-Object byte[] ($bytes.Length - $i)",
             "        [Array]::Copy($bytes, $i, $7zBytes, 0, $7zBytes.Length)",
             "        [System.IO.File]::WriteAllBytes(\"$dir\\leigod.7z\", $7zBytes)",
+            "        $found = $true",
             "        break",
             "    }",
             "}",
+            "if (-not $found) { throw '7z signature not found in payload' }",
+            "if (-not (Test-Path \"$dir\\leigod.7z\")) { throw 'Extracted archive not found' }",
             "Expand-7zipArchive \"$dir\\leigod.7z\" \"$dir\"",
             "Remove-Item \"$dir\\leigod.7z\" -Force",
             "Remove-Item \"$dir\\$fname\" -Force"

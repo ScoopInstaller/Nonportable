@@ -1,0 +1,43 @@
+{
+    "version": "11.3.1.9",
+    "description": "LeiGod - Game accelerator for reducing latency",
+    "homepage": "https://www.leigod.com/",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://www.leigod.com/legal/user-server"
+    },
+    "url": "https://update.leigod.com/soft/leigod/win/11.0.0.0/LeiGodSetup.11.3.1.9.exe",
+    "hash": "7540e72ba32ceff116a4eb93a8a53ef797cf34c33add5b8c6a9f57dc2fc85788",
+    "installer": {
+        "script": [
+            "$bytes = [System.IO.File]::ReadAllBytes(\"$dir\\$fname\")",
+            "for ($i = 0; $i -lt $bytes.Length - 6; $i++) {",
+            "    if ($bytes[$i] -eq 0x37 -and $bytes[$i+1] -eq 0x7A -and $bytes[$i+2] -eq 0xBC -and $bytes[$i+3] -eq 0xAF -and $bytes[$i+4] -eq 0x27 -and $bytes[$i+5] -eq 0x1C) {",
+            "        $7zBytes = New-Object byte[] ($bytes.Length - $i)",
+            "        [Array]::Copy($bytes, $i, $7zBytes, 0, $7zBytes.Length)",
+            "        [System.IO.File]::WriteAllBytes(\"$dir\\leigod.7z\", $7zBytes)",
+            "        break",
+            "    }",
+            "}",
+            "Expand-7zipArchive \"$dir\\leigod.7z\" \"$dir\"",
+            "Remove-Item \"$dir\\leigod.7z\" -Force",
+            "Remove-Item \"$dir\\$fname\" -Force"
+        ]
+    },
+    "uninstaller": {
+        "script": "Remove-Item \"$dir\" -Recurse -Force -ErrorAction SilentlyContinue"
+    },
+    "shortcuts": [
+        [
+            "leigod.exe",
+            "LeiGod"
+        ]
+    ],
+    "checkver": {
+        "url": "https://www.leigod.com/",
+        "regex": "win7/8/10/11[^V]*V([\\d.]+)"
+    },
+    "autoupdate": {
+        "url": "https://update.leigod.com/soft/leigod/win/$majorVersion.0.0.0/LeiGodSetup.$version.exe"
+    }
+}

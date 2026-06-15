@@ -3,7 +3,7 @@
     "version": "1.28.3",
     "description": "Open-source multimedia framework core library.",
     "license": {
-        "identifier": "LGPL-2.1",
+        "identifier": "LGPL-2.1-only",
         "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer/-/raw/master/COPYING"
     },
     "architecture": {

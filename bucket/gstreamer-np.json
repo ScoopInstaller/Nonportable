@@ -1,6 +1,6 @@
 {
-    "homepage": "https://gstreamer.freedesktop.org/",
-    "version": "1.28.3",
+    "homepage": "https://gstreamer.freedesktop.org",
+    "version": "1.28.4",
     "description": "Open-source multimedia framework core library.",
     "license": {
         "identifier": "LGPL-2.1-only",
@@ -8,16 +8,16 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.3/msvc/gstreamer-1.0-msvc-x86_64-1.28.3.exe#/install_gstreamer.exe",
-            "hash": "f01b4fb30b3aefdcdf4251d4a7464fb68197d15a763a2a94b667b93f88cc6216"
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.4/msvc/gstreamer-1.0-msvc-x86_64-1.28.4.exe#/install_gstreamer.exe",
+            "hash": "1a745d67225e43394a4a5db929c97397cb56e74b1c38bb77c6ded4b037d3c040"
         },
         "32bit": {
-            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.3/msvc/gstreamer-1.0-msvc-x86-1.28.3.exe#/install_gstreamer.exe",
-            "hash": "968862fe2c3c519065ab380adce077bfdcba6661e2c17d77ee6ed67fa6b7c3a2"
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.4/msvc/gstreamer-1.0-msvc-x86-1.28.4.exe#/install_gstreamer.exe",
+            "hash": "ebf1d136558bc5a90b9599095fef8db927e10978ec39bd038363d38a2debf97b"
         },
         "arm64": {
-            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.3/msvc/gstreamer-1.0-msvc-arm64-1.28.3.exe#/install_gstreamer.exe",
-            "hash": "bf82db1f8320358212b73483be9a671a88f3768d471d29b5819bc9b6d64f47ab"
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.4/msvc/gstreamer-1.0-msvc-arm64-1.28.4.exe#/install_gstreamer.exe",
+            "hash": "6f810ad85e0fe7b566ab2f2841c0fec52e010265af6883427652e0a159a40fc7"
         }
     },
     "installer": {
@@ -35,7 +35,7 @@
     },
     "checkver": {
         "url": "https://gstreamer.freedesktop.org/download/#windows",
-        "regex": "(\\d+?\\.\\d+?\\.\\d+?)"
+        "regex": "The latest stable release is (\\d+\\.\\d+\\.\\d+)"
     },
     "autoupdate": {
         "architecture": {

@@ -35,7 +35,7 @@
     },
     "checkver": {
         "url": "https://gstreamer.freedesktop.org/download/#windows",
-        "regex": "windows/([\\d.]+)/mscv/gstreamer-1.0"
+        "regex": "latest stable release is ([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {

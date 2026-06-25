@@ -35,7 +35,7 @@
     },
     "checkver": {
         "url": "https://gstreamer.freedesktop.org/download/#windows",
-        "regex": "latest stable release is ([\\d.]+)"
+        "regex": "latest stable release is <strong>([\\d.]+)</strong>"
     },
     "autoupdate": {
         "architecture": {

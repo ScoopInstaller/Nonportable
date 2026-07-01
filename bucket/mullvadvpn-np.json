@@ -1,34 +1,46 @@
 {
-    "version": "2025.7",
+    "version": "2026.3",
     "homepage": "https://mullvad.net/en/",
     "description": "The official desktop client for Mullvad VPN, a privacy-respecting VPN service.",
-    "license": "GPL-3.0",
+    "license": {
+        "identifier": "GPL-3.0-or-later",
+        "url": "https://github.com/mullvad/mullvadvpn-app/blob/HEAD/LICENSE.md"
+    },
     "architecture": {
         "64bit": {
-            "url": "https://cdn.mullvad.net/app/desktop/releases/2025.7/MullvadVPN-2025.7.exe#/setup.exe",
-            "hash": "096576aab1b19d9e2db0f481c5fe96f53ec3ef5bffddc597d1a4c5b8e08d9847"
+            "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2026.3/MullvadVPN-2026.3_x64.exe",
+            "hash": "e335507b948083100b54f8000ef5bb733e3ee959f8df6a573e9404c506cb139a"
+        },
+        "arm64": {
+            "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/2026.3/MullvadVPN-2026.3_arm64.exe",
+            "hash": "adc84e88313998023ef854cb4c9584d9be0c6771d28a5c5e215261afb77ccee9"
         }
     },
-    "pre_install": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Start-Process \"$dir\\setup.exe\" -Verb 'RunAs' -Args @('/allusers', '/S')",
-        "while (!(Get-Process -Name 'mullvad-daemon' -ErrorAction 'SilentlyContinue')) { Start-Sleep -Seconds 5 }",
-        "Remove-Item \"$dir\\setup.exe\""
-    ],
-    "pre_uninstall": [
-        "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-        "Stop-Service -Name 'MullvadVPN' -ErrorAction 'SilentlyContinue' -Force; Stop-Process -Name 'Mullvad VPN' -ErrorAction 'SilentlyContinue' -Force",
-        "Start-Process \"$env:ProgramFiles\\Mullvad VPN\\Uninstall Mullvad VPN.exe\" -Wait -Verb 'RunAs' -Args @('/allusers', '/S')",
-        "Start-Sleep -Seconds 2"
-    ],
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList @('/S')",
+            "Remove-Item \"$dir\\$fname\""
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "if ($cmd -ne 'update') { Invoke-ExternalCommand \"$env:ProgramFiles\\Mullvad VPN\\Uninstall Mullvad VPN.exe\" -ArgumentList @('/allusers', '/S') }"
+        ]
+    },
     "checkver": {
-        "url": "https://mullvad.net/en/download/windows/",
-        "regex": ">Latest\\sversion:\\s([\\d.]+)"
+        "url": "https://api.github.com/repositories/114742422/releases",
+        "jsonpath": "$[*].assets[?(@.name =~ /\\.exe$/i)].browser_download_url",
+        "regex": "(?i)download/(?<tag>[^/]+)/MullvadVPN-([\\w.-]+)_(?:x|arm)"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://cdn.mullvad.net/app/desktop/releases/$version/MullvadVPN-$version.exe#/setup.exe"
+                "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/$version/MullvadVPN-$version_x64.exe"
+            },
+            "arm64": {
+                "url": "https://github.com/mullvad/mullvadvpn-app/releases/download/$version/MullvadVPN-$version_arm64.exe"
             }
         }
     }

@@ -1,16 +1,16 @@
 {
-    "version": "8.8.2",
+    "version": "8.9.6.4",
     "description": "Text and source code editor",
     "homepage": "https://notepad-plus-plus.org/",
     "license": "GPL-2.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.8.2/npp.8.8.2.Installer.x64.exe#/installer.exe",
-            "hash": "49852273a3e98ad1266a5bb7cd056e1154cc6d14e7c2a6e308ae95f355ca10cf"
+            "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.6.4/npp.8.9.6.4.Installer.x64.exe#/installer.exe",
+            "hash": "cb902f8a9628324dbe5233b5202e716ea469720c9a1ac968007df2288e4ed2ea"
         },
         "32bit": {
-            "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.8.2/npp.8.8.2.Installer.exe#/installer.exe",
-            "hash": "179613870a9ffc646b77918701481c8ffdae1c82e06cbc7ea7d42af3d1c9e5e2"
+            "url": "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.9.6.4/npp.8.9.6.4.Installer.exe#/installer.exe",
+            "hash": "194a73f96450760b5d7c15b364db06b8ec2cc5f4fea51f5998b2fe3ae45f542f"
         }
     },
     "installer": {

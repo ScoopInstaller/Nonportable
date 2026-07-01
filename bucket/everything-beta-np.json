@@ -1,31 +1,29 @@
 {
-    "version": "1.4.1.1028",
+    "version": "1.5.0.1415b",
     "description": "Locate files and folders by name instantly.",
     "homepage": "https://www.voidtools.com",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "http://www.voidtools.com/Everything-1.4.1.1028.x64-Setup.exe",
-            "hash": "874e87dc9de6e99bcbf46400bf7eced0deda402fc79dd13e0cafabf2277c8149"
+            "url": "http://www.voidtools.com/Everything-1.5.0.1415b.x64-Setup.exe",
+            "hash": "ab76b4f9b756ffd808950c99b5dc0da666985d4b6907e22fe72c0640b6f0abad"
         },
         "32bit": {
-            "url": "http://www.voidtools.com/Everything-1.4.1.1028.x86-Setup.exe",
-            "hash": "3aaeb5943675846be1a67ba8a7777be581b88b0177927c8cb4d152bc8c167e17"
+            "url": "http://www.voidtools.com/Everything-1.5.0.1415b.x86-Setup.exe",
+            "hash": "8cb20eb74da2f86d9d9e9b1871e5ea6eb7d83de675775a6145ac0211dcef15e1"
         }
     },
+    "pre_install": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
     "installer": {
         "script": [
-            "Start-Process \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\") -Wait -Verb RunAs | Out-Null",
-            "Remove-Item \"$dir\\$fname\""
+            "Start-Process -FilePath \"$dir\\$fname\" -ArgumentList @('/S', \"/D=$dir\") -WindowStyle Hidden -Wait",
+            "Remove-Item -Path \"$dir\\$fname\" -Force -ErrorAction SilentlyContinue"
         ]
     },
     "post_install": [
-        "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Everything.lnk\"",
-        "Remove-Item -Recurse \"$Env:Public\\Desktop\\Everything.lnk\""
+        "Remove-Item -Path \"$Env:Public\\Desktop\\Everything.lnk\" -Force",
+        "Remove-Item -Path \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\Everything.lnk\" -Force"
     ],
-    "uninstaller": {
-        "script": "Start-Process \"$dir\\Uninstall.exe\" -ArgumentList '/S' -Wait -Verb RunAs | Out-Null"
-    },
     "bin": "Everything.exe",
     "shortcuts": [
         [
@@ -33,10 +31,16 @@
             "Everything"
         ]
     ],
-    "pre_uninstall": "Stop-Process -Name 'everything' -Force -ErrorAction SilentlyContinue",
+    "pre_uninstall": [
+        "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",
+        "Stop-Process -Name 'Everything' -Force -ErrorAction SilentlyContinue"
+    ],
+    "uninstaller": {
+        "script": "Start-Process -FilePath \"$dir\\Uninstall.exe\" -ArgumentList @('/S') -WindowStyle Hidden -Wait"
+    },
     "checkver": {
-        "url": "https://www.voidtools.com/forum/viewtopic.php?f=2&t=5718",
-        "regex": "Everything-([\\d.]+)\\.x86"
+        "url": "https://www.voidtools.com/forum/viewtopic.php?sd=d&t=9787",
+        "regex": "Everything-([\\d.]+b)\\.x64"
     },
     "autoupdate": {
         "architecture": {
@@ -46,9 +50,6 @@
             "32bit": {
                 "url": "http://www.voidtools.com/Everything-$version.x86-Setup.exe"
             }
-        },
-        "hash": {
-            "url": "https://www.voidtools.com/Everything-$version.sha256"
         }
     }
 }

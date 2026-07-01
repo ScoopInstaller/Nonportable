@@ -1,5 +1,5 @@
 {
-    "version": "0.80",
+    "version": "0.82",
     "description": "Open-Source DirectShow Media Splitter and Decoders.",
     "homepage": "https://1f0.de/",
     "license": {
@@ -8,12 +8,12 @@
     },
     "architecture": {
         "64bit": {
-            "url": "https://github.com/Nevcairiel/LAVFilters/releases/download/0.80/LAVFilters-0.80-x64.zip",
-            "hash": "c121f087d1d48b6abd38a641a3c5d1e391cd136b9b4ead31c19cd3b098542650"
+            "url": "https://github.com/Nevcairiel/LAVFilters/releases/download/0.82/LAVFilters-0.82-x64.zip",
+            "hash": "90d6961689d30e5cbb0abfc3a03387461878d138fecf9d16cc0f5fc68ce0da1f"
         },
         "32bit": {
-            "url": "https://github.com/Nevcairiel/LAVFilters/releases/download/0.80/LAVFilters-0.80-x86.zip",
-            "hash": "dddbeab8fe3263a8d51104928213836ea7252eac73072d7096ebb02934f9e9ec"
+            "url": "https://github.com/Nevcairiel/LAVFilters/releases/download/0.82/LAVFilters-0.82-x86.zip",
+            "hash": "410a5f535cc4da5e65ede43805422719ee2fbaed8349f1f205bd2e599e613585"
         }
     },
     "depends": "sudo",

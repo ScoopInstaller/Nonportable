@@ -9,7 +9,7 @@
     "architecture": {
         "64bit": {
             "url": "https://public-cdn.cloud.unity3d.com/hub/prod/UnityHubSetup-x64.exe#/setup.exe",
-            "hash": "599561c02ef237bc41194a63a1fd1819c3d0299f59b3213b9a1fae35f95739c9"
+            "hash": "efeee9301e162f140bcdf46e8d622db137dcd8887056a728e2d58d0644896626"
         }
     },
     "pre_install": "if (-not (is_admin)) { abort \"`n[ERROR]  $app requires admin rights to $cmd.\" }",

@@ -1,0 +1,53 @@
+{
+    "homepage": "https://gstreamer.freedesktop.org",
+    "version": "1.28.4",
+    "description": "Open-source multimedia framework core library.",
+    "license": {
+        "identifier": "LGPL-2.1-only",
+        "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer/-/raw/master/COPYING"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.4/msvc/gstreamer-1.0-msvc-x86_64-1.28.4.exe#/install_gstreamer.exe",
+            "hash": "1a745d67225e43394a4a5db929c97397cb56e74b1c38bb77c6ded4b037d3c040"
+        },
+        "32bit": {
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.4/msvc/gstreamer-1.0-msvc-x86-1.28.4.exe#/install_gstreamer.exe",
+            "hash": "ebf1d136558bc5a90b9599095fef8db927e10978ec39bd038363d38a2debf97b"
+        },
+        "arm64": {
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.28.4/msvc/gstreamer-1.0-msvc-arm64-1.28.4.exe#/install_gstreamer.exe",
+            "hash": "6f810ad85e0fe7b566ab2f2841c0fec52e010265af6883427652e0a159a40fc7"
+        }
+    },
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Start-Process \"$dir\\install_gstreamer.exe\" -ArgumentList @('/SP-', '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', \"/DIR=`\"$dir`\"\") -Wait | Out-Null",
+            "Remove-Item \"$dir\\install_gstreamer.exe\""
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "Invoke-ExternalCommand \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') | Out-Null"
+        ]
+    },
+    "checkver": {
+        "url": "https://gstreamer.freedesktop.org/download/#windows",
+        "regex": "latest stable release is <strong>([\\d.]+)</strong>"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86_64-$version.exe#/install_gstreamer.exe"
+            },
+            "32bit": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86-$version.exe#/install_gstreamer.exe"
+            },
+            "arm64": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-arm64-$version.exe#/install_gstreamer.exe"
+            }
+        }
+    }
+}

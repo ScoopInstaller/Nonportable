@@ -1,0 +1,47 @@
+{
+    "version": "2026.9.11-1",
+    "description": "AI agent desktop client that plans and completes local computer work on Windows.",
+    "homepage": "https://www.aimoogh.com/",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://agent.aimoogh.com/terms.html"
+    },
+    "notes": [
+        "MOOGH installs per-user by default; admin rights are only required for a machine-wide install.",
+        "Official download page: https://agent.aimoogh.com/download",
+        "Privacy policy: https://agent.aimoogh.com/privacy.html"
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://down.aimoogh.com/downloads/win/stable/2026.9.11-1/moogh-win-x64-2026.9.11-1.exe#/moogh-setup.exe",
+            "hash": "2E94E6326F29F6EAD60E1A8354D591D56578CC423220EB6A370694282B5931BF"
+        }
+    },
+    "installer": {
+        "script": [
+            "Start-Process \"$dir\\moogh-setup.exe\" -ArgumentList @('/S', \"/D=$dir\") -Wait | Out-Null",
+            "Remove-Item \"$dir\\moogh-setup.exe\""
+        ]
+    },
+    "uninstaller": {
+        "script": "Get-ItemProperty \"HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*\" | Where-Object { $_.DisplayName -like 'MOOGH*' } | ForEach-Object { Start-Process $_.UninstallString -ArgumentList '/S' -Wait | Out-Null }"
+    },
+    "bin": "MOOGH.exe",
+    "shortcuts": [
+        [
+            "MOOGH.exe",
+            "MOOGH"
+        ]
+    ],
+    "checkver": {
+        "url": "https://www.aimoogh.com/en/download/",
+        "regex": "Download MOOGH v([\\d.]+-\\d+) for Windows"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://down.aimoogh.com/downloads/win/stable/$version/moogh-win-x64-$version.exe#/moogh-setup.exe"
+            }
+        }
+    }
+}

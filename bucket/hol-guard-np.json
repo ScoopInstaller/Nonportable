@@ -1,0 +1,34 @@
+{
+    "version": "3.0.75",
+    "description": "Local-first runtime security for AI coding agents (Windows Desktop MSI).",
+    "homepage": "https://hol.org/guard",
+    "license": "Apache-2.0",
+    "notes": [
+        "HOL Guard Desktop is installed system-wide via MSI (requires admin).",
+        "Public installer URL redirects; hash verified for HOL-Guard-Desktop-3.0.75-x64.msi.",
+        "Maker/publisher: HOL. Core Guard Local is Apache-2.0."
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://hol.org/api/guard/desktop/download?platform=windows#/setup.msi_",
+            "hash": "184f1bdf59481d0ee9e3d4af5b98e91dc24e13538afc72c1988dc4773411555d"
+        }
+    },
+    "installer": {
+        "script": "Start-Process msiexec -ArgumentList @('/i', \"`\"$dir\\setup.msi_`\"\", '/qn') -Wait -Verb RunAs | Out-Null"
+    },
+    "uninstaller": {
+        "script": "Start-Process msiexec -ArgumentList @('/x', '{9A1A4120-03EA-42DB-9009-CBE190BC1315}', '/qn') -Wait -Verb RunAs | Out-Null"
+    },
+    "checkver": {
+        "url": "https://hol.org/guard/install",
+        "regex": "HOL-Guard-Desktop-([\\d.]+)-x64\\.msi"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://hol.org/api/guard/desktop/download?platform=windows#/setup.msi_"
+            }
+        }
+    }
+}

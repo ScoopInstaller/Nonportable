@@ -14,11 +14,19 @@
             "hash": "184f1bdf59481d0ee9e3d4af5b98e91dc24e13538afc72c1988dc4773411555d"
         }
     },
+    "pre_install": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "installer": {
-        "script": "Start-Process msiexec -ArgumentList @('/i', \"`\"$dir\\setup.msi_`\"\", '/qn') -Wait -Verb RunAs | Out-Null"
+        "script": [
+            "$success = Invoke-ExternalCommand msiexec -ArgumentList @('/i', \"$dir\\setup.msi_\", '/qn', '/norestart')",
+            "if (-not $success) { error \"HOL Guard Desktop MSI installation failed\"; break }"
+        ]
     },
+    "pre_uninstall": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "uninstaller": {
-        "script": "Start-Process msiexec -ArgumentList @('/x', '{9A1A4120-03EA-42DB-9009-CBE190BC1315}', '/qn') -Wait -Verb RunAs | Out-Null"
+        "script": [
+            "$success = Invoke-ExternalCommand msiexec -ArgumentList @('/x', '{9A1A4120-03EA-42DB-9009-CBE190BC1315}', '/qn', '/norestart')",
+            "if (-not $success) { error \"HOL Guard Desktop MSI uninstall failed\"; break }"
+        ]
     },
     "checkver": {
         "url": "https://hol.org/guard/install",

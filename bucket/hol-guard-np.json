@@ -1,17 +1,17 @@
 {
-    "version": "3.0.75",
+    "version": "3.0.92",
     "description": "Local-first runtime security for AI coding agents (Windows Desktop MSI).",
     "homepage": "https://hol.org/guard",
     "license": "Apache-2.0",
     "notes": [
         "HOL Guard Desktop is installed system-wide via MSI (requires admin).",
-        "Public installer URL redirects; hash verified for HOL-Guard-Desktop-3.0.75-x64.msi.",
+        "Public installer URL is version-pinned; hash verified for HOL-Guard-Desktop-3.0.92-x64.msi.",
         "Maker/publisher: HOL. Core Guard Local is Apache-2.0."
     ],
     "architecture": {
         "64bit": {
-            "url": "https://hol.org/api/guard/desktop/download?platform=windows#/setup.msi_",
-            "hash": "184f1bdf59481d0ee9e3d4af5b98e91dc24e13538afc72c1988dc4773411555d"
+            "url": "https://hol.org/api/guard/desktop/download?platform=windows&version=3.0.92#/setup.msi_",
+            "hash": "ed8d1bd9bc287d6420776e7883c39e4b232dbf9ac4f3eb6e281be982c1e822f4"
         }
     },
     "pre_install": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
@@ -24,7 +24,7 @@
     "pre_uninstall": "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
     "uninstaller": {
         "script": [
-            "$success = Invoke-ExternalCommand msiexec -ArgumentList @('/x', '{9A1A4120-03EA-42DB-9009-CBE190BC1315}', '/qn', '/norestart')",
+            "$success = Invoke-ExternalCommand msiexec -ArgumentList @('/x', '{49381DE1-1594-4154-800A-6832955D84CC}', '/qn', '/norestart')",
             "if (-not $success) { error \"HOL Guard Desktop MSI uninstall failed\"; break }"
         ]
     },
@@ -35,7 +35,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://hol.org/api/guard/desktop/download?platform=windows#/setup.msi_"
+                "url": "https://hol.org/api/guard/desktop/download?platform=windows&version=$version#/setup.msi_"
             }
         }
     }

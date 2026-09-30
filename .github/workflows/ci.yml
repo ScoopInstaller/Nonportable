@@ -29,7 +29,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ScoopInstaller/Scoop
-          ref: 'develop'
           path: 'scoop_core'
       - name: Install and cache test dependencies
         uses: potatoqualitee/psmodulecache@9e4b63833c22c1768d648e115a9c849afdda22a5 # v6.3

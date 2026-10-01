@@ -15,7 +15,7 @@
     "installer": {
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
-            "Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList @('/quiet') | Out-Null"
+            "if (!(Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList @('/quiet') -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the installation.' })) { abort 'Installation failed.' }"
         ]
     },
     "post_install": [

@@ -1,0 +1,44 @@
+{
+    "version": "0.5.0",
+    "description": "Thumbnail generator for STL files.",
+    "homepage": "https://github.com/unlimitedbacon/stl-thumb",
+    "license": "MIT",
+    "suggest": {
+        "vcredist": "extras/vcredist2022"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/unlimitedbacon/stl-thumb/releases/download/v0.5.0/STL-Thumb-Windows_0.5.0.exe",
+            "hash": "ff9296bcdddca275c726b52fe294e1ccad1c775ec73796ee01e0a658c1e6cbef"
+        }
+    },
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "if (!(Invoke-ExternalCommand \"$dir\\$fname\" -ArgumentList @('/quiet') -ContinueExitCodes @{ 3010 = 'A system reboot is required to finalize the installation.' })) { abort 'Installation failed.' }"
+        ]
+    },
+    "post_install": [
+        "$batPath = \"$env:ProgramFiles\\stl-thumb\\stl-thumb.exe\"",
+        "if (Test-Path $batPath) {",
+        "    shim $batPath $global 'stl-thumb'",
+        "}"
+    ],
+    "post_uninstall": "rm_shim 'stl-thumb' \"$(shimdir $global)\"",
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "$setup = \"$dir\\STL-Thumb-Windows_$version.exe\"",
+            "if (!(Test-Path $setup)) { abort \"Uninstaller not found: $setup\" }",
+            "Invoke-ExternalCommand $setup -ArgumentList @('/uninstall', '/quiet') | Out-Null"
+        ]
+    },
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/unlimitedbacon/stl-thumb/releases/download/v$version/STL-Thumb-Windows_$version.exe"
+            }
+        }
+    }
+}

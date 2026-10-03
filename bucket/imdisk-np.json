@@ -1,0 +1,65 @@
+{
+    "version": "20241123",
+    "description": "Ramdisk for Windows and mounting of image files",
+    "homepage": "https://sourceforge.net/projects/imdisk-toolkit/",
+    "license": "WTFPL",
+    "architecture": {
+        "64bit": {
+            "url": "https://sourceforge.net/projects/imdisk-toolkit/files/20241123/ImDiskTk.zip/download#ImDiskTk.zip",
+            "hash": "7377c45601b9a3a73cf012757e571191df3d6257b25b708830298af1e0fc5c8e"
+        },
+        "32bit": {
+            "url": "https://sourceforge.net/projects/imdisk-toolkit/files/20241123/ImDiskTk-x64.zip/download#ImDiskTk-x64.zip",
+            "hash": "45dbadb061bcd1dfaf7d82f2cf5cfff5581f918bd722fb943b14a8cbf7120d04"
+        }
+    },
+    "pre_install": [
+        "Expand-7zipArchive \"$dir\\ImDiskTk$version\\files.cab\" \"$dir\\setup\"",
+        "Remove-Item \"$dir\\ImDiskTk$version\" -Force -Recurse"
+    ],
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { \"$app requires admin rights to $cmd\"; break }",
+            "$arguments = @('/fullsilent', \"/installfolder:$dir\", \"/menu_entries:0\", \"/shortcuts_desktop:0\", \"/shortcuts_all:0\")",
+            "Start-Process -Wait \"$dir\\setup\\config.exe\" -Verb RunAs -ArgumentList $arguments",
+            "Remove-Item \"$env:AppData\\Microsoft\\Windows\\Start Menu\\Programs\\ImDisk\" -Force -Recurse",
+            "New-Item -Path \"$dir\\imdisk_cpl.bat\" -ItemType file -Value \"imdisk.cpl\" | Out-Null"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if (!(is_admin)) { \"$app requires admin rights to $cmd\"; break }",
+            "Start-Process -Wait \"$dir\\config.exe\" -Verb RunAs -ArgumentList @('/silentuninstall')"
+        ]
+    },
+    "shortcuts": [
+        [
+            "MountImg.exe",
+            "ImDisk Mount Image File"
+        ],
+        [
+            "RamDiskUI.exe",
+            "ImDisk RamDisk Configuration"
+        ],
+        [
+            "imdisk_cpl.bat",
+            "ImDisk Virtual Disk Driver",
+            "",
+            "config.exe"
+        ]
+    ],
+    "checkver": {
+        "url": "https://sourceforge.net/projects/imdisk-toolkit/files/",
+        "regex": "Version\\s+([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://sourceforge.net/projects/imdisk-toolkit/files/$version/ImDiskTk.zip/download"
+            },
+            "32bit": {
+                "url": "https://sourceforge.net/projects/imdisk-toolkit/files/$version/ImDiskTk-x64.zip/download"
+            }
+        }
+    }
+}

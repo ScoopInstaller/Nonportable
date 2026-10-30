@@ -9,11 +9,11 @@
     "architecture": {
         "64bit": {
             "url": "https://dl.teamviewer.com/download/version_15x/TeamViewer_Setup_x64.exe#/setup.exe",
-            "hash": "1e7678b5abb06a5a96ffd42bf36c85620992a9412f93055db696e9b682c14126"
+            "hash": "03314d9a82833e4b5e817446dab8566085a04536ac600bbb5473a013c39676d2"
         },
         "32bit": {
             "url": "https://dl.teamviewer.com/download/version_15x/TeamViewer_Setup.exe#/setup.exe",
-            "hash": "8c9d9a6c2687ab5ffdab68817de13dee1f603edea238d54a59611c3e944c6338"
+            "hash": "9e197025ee3ce95a9c81504123be84aa10abd287054f4c7b094f2fd57056c11a"
         }
     },
     "installer": {

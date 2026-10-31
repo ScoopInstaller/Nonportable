@@ -15,15 +15,13 @@
             ]
         }
     },
-    "pre_install": [
-        "if ($global) { throw 'Global installation is not supported.' }",
-        "if (!(is_admin)) { throw 'Administrator rights are required to install this app.' }"
-    ],
+    "pre_install": "if ($global) { throw 'Global installation is not supported.' }",
     "installer": {
         "script": [
             "$certificate = Join-Path $dir 'WSLContainerDesktop-Signing.cer'",
             "$thumbprint = (Get-PfxCertificate -FilePath $certificate).Thumbprint",
             "if (!(Test-Path \"Cert:\\LocalMachine\\TrustedPeople\\$thumbprint\")) {",
+            "    if (!(is_admin)) { throw 'Administrator rights are required to import the signing certificate.' }",
             "    Import-Certificate -FilePath $certificate -CertStoreLocation 'Cert:\\LocalMachine\\TrustedPeople' -ErrorAction Stop | Out-Null",
             "}",
             "Add-AppxPackage -Path \"$dir\\WSLContainerDesktop.msix\" -ForceUpdateFromAnyVersion -ErrorAction Stop"

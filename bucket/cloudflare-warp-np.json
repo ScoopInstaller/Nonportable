@@ -1,0 +1,50 @@
+{
+    "##": "This package is non-portable because the app requires installing drivers/services to work.",
+    "version": "2026.8.2115.0",
+    "description": "Cloudflare WARP client, with GUI and warp-cli",
+    "homepage": "https://one.one.one.one/",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://www.cloudflare.com/application/terms/"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://downloads.cloudflareclient.com/v1/download/windows/version/2026.8.2115.0#/setup.msi_",
+            "hash": "ab3138dbebdf132af076b5ebcb25b42345d29258acb76267c3bd1f8cfea57a53"
+        }
+    },
+    "installer": {
+        "script": [
+            "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
+            "$install_args = @('/i', \"`\"$dir\\$fname`\"\", '/qn', '/norestart')",
+            "Invoke-ExternalCommand msiexec -ArgumentList $install_args -RunAs | Out-Null",
+            "Remove-Item \"$dir\\$fname\""
+        ]
+    },
+    "pre_uninstall": "if (-not (is_admin)) { abort \"`n[ERROR] $app requires admin rights to $cmd\" }",
+    "uninstaller": {
+        "script": [
+            "if ($cmd -eq 'uninstall') {",
+            "    $registry_path = 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*'",
+            "    $product_id = Get-ItemProperty -Path $registry_path | Where-Object { $_.DisplayName -eq 'Cloudflare One Client' } |",
+            "        Select-Object -ExpandProperty PSChildName -First 1",
+            "    if (-not $product_id) { abort \"`nUninstallation Failed: Could not locate the product identity for Cloudflare One Client.\" }",
+            "    $uninstall_args = @('/x', $product_id, '/qn', '/norestart')",
+            "    $removal_status = Invoke-ExternalCommand -FilePath 'msiexec.exe' -ArgumentList $uninstall_args -LogPath \"$dir\\uninstall.log\"",
+            "    if (-not $removal_status) { abort \"`nUninstallation Failed: Process did not complete.`nReference Log: '$dir\\uninstall.log'.\" }",
+            "    Remove-Item -Path \"$dir\\*.log\" -Force -ErrorAction SilentlyContinue",
+            "}"
+        ]
+    },
+    "checkver": {
+        "script": "[System.Net.HttpWebRequest]::Create('https://downloads.cloudflareclient.com/v1/download/windows/ga').GetResponse().ResponseUri.AbsoluteUri",
+        "regex": "/version/([\\d.]+)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://downloads.cloudflareclient.com/v1/download/windows/version/$version#/setup.msi_"
+            }
+        }
+    }
+}

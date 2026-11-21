@@ -17,7 +17,8 @@
         "script": [
             "if (!(is_admin)) { error \"$app requires admin rights to $cmd\"; break }",
             "$install_args = @('/i', \"`\"$dir\\$fname`\"\", '/qn', '/norestart')",
-            "Invoke-ExternalCommand msiexec -ArgumentList $install_args -RunAs | Out-Null",
+            "$succ = Invoke-ExternalCommand msiexec -ArgumentList $install_args -RunAs",
+            "if (-not $succ) { abort \"`nInstallation Failed: msiexec returned an error.\" }",
             "Remove-Item \"$dir\\$fname\""
         ]
     },

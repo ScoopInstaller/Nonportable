@@ -1,5 +1,5 @@
 {
-    "##": "The installer is created by NSIS, but it cannot be extracted by 7-Zip. See Extras#1831 for details.",
+    "##": "The installer is created by Inno Setup (it was NSIS up to 5.4.1); its uninstaller is unins000.exe.",
     "version": "5.6.2",
     "description": "Photography workflow application and raw developer.",
     "homepage": "https://www.darktable.org/",
@@ -8,23 +8,12 @@
     "hash": "7f7a1eabcd0a1b548dcfacac842c8203fc85a4175697fb09f90bb891c8931edd",
     "installer": {
         "script": [
-            "$process = Start-Process \"$dir\\setup.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs -PassThru",
-            "do { Start-Sleep -Milliseconds 200 } until ($process.HasExited)",
-            "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\darktable\"",
+            "Start-Process \"$dir\\setup.exe\" -ArgumentList @('/SP-', '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NOICONS', '/TASKS=\"\"', \"/DIR=`\"$dir`\"\") -Wait -Verb RunAs | Out-Null",
             "Remove-Item \"$dir\\setup.exe\""
         ]
     },
     "uninstaller": {
-        "script": [
-            "Start-Process \"$dir\\Uninstall.exe\" -ArgumentList '/S' -Verb RunAs -PassThru | Out-Null",
-            "$activeProcess1 = Get-Process Uninstall -ErrorAction SilentlyContinue",
-            "$activeProcess2 = Get-Process Un_A -ErrorAction SilentlyContinue",
-            "do {",
-            "    Start-Sleep -Milliseconds 200",
-            "    $activeProcess1 = Get-Process Uninstall -ErrorAction SilentlyContinue",
-            "    $activeProcess2 = Get-Process Un_A -ErrorAction SilentlyContinue",
-            "} until (($activeProcess1 -eq $null) -And ($activeProcess2 -eq $null))"
-        ]
+        "script": "Invoke-ExternalCommand \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -RunAs | Out-Null"
     },
     "bin": [
         "bin\\darktable.exe",

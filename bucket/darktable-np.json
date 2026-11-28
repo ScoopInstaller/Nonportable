@@ -1,30 +1,19 @@
 {
-    "##": "The installer is created by NSIS, but it cannot be extracted by 7-Zip. See Extras#1831 for details.",
-    "version": "5.4.1",
+    "##": "The installer is created by Inno Setup (it was NSIS up to 5.4.1); its uninstaller is unins000.exe.",
+    "version": "5.6.2",
     "description": "Photography workflow application and raw developer.",
     "homepage": "https://www.darktable.org/",
     "license": "GPL-3.0-only",
-    "url": "https://github.com/darktable-org/darktable/releases/download/release-5.4.1/darktable-5.4.1-win64.exe#/setup.exe",
-    "hash": "df3b9f2f9f1375b9166c2fb2f1503455c3ceaa44c702b8a9144419e65e0cfdf9",
+    "url": "https://github.com/darktable-org/darktable/releases/download/release-5.6.2/darktable-5.6.2-win64.exe#/setup.exe",
+    "hash": "7f7a1eabcd0a1b548dcfacac842c8203fc85a4175697fb09f90bb891c8931edd",
     "installer": {
         "script": [
-            "$process = Start-Process \"$dir\\setup.exe\" -ArgumentList @('/S', \"/D=$dir\") -Verb RunAs -PassThru",
-            "do { Start-Sleep -Milliseconds 200 } until ($process.HasExited)",
-            "Remove-Item -Recurse \"$([Environment]::GetFolderPath('commonstartmenu'))\\Programs\\darktable\"",
+            "Start-Process \"$dir\\setup.exe\" -ArgumentList @('/SP-', '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/NOICONS', '/TASKS=\"\"', \"/DIR=`\"$dir`\"\") -Wait -Verb RunAs | Out-Null",
             "Remove-Item \"$dir\\setup.exe\""
         ]
     },
     "uninstaller": {
-        "script": [
-            "Start-Process \"$dir\\Uninstall.exe\" -ArgumentList '/S' -Verb RunAs -PassThru | Out-Null",
-            "$activeProcess1 = Get-Process Uninstall -ErrorAction SilentlyContinue",
-            "$activeProcess2 = Get-Process Un_A -ErrorAction SilentlyContinue",
-            "do {",
-            "    Start-Sleep -Milliseconds 200",
-            "    $activeProcess1 = Get-Process Uninstall -ErrorAction SilentlyContinue",
-            "    $activeProcess2 = Get-Process Un_A -ErrorAction SilentlyContinue",
-            "} until (($activeProcess1 -eq $null) -And ($activeProcess2 -eq $null))"
-        ]
+        "script": "Invoke-ExternalCommand \"$dir\\unins000.exe\" -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART') -RunAs | Out-Null"
     },
     "bin": [
         "bin\\darktable.exe",
@@ -37,8 +26,9 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/darktable-org/darktable",
-        "regex": "tag/release-([\\d.]+)"
+        "github": "https://api.github.com/repos/darktable-org/darktable/releases/latest",
+        "jsonpath": "$.tag_name",
+        "regex": "^release-([\\d.]+)$"
     },
     "autoupdate": {
         "url": "https://github.com/darktable-org/darktable/releases/download/release-$version/darktable-$version-win64.exe#/setup.exe",
